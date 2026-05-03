@@ -1,0 +1,17 @@
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net9.0/HospitalApp.Infrastructure.Identity.csproj.AssemblyReference.cache
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net9.0/HospitalApp.Infrastructure.Identity.GeneratedMSBuildEditorConfig.editorconfig
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net9.0/HospitalApp.Infrastructure.Identity.AssemblyInfoInputs.cache
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net9.0/HospitalApp.Infrastructure.Identity.AssemblyInfo.cs
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net9.0/HospitalApp.Infrastructure.Identity.csproj.CoreCompileInputs.cache
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/bin/Debug/net9.0/HospitalApp.Infrastructure.Identity.deps.json
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/bin/Debug/net9.0/HospitalApp.Infrastructure.Identity.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/bin/Debug/net9.0/HospitalApp.Infrastructure.Identity.pdb
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/bin/Debug/net9.0/HospitalApp.Core.Application.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/bin/Debug/net9.0/HospitalApp.Core.Domain.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/bin/Debug/net9.0/HospitalApp.Core.Application.pdb
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/bin/Debug/net9.0/HospitalApp.Core.Domain.pdb
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net9.0/Hospital.27FA951B.Up2Date
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net9.0/HospitalApp.Infrastructure.Identity.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net9.0/refint/HospitalApp.Infrastructure.Identity.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net9.0/HospitalApp.Infrastructure.Identity.pdb
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net9.0/ref/HospitalApp.Infrastructure.Identity.dll

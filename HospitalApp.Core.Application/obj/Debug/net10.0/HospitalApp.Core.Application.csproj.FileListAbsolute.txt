@@ -1,0 +1,11 @@
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/bin/Debug/net10.0/HospitalApp.Core.Application.deps.json
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/bin/Debug/net10.0/HospitalApp.Core.Application.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/bin/Debug/net10.0/HospitalApp.Core.Application.pdb
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/Debug/net10.0/HospitalApp.Core.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/Debug/net10.0/HospitalApp.Core.Application.AssemblyInfoInputs.cache
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/Debug/net10.0/HospitalApp.Core.Application.AssemblyInfo.cs
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/Debug/net10.0/HospitalApp.Core.Application.csproj.CoreCompileInputs.cache
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/Debug/net10.0/HospitalApp.Core.Application.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/Debug/net10.0/refint/HospitalApp.Core.Application.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/Debug/net10.0/HospitalApp.Core.Application.pdb
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/Debug/net10.0/ref/HospitalApp.Core.Application.dll

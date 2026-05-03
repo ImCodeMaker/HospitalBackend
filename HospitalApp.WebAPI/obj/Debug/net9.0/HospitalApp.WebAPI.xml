@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HospitalApp.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.MarkNoShowAppointmentsAsync">
+            <summary>Daily: flag appointments as NoShow if past + still Confirmed/Scheduled.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.CheckLowStockAsync">
+            <summary>Daily: send low-stock alert notifications (SignalR push to Admin/Doctor/Nurse).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.VoidStaleInvoicesAsync">
+            <summary>Daily: auto-void invoices AwaitingPayment older than 30 days.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.PurgeOldAuditLogsAsync">
+            <summary>Weekly: purge audit logs older than 2 years.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.AppointmentsController.GetAll(System.Nullable{System.Guid},System.Nullable{System.Guid},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{HospitalApp.Core.Domain.Enums.AppointmentStatusEnum},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Get appointments with optional filters.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.AppointmentsController.Create(HospitalApp.Core.Application.Features.Appointments.DTOs.CreateAppointmentRequest,System.Threading.CancellationToken)">
+            <summary>Schedule a new appointment.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.AppointmentsController.UpdateStatus(System.Guid,HospitalApp.WebAPI.Controllers.v1.UpdateAppointmentStatusRequest,System.Threading.CancellationToken)">
+            <summary>Update appointment status (confirm, cancel, no-show, complete).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.AuditController.GetLogs(System.String,System.Nullable{System.Guid},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Query audit log with optional filters. Admin only.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.AuthController.Login(HospitalApp.Core.Application.Features.Auth.DTOs.LoginRequest,System.Threading.CancellationToken)">
+            <summary>Authenticate and receive JWT tokens.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.AuthController.Register(HospitalApp.Core.Application.Features.Auth.DTOs.RegisterRequest,System.Threading.CancellationToken)">
+            <summary>Register a new user (Admin only).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.AuthController.Refresh(HospitalApp.WebAPI.Controllers.v1.RefreshTokenRequest,System.Threading.CancellationToken)">
+            <summary>Refresh an expired access token.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.AuthController.Revoke(System.Threading.CancellationToken)">
+            <summary>Revoke the current user's refresh token.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.BillingController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get invoice by ID.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.BillingController.GetByPatient(System.Guid,System.Nullable{HospitalApp.Core.Domain.Enums.InvoiceStatusEnum},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Get all invoices for a patient.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.BillingController.Create(HospitalApp.Core.Application.Features.Billing.DTOs.CreateInvoiceRequest,System.Threading.CancellationToken)">
+            <summary>Create invoice for a finalized consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.BillingController.ProcessPayment(System.Guid,HospitalApp.Core.Application.Features.Billing.DTOs.ProcessPaymentRequest,System.Threading.CancellationToken)">
+            <summary>Record a payment against an invoice.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.CajaController.GetCurrent(System.Threading.CancellationToken)">
+            <summary>Get the currently open shift.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.CajaController.OpenShift(HospitalApp.WebAPI.Controllers.v1.OpenShiftRequest,System.Threading.CancellationToken)">
+            <summary>Open a new cash register shift.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.CajaController.CloseShift(System.Guid,HospitalApp.WebAPI.Controllers.v1.CloseShiftRequest,System.Threading.CancellationToken)">
+            <summary>Close the current shift and record the closing balance.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.CajaController.AddTransaction(System.Guid,HospitalApp.WebAPI.Controllers.v1.AddTransactionRequest,System.Threading.CancellationToken)">
+            <summary>Record a cash transaction against an open shift.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.CajaController.GetShiftReport(System.Guid,System.Threading.CancellationToken)">
+            <summary>Download a PDF report for a closed shift.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultFieldTemplatesController.GetBySpecialty(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get all consult field templates for a specialty.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultFieldTemplatesController.Create(HospitalApp.Core.Application.Features.ConsultFieldTemplates.DTOs.CreateConsultFieldTemplateRequest,System.Threading.CancellationToken)">
+            <summary>Create a new consult field template.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultFieldTemplatesController.Update(System.Guid,HospitalApp.Core.Application.Features.ConsultFieldTemplates.DTOs.UpdateConsultFieldTemplateRequest,System.Threading.CancellationToken)">
+            <summary>Update a consult field template.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultFieldTemplatesController.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>Delete a consult field template.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultsController.GetByPatient(System.Guid,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Get all consults for a patient.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultsController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get a consult by ID.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultsController.Create(HospitalApp.Core.Application.Features.Consults.DTOs.CreateConsultRequest,System.Threading.CancellationToken)">
+            <summary>Open a new consult for a patient.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultsController.Update(System.Guid,HospitalApp.Core.Application.Features.Consults.DTOs.UpdateConsultRequest,System.Threading.CancellationToken)">
+            <summary>Update clinical details of an in-progress consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultsController.Finalize(System.Guid,System.Threading.CancellationToken)">
+            <summary>Finalize consult — required before billing. Deducts prescribed medications from inventory.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultsController.GetImages(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get all images/attachments for a consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultsController.AttachImage(System.Guid,HospitalApp.WebAPI.Controllers.v1.AttachImageBody,System.Threading.CancellationToken)">
+            <summary>Attach an image/document to a consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.FilesController.Upload(System.String,Microsoft.AspNetCore.Http.IFormFile,System.Threading.CancellationToken)">
+            <summary>Upload a file to a specific folder (consult-images, lab-results, insurance-cards, documents).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.FilesController.Delete(System.String,System.Threading.CancellationToken)">
+            <summary>Delete a file by its relative path.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.HRController.GetAll(System.Nullable{HospitalApp.Core.Domain.Enums.EmployeeRoleEnum},System.Nullable{HospitalApp.Core.Domain.Enums.EmployeeStatusEnum},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>List employees with optional role and status filters.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.HRController.Create(HospitalApp.Core.Application.Features.HR.Commands.CreateEmployee.CreateEmployeeRequest,System.Threading.CancellationToken)">
+            <summary>Create a new employee record.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.HRController.GetPerformance(System.Guid,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>Get rolling 30-day performance metrics for an employee.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.InsuranceCompaniesController.GetAll(System.Boolean,System.Threading.CancellationToken)">
+            <summary>List insurance companies.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.InsuranceCompaniesController.Create(HospitalApp.Core.Application.Features.InsuranceCompanies.Commands.CreateInsuranceCompany.CreateInsuranceCompanyRequest,System.Threading.CancellationToken)">
+            <summary>Register an insurance company.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.LabOrdersController.GetByConsult(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get all lab orders for a consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.LabOrdersController.Create(HospitalApp.Core.Application.Features.LabOrders.Commands.CreateLabOrder.CreateLabOrderRequest,System.Threading.CancellationToken)">
+            <summary>Order a lab test from an active consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.LabOrdersController.AddResult(System.Guid,HospitalApp.Core.Application.Features.LabOrders.Commands.AddLabResult.AddLabResultRequest,System.Threading.CancellationToken)">
+            <summary>Add result(s) to a lab order.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.LabOrdersController.MarkReviewed(System.Guid,System.Threading.CancellationToken)">
+            <summary>Mark lab results as reviewed by the ordering doctor.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.MedicationsController.GetAll(System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Get paginated medication inventory.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.MedicationsController.Create(HospitalApp.Core.Application.Features.Medications.DTOs.CreateMedicationRequest,System.Threading.CancellationToken)">
+            <summary>Add a new medication to inventory (Admin only).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.MedicationsController.AdjustStock(System.Guid,HospitalApp.WebAPI.Controllers.v1.AdjustStockBody,System.Threading.CancellationToken)">
+            <summary>Adjust stock (purchase receipt, manual adjustment, write-off).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientsController.GetAll(System.String,System.Nullable{HospitalApp.Core.Domain.Enums.PatientsStatus},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Get paginated list of patients.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientsController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get a single patient by ID.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientsController.CheckDuplicate(HospitalApp.Core.Domain.Enums.DocumentTypeEnum,System.String,System.Threading.CancellationToken)">
+            <summary>Check if a patient with the given document already exists.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientsController.Create(HospitalApp.Core.Application.Features.Patients.DTOs.CreatePatientRequest,System.Threading.CancellationToken)">
+            <summary>Create a new patient.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientsController.Update(System.Guid,HospitalApp.Core.Application.Features.Patients.DTOs.UpdatePatientRequest,System.Threading.CancellationToken)">
+            <summary>Update patient demographics and insurance.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientsController.ChangeStatus(System.Guid,HospitalApp.WebAPI.Controllers.v1.ChangeStatusBody,System.Threading.CancellationToken)">
+            <summary>Change patient status (e.g. Active → Archived).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientsController.GetTimeline(System.Guid,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>Chronological timeline of all clinical activity for a patient.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PayrollController.GetEmployeePayroll(System.Guid,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Get paginated payroll records for an employee.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PayrollController.Create(HospitalApp.Core.Application.Features.Payroll.DTOs.CreatePayrollRecordRequest,System.Threading.CancellationToken)">
+            <summary>Create a new payroll record.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PayrollController.Approve(System.Guid,System.Threading.CancellationToken)">
+            <summary>Approve a payroll record.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PayrollController.MarkPaid(System.Guid,HospitalApp.WebAPI.Controllers.v1.MarkPaidRequest,System.Threading.CancellationToken)">
+            <summary>Mark an approved payroll record as paid.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PdfController.Invoice(System.Guid,System.Threading.CancellationToken)">
+            <summary>Download invoice PDF by invoice id.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PdfController.SickNote(System.Guid,System.Int32,System.Threading.CancellationToken)">
+            <summary>Download sick note PDF for a finished consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PdfController.Prescription(System.Guid,System.Threading.CancellationToken)">
+            <summary>Download prescription PDF for a finished consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PrescriptionsController.GetByConsult(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get all prescriptions for a consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PrescriptionsController.Add(HospitalApp.WebAPI.Controllers.v1.AddPrescriptionWithConsultRequest,System.Threading.CancellationToken)">
+            <summary>Add a prescription to an active consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.RecruitmentController.GetAll(System.Nullable{HospitalApp.Core.Domain.Enums.RecruitmentStageEnum},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Get paginated recruitment applications, optionally filtered by stage.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.RecruitmentController.Create(HospitalApp.Core.Application.Features.Recruitment.DTOs.CreateRecruitmentApplicationRequest,System.Threading.CancellationToken)">
+            <summary>Create a new recruitment application.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.RecruitmentController.AdvanceStage(System.Guid,HospitalApp.Core.Application.Features.Recruitment.DTOs.AdvanceRecruitmentStageRequest,System.Threading.CancellationToken)">
+            <summary>Advance the stage of a recruitment application.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ReportsController.DailyRevenue(System.Nullable{System.DateTime},System.String,System.Threading.CancellationToken)">
+            <summary>Daily revenue summary by payment method.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ReportsController.AccountsReceivable(System.String,System.Threading.CancellationToken)">
+            <summary>Outstanding invoice balances aged by 0-30, 31-60, 61-90, 90+ days.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ReportsController.Inventory(System.Boolean,System.String,System.Threading.CancellationToken)">
+            <summary>Current inventory levels. Use lowStockOnly=true for alert report.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.SettingsController.Get(System.Threading.CancellationToken)">
+            <summary>Get clinic settings.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.SettingsController.Update(HospitalApp.Core.Application.Features.Settings.Commands.UpdateSettings.UpdateSettingsRequest,System.Threading.CancellationToken)">
+            <summary>Update clinic settings. Admin only.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.SpecialtiesController.GetAll(System.Threading.CancellationToken)">
+            <summary>List all specialties.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.SpecialtiesController.Create(HospitalApp.Core.Application.Features.Specialties.Commands.CreateSpecialty.CreateSpecialtyRequest,System.Threading.CancellationToken)">
+            <summary>Create a specialty.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.UsersController.GetAll(System.String,System.Nullable{System.Boolean},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>List all users with optional role and active filter.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.UsersController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get user by ID.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.UsersController.Create(HospitalApp.Core.Application.Features.UserManagement.Services.CreateUserRequest,System.Threading.CancellationToken)">
+            <summary>Create a new system user.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.UsersController.Update(System.Guid,HospitalApp.Core.Application.Features.UserManagement.Services.UpdateUserRequest,System.Threading.CancellationToken)">
+            <summary>Update user profile, email, or role.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.UsersController.Deactivate(System.Guid,System.Threading.CancellationToken)">
+            <summary>Deactivate a user account.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.UsersController.Activate(System.Guid,System.Threading.CancellationToken)">
+            <summary>Reactivate a user account and unlock it.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.UsersController.ResetPassword(System.Guid,HospitalApp.WebAPI.Controllers.v1.ResetPasswordRequest,System.Threading.CancellationToken)">
+            <summary>Admin-initiated password reset.</summary>
+        </member>
+        <member name="T:HospitalApp.WebAPI.Extensions.CorsExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Extensions.CorsExtension.AddCorsExtension(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Extensions.Swagger.ConfigureSwaggerOptions.Configure(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions)">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Extensions.Swagger.ConfigureSwaggerOptions.CreateInfoForApiVersion(Asp.Versioning.ApiExplorer.ApiVersionDescription)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="description"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

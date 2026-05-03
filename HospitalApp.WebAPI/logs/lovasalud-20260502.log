@@ -1,0 +1,21 @@
+2026-05-02 16:24:06.501 -04:00 [INF] Created role: Admin
+2026-05-02 16:24:06.655 -04:00 [INF] Created role: Doctor
+2026-05-02 16:24:06.661 -04:00 [INF] Created role: Receptionist
+2026-05-02 16:24:06.667 -04:00 [INF] Created role: LabTechnician
+2026-05-02 16:24:06.671 -04:00 [INF] Created role: Nurse
+2026-05-02 16:24:06.990 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-02 16:24:07.620 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-02 16:24:09.940 -04:00 [WRN] The WebRootPath was not found: /Volumes/Files/Projects/HospitalAppServer/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-02 16:24:10.030 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-02 16:24:10.031 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-02 16:24:10.032 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-02 16:24:10.032 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-02 16:24:10.033 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-02 16:24:10.033 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-02 16:24:10.154 -04:00 [INF] Server macbookpro:12889:5734062b successfully announced in 24.0965 ms
+2026-05-02 16:24:10.170 -04:00 [INF] Server macbookpro:12889:5734062b is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-02 16:24:10.453 -04:00 [INF] Server macbookpro:12889:5734062b all the dispatchers started

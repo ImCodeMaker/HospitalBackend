@@ -1,0 +1,11 @@
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/bin/Debug/net10.0/HospitalApp.Infrastructure.Identity.deps.json
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/bin/Debug/net10.0/HospitalApp.Infrastructure.Identity.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/bin/Debug/net10.0/HospitalApp.Infrastructure.Identity.pdb
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net10.0/HospitalApp.Infrastructure.Identity.GeneratedMSBuildEditorConfig.editorconfig
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net10.0/HospitalApp.Infrastructure.Identity.AssemblyInfoInputs.cache
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net10.0/HospitalApp.Infrastructure.Identity.AssemblyInfo.cs
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net10.0/HospitalApp.Infrastructure.Identity.csproj.CoreCompileInputs.cache
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net10.0/HospitalApp.Infrastructure.Identity.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net10.0/refint/HospitalApp.Infrastructure.Identity.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net10.0/HospitalApp.Infrastructure.Identity.pdb
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/Debug/net10.0/ref/HospitalApp.Infrastructure.Identity.dll
