@@ -6,6 +6,7 @@ using HospitalApp.Core.Application.Features.Consults.Commands.UpdateConsult;
 using HospitalApp.Core.Application.Features.Consults.DTOs;
 using HospitalApp.Core.Application.Features.Consults.Queries.GetConsultById;
 using HospitalApp.Core.Application.Features.Consults.Queries.GetConsultImages;
+using HospitalApp.Core.Application.Features.Consults.Queries.GetConsults;
 using HospitalApp.Core.Application.Features.Consults.Queries.GetPatientConsults;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -18,6 +19,18 @@ namespace HospitalApp.WebAPI.Controllers.v1;
 [Authorize(Policy = "ClinicalStaff")]
 public class ConsultsController(IMediator mediator) : BaseController
 {
+    /// <summary>List all consults with optional status filter.</summary>
+    [HttpGet]
+    public async Task<IActionResult> GetAll(
+        [FromQuery] string? status,
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 20,
+        CancellationToken ct = default)
+    {
+        var result = await mediator.Send(new GetConsultsQuery(status, page, pageSize), ct);
+        return result.IsSuccess ? Ok(result.Data) : StatusCode(result.StatusCode, new { error = result.Error });
+    }
+
     /// <summary>Get all consults for a patient.</summary>
     [HttpGet("patient/{patientId:guid}")]
     public async Task<IActionResult> GetByPatient(Guid patientId, [FromQuery] int page = 1, [FromQuery] int pageSize = 20, CancellationToken ct = default)

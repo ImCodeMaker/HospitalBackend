@@ -30,6 +30,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<ConsultFieldTemplate> ConsultFieldTemplates => Set<ConsultFieldTemplate>();
     public DbSet<ClinicSettings> ClinicSettings => Set<ClinicSettings>();
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
+    public DbSet<DicomStudy> DicomStudies => Set<DicomStudy>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

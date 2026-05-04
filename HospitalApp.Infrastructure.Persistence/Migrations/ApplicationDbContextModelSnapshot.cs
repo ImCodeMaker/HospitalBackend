@@ -506,6 +506,60 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     b.ToTable("ConsultImages");
                 });
 
+            modelBuilder.Entity("HospitalApp.Core.Domain.Entities.DicomStudy", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("AccessionNumber")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("ConsultId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("FileSizeBytes")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Modality")
+                        .HasColumnType("text");
+
+                    b.Property<string>("OriginalFileName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PatientPosition")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("StudyDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("StudyInstanceUid")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UploadedByUserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConsultId");
+
+                    b.ToTable("DicomStudies");
+                });
+
             modelBuilder.Entity("HospitalApp.Core.Domain.Entities.Employee", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1465,6 +1519,9 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsTotpEnabled")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTime?>("LastLoginAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -1489,6 +1546,9 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("PatientId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
@@ -1506,6 +1566,9 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
 
                     b.Property<Guid?>("SpecialtyId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("TotpSecret")
+                        .HasColumnType("text");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
@@ -1698,6 +1761,17 @@ namespace HospitalApp.Infrastructure.Persistence.Migrations
                 {
                     b.HasOne("HospitalApp.Core.Domain.Entities.Consult", "Consult")
                         .WithMany("Images")
+                        .HasForeignKey("ConsultId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Consult");
+                });
+
+            modelBuilder.Entity("HospitalApp.Core.Domain.Entities.DicomStudy", b =>
+                {
+                    b.HasOne("HospitalApp.Core.Domain.Entities.Consult", "Consult")
+                        .WithMany()
                         .HasForeignKey("ConsultId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

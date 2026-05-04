@@ -17,7 +17,7 @@ public static class ServicesInjectionExtension
     public static void AddServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddCors(opts => opts.AddPolicy("CorsPolicy", policy =>
-            policy.WithOrigins("http://localhost:5173", "http://localhost:3000")
+            policy.WithOrigins("http://localhost:5173", "http://localhost:3000", "http://localhost:1420", "tauri://localhost")
                   .AllowAnyMethod()
                   .AllowAnyHeader()
                   .AllowCredentials()));
@@ -30,6 +30,8 @@ public static class ServicesInjectionExtension
         services.AddScoped<IEmailService, SmtpEmailService>();
         services.Configure<TwilioSettings>(configuration.GetSection(nameof(TwilioSettings)));
         services.AddScoped<ISmsService, TwilioSmsService>();
+        services.AddHttpClient<RxNormDrugInteractionService>();
+        services.AddScoped<IDrugInteractionService, RxNormDrugInteractionService>();
         services.Configure<FormOptions>(o => o.MultipartBodyLengthLimit = 52_428_800);
         services.AddSignalR();
 
@@ -106,7 +108,8 @@ public static class ServicesInjectionExtension
         services.AddAuthorizationBuilder()
             .AddPolicy("AdminOnly", p => p.RequireRole("Admin"))
             .AddPolicy("ClinicalStaff", p => p.RequireRole("Admin", "Doctor", "Receptionist", "LabTechnician", "Nurse"))
-            .AddPolicy("DoctorOrAdmin", p => p.RequireRole("Admin", "Doctor"));
+            .AddPolicy("DoctorOrAdmin", p => p.RequireRole("Admin", "Doctor"))
+            .AddPolicy("PatientPortal", p => p.RequireRole("PatientPortal"));
 
         services.AddApiVersioning(options =>
             {

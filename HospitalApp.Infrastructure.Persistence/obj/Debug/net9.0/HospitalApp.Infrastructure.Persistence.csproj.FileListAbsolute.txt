@@ -19,3 +19,4 @@
 /Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Persistence/obj/Debug/net9.0/HospitalApp.Infrastructure.Persistence.pdb
 /Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Persistence/obj/Debug/net9.0/HospitalApp.Infrastructure.Persistence.genruntimeconfig.cache
 /Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Persistence/obj/Debug/net9.0/ref/HospitalApp.Infrastructure.Persistence.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Persistence/obj/Debug/net9.0/HospitalApp.Infrastructure.Persistence.sourcelink.json

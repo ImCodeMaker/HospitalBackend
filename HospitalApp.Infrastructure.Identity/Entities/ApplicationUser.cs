@@ -15,4 +15,6 @@ public class ApplicationUser : IdentityUser<Guid>
     public DateTime? RefreshTokenExpiry { get; set; }
     public string? TotpSecret { get; set; }
     public bool IsTotpEnabled { get; set; }
+    // Linked patient record for PatientPortal role users
+    public Guid? PatientId { get; set; }
 }

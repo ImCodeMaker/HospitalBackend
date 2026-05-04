@@ -16,6 +16,9 @@
         <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.PurgeOldAuditLogsAsync">
             <summary>Weekly: purge audit logs older than 2 years.</summary>
         </member>
+        <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.SendScheduledReportsAsync">
+            <summary>Daily at 7:30 AM: email yesterday's revenue summary to clinic admin.</summary>
+        </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.AppointmentsController.GetAll(System.Nullable{System.Guid},System.Nullable{System.Guid},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{HospitalApp.Core.Domain.Enums.AppointmentStatusEnum},System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>Get appointments with optional filters.</summary>
         </member>
@@ -29,16 +32,31 @@
             <summary>Query audit log with optional filters. Admin only.</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.AuthController.Login(HospitalApp.Core.Application.Features.Auth.DTOs.LoginRequest,System.Threading.CancellationToken)">
-            <summary>Authenticate and receive JWT tokens.</summary>
+            <summary>Authenticate and receive JWT access token. Refresh token set as HTTP-only cookie.</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.AuthController.Register(HospitalApp.Core.Application.Features.Auth.DTOs.RegisterRequest,System.Threading.CancellationToken)">
             <summary>Register a new user (Admin only).</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.AuthController.Refresh(HospitalApp.WebAPI.Controllers.v1.RefreshTokenRequest,System.Threading.CancellationToken)">
-            <summary>Refresh an expired access token.</summary>
+            <summary>Refresh access token using HTTP-only cookie (falls back to body).</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.AuthController.Revoke(System.Threading.CancellationToken)">
-            <summary>Revoke the current user's refresh token.</summary>
+            <summary>Revoke the current user's refresh token and clear cookie.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.AuthController.TotpSetup(System.Threading.CancellationToken)">
+            <summary>Generate TOTP secret and QR code URI (first step of 2FA setup).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.AuthController.TotpEnable(HospitalApp.Core.Application.Features.Auth.DTOs.EnableTotpRequest,System.Threading.CancellationToken)">
+            <summary>Confirm TOTP code and enable 2FA for the current user.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.AuthController.TotpDisable(HospitalApp.Core.Application.Features.Auth.DTOs.DisableTotpRequest,System.Threading.CancellationToken)">
+            <summary>Disable 2FA (requires current password confirmation).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.AuthController.TotpLogin(HospitalApp.Core.Application.Features.Auth.DTOs.LoginWithTotpRequest,System.Threading.CancellationToken)">
+            <summary>Complete login when 2FA is required (email + password + TOTP code).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.BillingController.GetAll(System.Nullable{System.Guid},System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>List invoices with optional filters.</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.BillingController.GetById(System.Guid,System.Threading.CancellationToken)">
             <summary>Get invoice by ID.</summary>
@@ -52,6 +70,12 @@
         <member name="M:HospitalApp.WebAPI.Controllers.v1.BillingController.ProcessPayment(System.Guid,HospitalApp.Core.Application.Features.Billing.DTOs.ProcessPaymentRequest,System.Threading.CancellationToken)">
             <summary>Record a payment against an invoice.</summary>
         </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.BillingController.SubmitClaim(System.Guid,HospitalApp.WebAPI.Controllers.v1.SubmitClaimRequest,System.Threading.CancellationToken)">
+            <summary>Submit an insurance claim for an invoice.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.BillingController.ResolveClaim(System.Guid,HospitalApp.WebAPI.Controllers.v1.ResolveClaimRequest,System.Threading.CancellationToken)">
+            <summary>Resolve an insurance claim for an invoice.</summary>
+        </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.CajaController.GetCurrent(System.Threading.CancellationToken)">
             <summary>Get the currently open shift.</summary>
         </member>
@@ -63,6 +87,9 @@
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.CajaController.AddTransaction(System.Guid,HospitalApp.WebAPI.Controllers.v1.AddTransactionRequest,System.Threading.CancellationToken)">
             <summary>Record a cash transaction against an open shift.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.CajaController.GetTransactions(System.Guid,System.Threading.CancellationToken)">
+            <summary>List transactions for a shift.</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.CajaController.GetShiftReport(System.Guid,System.Threading.CancellationToken)">
             <summary>Download a PDF report for a closed shift.</summary>
@@ -78,6 +105,9 @@
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultFieldTemplatesController.Delete(System.Guid,System.Threading.CancellationToken)">
             <summary>Delete a consult field template.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultsController.GetAll(System.String,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>List all consults with optional status filter.</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultsController.GetByPatient(System.Guid,System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>Get all consults for a patient.</summary>
@@ -100,6 +130,18 @@
         <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultsController.AttachImage(System.Guid,HospitalApp.WebAPI.Controllers.v1.AttachImageBody,System.Threading.CancellationToken)">
             <summary>Attach an image/document to a consult.</summary>
         </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.DicomController.GetByConsult(System.Guid,System.Threading.CancellationToken)">
+            <summary>List DICOM studies for a consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.DicomController.Upload(System.Guid,Microsoft.AspNetCore.Http.IFormFile,System.String,System.String,System.String,System.Nullable{System.DateTime},System.String,System.Threading.CancellationToken)">
+            <summary>Upload a DICOM file (.dcm) to a consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.DicomController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get a single DICOM study metadata and serving URL.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.DicomController.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>Delete a DICOM study (Admin only).</summary>
+        </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.FilesController.Upload(System.String,Microsoft.AspNetCore.Http.IFormFile,System.Threading.CancellationToken)">
             <summary>Upload a file to a specific folder (consult-images, lab-results, insurance-cards, documents).</summary>
         </member>
@@ -120,6 +162,15 @@
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.InsuranceCompaniesController.Create(HospitalApp.Core.Application.Features.InsuranceCompanies.Commands.CreateInsuranceCompany.CreateInsuranceCompanyRequest,System.Threading.CancellationToken)">
             <summary>Register an insurance company.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.LabOrdersController.GetAll(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>List all lab orders with optional status/priority filter.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.LabOrdersController.GetResults(System.Guid,System.Threading.CancellationToken)">
+            <summary>Get results for a lab order.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.LabOrdersController.UpdateStatus(System.Guid,HospitalApp.WebAPI.Controllers.v1.UpdateLabOrderStatusBody,System.Threading.CancellationToken)">
+            <summary>Update status of a lab order.</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.LabOrdersController.GetByConsult(System.Guid,System.Threading.CancellationToken)">
             <summary>Get all lab orders for a consult.</summary>
@@ -142,6 +193,18 @@
         <member name="M:HospitalApp.WebAPI.Controllers.v1.MedicationsController.AdjustStock(System.Guid,HospitalApp.WebAPI.Controllers.v1.AdjustStockBody,System.Threading.CancellationToken)">
             <summary>Adjust stock (purchase receipt, manual adjustment, write-off).</summary>
         </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientPortalController.GetProfile(System.Threading.CancellationToken)">
+            <summary>Get the logged-in patient's own profile.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientPortalController.GetAppointments(System.Boolean,System.Threading.CancellationToken)">
+            <summary>Get the logged-in patient's appointments.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientPortalController.GetConsults(System.Threading.CancellationToken)">
+            <summary>Get the logged-in patient's consult history (summaries, no raw clinical notes).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientPortalController.GetInvoices(System.Threading.CancellationToken)">
+            <summary>Get the logged-in patient's invoices.</summary>
+        </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientsController.GetAll(System.String,System.Nullable{HospitalApp.Core.Domain.Enums.PatientsStatus},System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>Get paginated list of patients.</summary>
         </member>
@@ -162,6 +225,12 @@
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientsController.GetTimeline(System.Guid,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
             <summary>Chronological timeline of all clinical activity for a patient.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientsController.Export(System.Guid,System.Threading.CancellationToken)">
+            <summary>Export full patient data as GDPR data package (Admin only).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientsController.Anonymize(System.Guid,System.Threading.CancellationToken)">
+            <summary>Anonymize a patient record — replaces PII with ANONYMIZED and archives (Admin only).</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.PayrollController.GetEmployeePayroll(System.Guid,System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>Get paginated payroll records for an employee.</summary>
@@ -189,6 +258,9 @@
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.PrescriptionsController.Add(HospitalApp.WebAPI.Controllers.v1.AddPrescriptionWithConsultRequest,System.Threading.CancellationToken)">
             <summary>Add a prescription to an active consult.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PrescriptionsController.CheckInteractions(System.Collections.Generic.List{System.String},System.Threading.CancellationToken)">
+            <summary>Check drug-drug interactions for a list of RxCUI codes (min 2).</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.RecruitmentController.GetAll(System.Nullable{HospitalApp.Core.Domain.Enums.RecruitmentStageEnum},System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>Get paginated recruitment applications, optionally filtered by stage.</summary>

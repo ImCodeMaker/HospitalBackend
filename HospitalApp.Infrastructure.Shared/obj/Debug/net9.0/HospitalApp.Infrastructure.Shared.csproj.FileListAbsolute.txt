@@ -34,3 +34,4 @@
 /Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Shared/bin/Debug/net9.0/LatoFont/Lato-Thin.ttf
 /Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Shared/bin/Debug/net9.0/LatoFont/Lato-ThinItalic.ttf
 /Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Shared/bin/Debug/net9.0/LatoFont/OFL.txt
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Shared/obj/Debug/net9.0/HospitalApp.Infrastructure.Shared.sourcelink.json

@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "y5pp5msd5Uc=",
+  "dgSpecHash": "+Zi8aVBh4pE=",
   "success": true,
   "projectFilePath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Shared/HospitalApp.Infrastructure.Shared.csproj",
   "expectedPackageFiles": [
-    "/Users/teudyencarnacion/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
+    "/Users/teudyencarnacion/.nuget/packages/automapper/14.0.0/automapper.14.0.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.11.0/fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/mediatr/12.4.1/mediatr.12.4.1.nupkg.sha512",
@@ -12,7 +12,7 @@
     "/Users/teudyencarnacion/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/microsoft.extensions.caching.abstractions/9.0.4/microsoft.extensions.caching.abstractions.9.0.4.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.4/microsoft.extensions.dependencyinjection.abstractions.9.0.4.nupkg.sha512",
-    "/Users/teudyencarnacion/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "/Users/teudyencarnacion/.nuget/packages/microsoft.extensions.options/8.0.0/microsoft.extensions.options.8.0.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/microsoft.extensions.primitives/9.0.4/microsoft.extensions.primitives.9.0.4.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/microsoft.identitymodel.abstractions/6.34.0/microsoft.identitymodel.abstractions.6.34.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/microsoft.identitymodel.jsonwebtokens/6.34.0/microsoft.identitymodel.jsonwebtokens.6.34.0.nupkg.sha512",

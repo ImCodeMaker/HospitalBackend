@@ -55,6 +55,22 @@ builder.Services
 
 var app = builder.Build();
 
+app.UseExceptionHandler(errApp => errApp.Run(async ctx =>
+{
+    var ex = ctx.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>()?.Error;
+    ctx.Response.ContentType = "application/json";
+    if (ex is HospitalApp.Core.Application.Common.Exceptions.ValidationException ve)
+    {
+        ctx.Response.StatusCode = 400;
+        await ctx.Response.WriteAsJsonAsync(new { errors = ve.Errors });
+    }
+    else
+    {
+        ctx.Response.StatusCode = 500;
+        await ctx.Response.WriteAsJsonAsync(new { error = "Internal server error." });
+    }
+}));
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -81,8 +97,10 @@ app.Use(async (ctx, next) =>
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
     await DatabaseSeeder.SeedRolesAsync(roleManager, logger);
+    await DatabaseSeeder.SeedAdminUserAsync(userManager, app.Configuration, logger);
 }
 
 app.UseSerilogRequestLogging();
@@ -111,5 +129,7 @@ RecurringJob.AddOrUpdate<ClinicBackgroundJobs>(
     "void-stale-invoices", j => j.VoidStaleInvoicesAsync(), Cron.Daily(2));
 RecurringJob.AddOrUpdate<ClinicBackgroundJobs>(
     "purge-audit-logs", j => j.PurgeOldAuditLogsAsync(), Cron.Weekly(DayOfWeek.Sunday, 3));
+RecurringJob.AddOrUpdate<ClinicBackgroundJobs>(
+    "send-scheduled-reports", j => j.SendScheduledReportsAsync(), "30 7 * * *");
 
 app.Run();

@@ -1,0 +1,92 @@
+2026-05-04 02:07:59.097 -04:00 [INF] 1 servers were removed due to timeout
+2026-05-04 02:08:01.470 -04:00 [WRN] Server macbookpro:38921:9b5c3ae5 was considered dead by other servers, restarting...
+2026-05-04 02:08:01.471 -04:00 [INF] Server macbookpro:38921:9b5c3ae5 caught restart signal...
+2026-05-04 02:08:21.468 -04:00 [WRN] Server macbookpro:38921:9b5c3ae5 stopped non-gracefully due to ServerWatchdog, ServerJobCancellationWatcher, Worker, DelayedJobScheduler, RecurringJobScheduler. Outstanding work on those dispatchers could be aborted, and there can be delays in background processing. This server instance will be incorrectly shown as active for a while. To avoid non-graceful shutdowns, investigate what prevents from stopping gracefully and add CancellationToken support for those methods.
+2026-05-04 02:08:21.475 -04:00 [INF] Server macbookpro:38921:9b5c3ae5 successfully reported itself as stopped in 4.2691 ms
+2026-05-04 02:08:21.476 -04:00 [INF] Server macbookpro:38921:9b5c3ae5 has been stopped in total 20007.9203 ms
+2026-05-04 02:08:21.506 -04:00 [INF] Server macbookpro:38921:4c8f128b successfully announced in 19.0256 ms
+2026-05-04 02:08:24.801 -04:00 [INF] Server macbookpro:38921:4c8f128b is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-04 02:24:00.132 -04:00 [INF] Server macbookpro:38921:4c8f128b all the dispatchers started
+2026-05-04 07:56:50.772 -04:00 [INF] 1 servers were removed due to timeout
+2026-05-04 07:57:18.201 -04:00 [WRN] Server macbookpro:38921:4c8f128b was considered dead by other servers, restarting...
+2026-05-04 07:57:18.205 -04:00 [INF] Server macbookpro:38921:4c8f128b caught restart signal...
+2026-05-04 07:57:30.750 -04:00 [WRN] Server macbookpro:38921:4c8f128b stopped non-gracefully due to ServerWatchdog, ServerJobCancellationWatcher, Worker, DelayedJobScheduler, RecurringJobScheduler. Outstanding work on those dispatchers could be aborted, and there can be delays in background processing. This server instance will be incorrectly shown as active for a while. To avoid non-graceful shutdowns, investigate what prevents from stopping gracefully and add CancellationToken support for those methods.
+2026-05-04 07:57:35.097 -04:00 [INF] Server macbookpro:38921:4c8f128b successfully reported itself as stopped in 1290.9296 ms
+2026-05-04 07:57:36.374 -04:00 [INF] Server macbookpro:38921:4c8f128b has been stopped in total 18164.9923 ms
+2026-05-04 07:57:40.720 -04:00 [INF] Server macbookpro:38921:b520d0cd successfully announced in 984.0506 ms
+2026-05-04 07:57:41.676 -04:00 [INF] Server macbookpro:38921:b520d0cd is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-04 08:12:53.023 -04:00 [INF] Server macbookpro:38921:b520d0cd all the dispatchers started
+2026-05-04 08:56:25.415 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 1.9965 ms
+2026-05-04 08:56:28.457 -04:00 [INF] HTTP POST /graphql responded 400 in 3022.2727 ms
+2026-05-04 09:20:17.868 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-04 09:20:18.456 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-04 09:20:22.004 -04:00 [WRN] The WebRootPath was not found: /Volumes/Files/Projects/HospitalAppServer/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-04 09:20:22.278 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-04 09:20:22.281 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-04 09:20:22.288 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-04 09:20:22.291 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-04 09:20:22.295 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-04 09:20:22.298 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-04 09:20:22.661 -04:00 [INF] Server macbookpro:43591:001bfd9e successfully announced in 32.6502 ms
+2026-05-04 09:20:22.672 -04:00 [INF] Server macbookpro:43591:001bfd9e is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-04 09:20:22.949 -04:00 [INF] Removed 4 outdated record(s) from 'job' table.
+2026-05-04 09:20:22.967 -04:00 [INF] Server macbookpro:43591:001bfd9e all the dispatchers started
+2026-05-04 09:21:21.651 -04:00 [WRN] Failed to determine the https port for redirect.
+2026-05-04 09:21:21.678 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 30.8531 ms
+2026-05-04 09:21:23.345 -04:00 [INF] HTTP POST /api/v1/auth/login responded 401 in 1622.7414 ms
+2026-05-04 09:21:23.381 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.9540 ms
+2026-05-04 09:21:23.473 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 88.7408 ms
+2026-05-04 09:21:27.529 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.0620 ms
+2026-05-04 09:21:27.689 -04:00 [INF] HTTP POST /api/v1/auth/login responded 401 in 157.1620 ms
+2026-05-04 09:21:27.695 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.2605 ms
+2026-05-04 09:21:46.115 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.0589 ms
+2026-05-04 09:21:46.934 -04:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 777.3847 ms
+2026-05-04 09:21:47.548 -04:00 [INF] HTTP OPTIONS /api/v1/reports/inventory responded 204 in 0.1049 ms
+2026-05-04 09:21:47.586 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0855 ms
+2026-05-04 09:21:47.685 -04:00 [INF] HTTP OPTIONS /api/v1/reports/daily-revenue responded 204 in 0.0592 ms
+2026-05-04 09:21:47.695 -04:00 [INF] HTTP OPTIONS /api/v1/appointments responded 204 in 0.1189 ms
+2026-05-04 09:21:48.869 -04:00 [INF] HTTP GET /api/v1/reports/inventory responded 200 in 1279.0738 ms
+2026-05-04 09:21:48.887 -04:00 [INF] HTTP GET /api/v1/reports/daily-revenue responded 200 in 1191.9436 ms
+2026-05-04 09:21:49.388 -04:00 [INF] HTTP GET /api/v1/appointments responded 200 in 1552.4478 ms
+2026-05-04 09:21:49.584 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0693 ms
+2026-05-04 09:21:49.968 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 374.1506 ms
+2026-05-04 09:21:51.016 -04:00 [INF] HTTP POST /graphql responded 200 in 3426.5560 ms
+2026-05-04 09:22:21.545 -04:00 [INF] HTTP OPTIONS /api/v1/patients/check-duplicate responded 204 in 0.0641 ms
+2026-05-04 09:22:21.602 -04:00 [INF] HTTP GET /api/v1/patients/check-duplicate responded 200 in 53.7344 ms
+2026-05-04 09:23:01.467 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0652 ms
+2026-05-04 09:23:01.637 -04:00 [INF] HTTP POST /api/v1/patients responded 400 in 145.1846 ms
+2026-05-04 09:23:25.477 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0578 ms
+2026-05-04 09:23:25.525 -04:00 [INF] HTTP POST /api/v1/patients responded 400 in 6.5902 ms
+2026-05-04 09:25:22.928 -04:00 [INF] 1 servers were removed due to timeout
+2026-05-04 09:32:31.952 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 3.6613 ms
+2026-05-04 09:32:32.227 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 222.9770 ms
+2026-05-04 09:33:12.791 -04:00 [INF] HTTP OPTIONS /api/v1/appointments responded 204 in 0.1768 ms
+2026-05-04 09:33:12.883 -04:00 [INF] HTTP GET /api/v1/appointments responded 200 in 70.9766 ms
+2026-05-04 09:33:14.224 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0689 ms
+2026-05-04 09:33:14.412 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 183.6960 ms
+2026-05-04 09:33:15.492 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0683 ms
+2026-05-04 09:33:15.511 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 15.8845 ms
+2026-05-04 09:33:16.551 -04:00 [INF] HTTP OPTIONS /api/v1/lab-orders responded 204 in 0.0925 ms
+2026-05-04 09:33:16.557 -04:00 [INF] HTTP GET /api/v1/lab-orders responded 404 in 1.7772 ms
+2026-05-04 09:33:17.563 -04:00 [INF] HTTP GET /api/v1/lab-orders responded 404 in 0.5776 ms
+2026-05-04 09:33:19.791 -04:00 [INF] HTTP OPTIONS /api/v1/billing responded 204 in 0.0708 ms
+2026-05-04 09:33:20.003 -04:00 [INF] HTTP GET /api/v1/billing responded 200 in 202.3318 ms
+2026-05-04 09:33:22.226 -04:00 [INF] HTTP OPTIONS /api/v1/medications responded 204 in 97.3849 ms
+2026-05-04 09:33:22.344 -04:00 [INF] HTTP GET /api/v1/medications responded 200 in 110.6458 ms
+2026-05-04 09:33:23.813 -04:00 [INF] HTTP OPTIONS /api/v1/caja/current responded 204 in 0.0899 ms
+2026-05-04 09:33:23.867 -04:00 [INF] HTTP GET /api/v1/caja/current responded 204 in 47.2360 ms
+2026-05-04 09:33:25.246 -04:00 [INF] HTTP OPTIONS /api/v1/hr responded 204 in 0.0743 ms
+2026-05-04 09:33:25.491 -04:00 [INF] HTTP GET /api/v1/hr responded 200 in 237.4510 ms
+2026-05-04 09:33:27.046 -04:00 [INF] HTTP OPTIONS /api/v1/reports/daily-revenue responded 204 in 0.0772 ms
+2026-05-04 09:33:27.110 -04:00 [INF] HTTP GET /api/v1/reports/daily-revenue responded 200 in 41.0729 ms
+2026-05-04 09:33:29.507 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0721 ms
+2026-05-04 09:33:29.571 -04:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-04 09:33:29.624 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 114.0528 ms
+2026-05-04 09:33:35.442 -04:00 [INF] HTTP OPTIONS /api/v1/users responded 204 in 0.0742 ms
+2026-05-04 09:33:35.773 -04:00 [INF] HTTP GET /api/v1/users responded 200 in 317.1962 ms
+2026-05-04 09:33:55.761 -04:00 [INF] HTTP OPTIONS /api/v1/users responded 204 in 0.0839 ms
+2026-05-04 09:33:56.033 -04:00 [INF] HTTP POST /api/v1/users responded 400 in 215.1984 ms

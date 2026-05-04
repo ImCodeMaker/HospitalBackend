@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using HospitalApp.Core.Application.Common;
 using HospitalApp.Core.Application.Features.Prescriptions.Commands.AddPrescription;
 using HospitalApp.Core.Application.Features.Prescriptions.Queries.GetPrescriptionsByConsult;
 using MediatR;
@@ -10,7 +11,7 @@ namespace HospitalApp.WebAPI.Controllers.v1;
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
 [Authorize(Policy = "ClinicalStaff")]
-public class PrescriptionsController(IMediator mediator) : BaseController
+public class PrescriptionsController(IMediator mediator, IDrugInteractionService drugInteractionService) : BaseController
 {
     /// <summary>Get all prescriptions for a consult.</summary>
     [HttpGet("consult/{consultId:guid}")]
@@ -31,6 +32,20 @@ public class PrescriptionsController(IMediator mediator) : BaseController
         return result.IsSuccess
             ? CreatedAtAction(nameof(GetByConsult), new { consultId = request.ConsultId }, new { id = result.Data })
             : StatusCode(result.StatusCode, new { error = result.Error });
+    }
+
+    /// <summary>Check drug-drug interactions for a list of RxCUI codes (min 2).</summary>
+    [HttpGet("check-interactions")]
+    [Authorize(Policy = "DoctorOrAdmin")]
+    public async Task<IActionResult> CheckInteractions(
+        [FromQuery] List<string> rxcui,
+        CancellationToken ct)
+    {
+        if (rxcui.Count < 2)
+            return BadRequest(new { error = "At least 2 RxCUI codes required." });
+
+        var alerts = await drugInteractionService.CheckInteractionsAsync(rxcui, ct);
+        return Ok(new { alerts });
     }
 }
 

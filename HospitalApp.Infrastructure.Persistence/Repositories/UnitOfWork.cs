@@ -27,6 +27,7 @@ public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
     private IGenericRepository<CashTransaction>? _cashTransactions;
     private IGenericRepository<ConsultFieldTemplate>? _consultFieldTemplates;
     private IGenericRepository<ClinicSettings>? _clinicSettings;
+    private IGenericRepository<DicomStudy>? _dicomStudies;
 
     public IGenericRepository<Patient> Patients => _patients ??= new GenericRepository<Patient>(context);
     public IGenericRepository<Consult> Consults => _consults ??= new GenericRepository<Consult>(context);
@@ -49,6 +50,7 @@ public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
     public IGenericRepository<CashTransaction> CashTransactions => _cashTransactions ??= new GenericRepository<CashTransaction>(context);
     public IGenericRepository<ConsultFieldTemplate> ConsultFieldTemplates => _consultFieldTemplates ??= new GenericRepository<ConsultFieldTemplate>(context);
     public IGenericRepository<ClinicSettings> ClinicSettings => _clinicSettings ??= new GenericRepository<ClinicSettings>(context);
+    public IGenericRepository<DicomStudy> DicomStudies => _dicomStudies ??= new GenericRepository<DicomStudy>(context);
 
     public Task<int> SaveChangesAsync(CancellationToken ct = default) =>
         context.SaveChangesAsync(ct);

@@ -1,24 +1,24 @@
 {
   "version": 2,
-  "dgSpecHash": "p0FIi5AJye4=",
+  "dgSpecHash": "4ehozanbsTQ=",
   "success": true,
   "projectFilePath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj",
   "expectedPackageFiles": [
-    "/Users/teudyencarnacion/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
+    "/Users/teudyencarnacion/.nuget/packages/automapper/14.0.0/automapper.14.0.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.11.0/fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/mediatr/12.4.1/mediatr.12.4.1.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/microsoft.extensions.caching.abstractions/9.0.4/microsoft.extensions.caching.abstractions.9.0.4.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.4/microsoft.extensions.dependencyinjection.abstractions.9.0.4.nupkg.sha512",
-    "/Users/teudyencarnacion/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "/Users/teudyencarnacion/.nuget/packages/microsoft.extensions.options/8.0.0/microsoft.extensions.options.8.0.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/microsoft.extensions.primitives/9.0.4/microsoft.extensions.primitives.9.0.4.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1903",
       "level": "Warning",
-      "message": "Package 'AutoMapper' 13.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-rvv3-g6hj-g44x",
+      "message": "Package 'AutoMapper' 14.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-rvv3-g6hj-g44x",
       "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj",
       "warningLevel": 1,
       "filePath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj",

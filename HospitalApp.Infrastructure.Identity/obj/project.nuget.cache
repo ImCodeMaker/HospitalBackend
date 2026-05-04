@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "KwfsTWIIMBw=",
+  "dgSpecHash": "OTuWrAlviPQ=",
   "success": true,
   "projectFilePath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj",
   "expectedPackageFiles": [
-    "/Users/teudyencarnacion/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
+    "/Users/teudyencarnacion/.nuget/packages/automapper/14.0.0/automapper.14.0.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.11.0/fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/mediatr/12.4.1/mediatr.12.4.1.nupkg.sha512",

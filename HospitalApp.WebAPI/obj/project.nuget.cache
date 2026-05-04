@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SR7Yly6OxBg=",
+  "dgSpecHash": "509mBNLUnmM=",
   "success": true,
   "projectFilePath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.WebAPI/HospitalApp.WebAPI.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,7 @@
     "/Users/teudyencarnacion/.nuget/packages/asp.versioning.http/8.1.0/asp.versioning.http.8.1.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/asp.versioning.mvc/8.1.0/asp.versioning.mvc.8.1.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/asp.versioning.mvc.apiexplorer/8.1.0/asp.versioning.mvc.apiexplorer.8.1.0.nupkg.sha512",
-    "/Users/teudyencarnacion/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
+    "/Users/teudyencarnacion/.nuget/packages/automapper/14.0.0/automapper.14.0.0.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/bananacakepop.middleware/16.0.3/bananacakepop.middleware.16.0.3.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/dapper/2.0.123/dapper.2.0.123.nupkg.sha512",
     "/Users/teudyencarnacion/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",

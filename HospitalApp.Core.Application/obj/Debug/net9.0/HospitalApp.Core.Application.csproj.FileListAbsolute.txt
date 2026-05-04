@@ -13,3 +13,4 @@
 /Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/Debug/net9.0/refint/HospitalApp.Core.Application.dll
 /Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/Debug/net9.0/HospitalApp.Core.Application.pdb
 /Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/Debug/net9.0/ref/HospitalApp.Core.Application.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/Debug/net9.0/HospitalApp.Core.Application.sourcelink.json

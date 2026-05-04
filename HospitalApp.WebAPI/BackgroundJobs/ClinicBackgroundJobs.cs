@@ -1,4 +1,5 @@
 using HospitalApp.Core.Application.Common;
+using HospitalApp.Core.Application.Features.Reports.DTOs;
 using HospitalApp.Core.Domain.Enums;
 using HospitalApp.Core.Domain.Interfaces;
 using HospitalApp.Infrastructure.Persistence.Context;
@@ -110,5 +111,50 @@ public class ClinicBackgroundJobs(
 
         if (deleted > 0)
             logger.LogInformation("Purged {Count} audit log entries older than 2 years", deleted);
+    }
+
+    /// <summary>Daily at 7:30 AM: email yesterday's revenue summary to clinic admin.</summary>
+    public async Task SendScheduledReportsAsync()
+    {
+        var settings = (await uow.ClinicSettings.FindAsync(_ => true, CancellationToken.None)).FirstOrDefault();
+        if (settings is null || !settings.EmailNotificationsEnabled || string.IsNullOrEmpty(settings.Email))
+            return;
+
+        var yesterday = DateTime.UtcNow.Date.AddDays(-1);
+        var payments = await db.Payments
+            .Where(p => p.PaymentDate.Date == yesterday)
+            .ToListAsync(CancellationToken.None);
+
+        var totalRevenue = payments.Sum(p => p.Amount);
+        var cashRevenue = payments.Where(p => p.Method == PaymentMethodEnum.Cash).Sum(p => p.Amount);
+        var cardRevenue = payments.Where(p => p.Method == PaymentMethodEnum.CreditCard || p.Method == PaymentMethodEnum.DebitCard).Sum(p => p.Amount);
+        var transferRevenue = payments.Where(p => p.Method == PaymentMethodEnum.BankTransfer).Sum(p => p.Amount);
+
+        var invoices = await uow.Invoices.FindAsync(
+            i => i.CreatedAt.Date == yesterday, CancellationToken.None);
+        var paidInvoices = invoices.Count(i => i.Status == InvoiceStatusEnum.Paid);
+
+        var html = $"""
+            <h2>Reporte Diario — {yesterday:dd/MM/yyyy}</h2>
+            <table border="1" cellpadding="6" style="border-collapse:collapse">
+              <tr><td><strong>Total recaudado</strong></td><td>RD$ {totalRevenue:N2}</td></tr>
+              <tr><td>Efectivo</td><td>RD$ {cashRevenue:N2}</td></tr>
+              <tr><td>Tarjeta</td><td>RD$ {cardRevenue:N2}</td></tr>
+              <tr><td>Transferencia</td><td>RD$ {transferRevenue:N2}</td></tr>
+              <tr><td>Facturas generadas</td><td>{invoices.Count()}</td></tr>
+              <tr><td>Facturas pagadas</td><td>{paidInvoices}</td></tr>
+            </table>
+            <p><em>Generado automáticamente por Lova Salud</em></p>
+            """;
+
+        try
+        {
+            await email.SendAsync(settings.Email, $"Reporte Diario {yesterday:dd/MM/yyyy} — Lova Salud", html, CancellationToken.None);
+            logger.LogInformation("Sent daily revenue report for {Date}", yesterday);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Failed to send scheduled daily report");
+        }
     }
 }

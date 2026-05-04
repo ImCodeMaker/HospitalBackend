@@ -1,8 +1,10 @@
 using Asp.Versioning;
 using HospitalApp.Core.Application.Common;
+using AutoMapper;
 using HospitalApp.Core.Application.Features.Caja.Commands.AddCashTransaction;
 using HospitalApp.Core.Application.Features.Caja.Commands.CloseShift;
 using HospitalApp.Core.Application.Features.Caja.Commands.OpenShift;
+using HospitalApp.Core.Application.Features.Caja.DTOs;
 using HospitalApp.Core.Application.Features.Caja.Queries.GetCurrentShift;
 using HospitalApp.Core.Domain.Enums;
 using HospitalApp.Core.Domain.Interfaces;
@@ -15,7 +17,7 @@ namespace HospitalApp.WebAPI.Controllers.v1;
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
 [Authorize(Policy = "ClinicalStaff")]
-public class CajaController(IMediator mediator, IUnitOfWork uow, IPdfService pdf) : BaseController
+public class CajaController(IMediator mediator, IUnitOfWork uow, IPdfService pdf, IMapper mapper) : BaseController
 {
     /// <summary>Get the currently open shift.</summary>
     [HttpGet("current")]
@@ -55,6 +57,16 @@ public class CajaController(IMediator mediator, IUnitOfWork uow, IPdfService pdf
         return result.IsSuccess
             ? CreatedAtAction(nameof(GetCurrent), new { }, new { id = result.Data })
             : StatusCode(result.StatusCode, new { error = result.Error });
+    }
+
+    /// <summary>List transactions for a shift.</summary>
+    [HttpGet("{shiftId:guid}/transactions")]
+    public async Task<IActionResult> GetTransactions(Guid shiftId, CancellationToken ct)
+    {
+        var shift = await uow.CajaShifts.GetByIdAsync(shiftId, ct);
+        if (shift is null) return NotFound(new { error = "Shift not found." });
+        var transactions = await uow.CashTransactions.FindAsync(t => t.ShiftId == shiftId, ct);
+        return Ok(mapper.Map<List<CashTransactionDto>>(transactions.OrderBy(t => t.CreatedAt).ToList()));
     }
 
     /// <summary>Download a PDF report for a closed shift.</summary>

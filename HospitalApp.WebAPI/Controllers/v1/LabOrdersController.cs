@@ -2,7 +2,10 @@ using Asp.Versioning;
 using HospitalApp.Core.Application.Features.LabOrders.Commands.AddLabResult;
 using HospitalApp.Core.Application.Features.LabOrders.Commands.CreateLabOrder;
 using HospitalApp.Core.Application.Features.LabOrders.Commands.MarkResultReviewed;
+using HospitalApp.Core.Application.Features.LabOrders.Commands.UpdateLabOrderStatus;
+using HospitalApp.Core.Application.Features.LabOrders.Queries.GetLabOrders;
 using HospitalApp.Core.Application.Features.LabOrders.Queries.GetLabOrdersByConsult;
+using HospitalApp.Core.Application.Features.LabOrders.Queries.GetLabResults;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +17,33 @@ namespace HospitalApp.WebAPI.Controllers.v1;
 [Authorize(Policy = "ClinicalStaff")]
 public class LabOrdersController(IMediator mediator) : BaseController
 {
+    /// <summary>List all lab orders with optional status/priority filter.</summary>
+    [HttpGet]
+    public async Task<IActionResult> GetAll(
+        [FromQuery] string? status,
+        [FromQuery] string? priority,
+        CancellationToken ct = default)
+    {
+        var result = await mediator.Send(new GetLabOrdersQuery(status, priority), ct);
+        return result.IsSuccess ? Ok(result.Data) : StatusCode(result.StatusCode, new { error = result.Error });
+    }
+
+    /// <summary>Get results for a lab order.</summary>
+    [HttpGet("{id:guid}/results")]
+    public async Task<IActionResult> GetResults(Guid id, CancellationToken ct)
+    {
+        var result = await mediator.Send(new GetLabResultsQuery(id), ct);
+        return result.IsSuccess ? Ok(result.Data) : StatusCode(result.StatusCode, new { error = result.Error });
+    }
+
+    /// <summary>Update status of a lab order.</summary>
+    [HttpPatch("{id:guid}/status")]
+    public async Task<IActionResult> UpdateStatus(Guid id, [FromBody] UpdateLabOrderStatusBody body, CancellationToken ct)
+    {
+        var result = await mediator.Send(new UpdateLabOrderStatusCommand(id, body.Status), ct);
+        return result.IsSuccess ? Ok(new { id = result.Data }) : StatusCode(result.StatusCode, new { error = result.Error });
+    }
+
     /// <summary>Get all lab orders for a consult.</summary>
     [HttpGet("consult/{consultId:guid}")]
     public async Task<IActionResult> GetByConsult(Guid consultId, CancellationToken ct)
@@ -55,3 +85,5 @@ public class LabOrdersController(IMediator mediator) : BaseController
         return result.IsSuccess ? Ok(new { id = result.Data }) : StatusCode(result.StatusCode, new { error = result.Error });
     }
 }
+
+public record UpdateLabOrderStatusBody(string Status);

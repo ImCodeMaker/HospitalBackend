@@ -5,6 +5,7 @@ using HospitalApp.Core.Application.Features.Billing.Commands.ResolveInsuranceCla
 using HospitalApp.Core.Application.Features.Billing.Commands.SubmitInsuranceClaim;
 using HospitalApp.Core.Application.Features.Billing.DTOs;
 using HospitalApp.Core.Application.Features.Billing.Queries.GetInvoiceById;
+using HospitalApp.Core.Application.Features.Billing.Queries.GetInvoices;
 using HospitalApp.Core.Application.Features.Billing.Queries.GetPatientInvoices;
 using HospitalApp.Core.Domain.Enums;
 using MediatR;
@@ -18,6 +19,23 @@ namespace HospitalApp.WebAPI.Controllers.v1;
 [Authorize(Policy = "ClinicalStaff")]
 public class BillingController(IMediator mediator) : BaseController
 {
+    /// <summary>List invoices with optional filters.</summary>
+    [HttpGet]
+    public async Task<IActionResult> GetAll(
+        [FromQuery] Guid? patientId,
+        [FromQuery] string? status,
+        [FromQuery] DateTime? from,
+        [FromQuery] DateTime? to,
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 20,
+        CancellationToken ct = default)
+    {
+        var utcFrom = from.HasValue ? DateTime.SpecifyKind(from.Value, DateTimeKind.Utc) : (DateTime?)null;
+        var utcTo = to.HasValue ? DateTime.SpecifyKind(to.Value, DateTimeKind.Utc) : (DateTime?)null;
+        var result = await mediator.Send(new GetInvoicesQuery(patientId, status, utcFrom, utcTo, page, pageSize), ct);
+        return result.IsSuccess ? Ok(result.Data) : StatusCode(result.StatusCode, new { error = result.Error });
+    }
+
     /// <summary>Get invoice by ID.</summary>
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id, CancellationToken ct)

@@ -27,7 +27,9 @@ public class AppointmentsController(IMediator mediator) : BaseController
         [FromQuery] int pageSize = 50,
         CancellationToken ct = default)
     {
-        var result = await mediator.Send(new GetAppointmentsQuery(doctorId, patientId, from, to, status, page, pageSize), ct);
+        var utcFrom = from.HasValue ? DateTime.SpecifyKind(from.Value, DateTimeKind.Utc) : (DateTime?)null;
+        var utcTo = to.HasValue ? DateTime.SpecifyKind(to.Value, DateTimeKind.Utc) : (DateTime?)null;
+        var result = await mediator.Send(new GetAppointmentsQuery(doctorId, patientId, utcFrom, utcTo, status, page, pageSize), ct);
         return result.IsSuccess ? Ok(result.Data) : StatusCode(result.StatusCode, new { error = result.Error });
     }
 

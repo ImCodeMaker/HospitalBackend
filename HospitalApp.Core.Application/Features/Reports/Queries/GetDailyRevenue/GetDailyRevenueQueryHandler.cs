@@ -11,7 +11,7 @@ public class GetDailyRevenueQueryHandler(IUnitOfWork uow)
 {
     public async Task<Result<DailyRevenueSummaryDto>> Handle(GetDailyRevenueQuery query, CancellationToken ct)
     {
-        var day = query.Date.Date;
+        var day = DateTime.SpecifyKind(query.Date.Date, DateTimeKind.Utc);
         var next = day.AddDays(1);
 
         var payments = await uow.Payments.FindAsync(

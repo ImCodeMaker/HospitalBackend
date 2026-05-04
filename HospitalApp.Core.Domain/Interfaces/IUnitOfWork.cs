@@ -25,6 +25,7 @@ public interface IUnitOfWork : IDisposable
     IGenericRepository<CashTransaction> CashTransactions { get; }
     IGenericRepository<ConsultFieldTemplate> ConsultFieldTemplates { get; }
     IGenericRepository<ClinicSettings> ClinicSettings { get; }
+    IGenericRepository<DicomStudy> DicomStudies { get; }
 
     Task<int> SaveChangesAsync(CancellationToken ct = default);
 }
