@@ -28,6 +28,13 @@ public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
     private IGenericRepository<ConsultFieldTemplate>? _consultFieldTemplates;
     private IGenericRepository<ClinicSettings>? _clinicSettings;
     private IGenericRepository<DicomStudy>? _dicomStudies;
+    private IGenericRepository<NcfSequence>? _ncfSequences;
+    private IGenericRepository<NoShowOutreachLog>? _noShowLogs;
+    private IGenericRepository<SatisfactionSurvey>? _satisfactionSurveys;
+    private IGenericRepository<ControlledSubstanceLog>? _controlledLogs;
+    private IGenericRepository<Vendor>? _vendors;
+    private IGenericRepository<PurchaseOrder>? _purchaseOrders;
+    private IGenericRepository<SupplierPayment>? _supplierPayments;
 
     public IGenericRepository<Patient> Patients => _patients ??= new GenericRepository<Patient>(context);
     public IGenericRepository<Consult> Consults => _consults ??= new GenericRepository<Consult>(context);
@@ -51,6 +58,13 @@ public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
     public IGenericRepository<ConsultFieldTemplate> ConsultFieldTemplates => _consultFieldTemplates ??= new GenericRepository<ConsultFieldTemplate>(context);
     public IGenericRepository<ClinicSettings> ClinicSettings => _clinicSettings ??= new GenericRepository<ClinicSettings>(context);
     public IGenericRepository<DicomStudy> DicomStudies => _dicomStudies ??= new GenericRepository<DicomStudy>(context);
+    public IGenericRepository<NcfSequence> NcfSequences => _ncfSequences ??= new GenericRepository<NcfSequence>(context);
+    public IGenericRepository<NoShowOutreachLog> NoShowOutreachLogs => _noShowLogs ??= new GenericRepository<NoShowOutreachLog>(context);
+    public IGenericRepository<SatisfactionSurvey> SatisfactionSurveys => _satisfactionSurveys ??= new GenericRepository<SatisfactionSurvey>(context);
+    public IGenericRepository<ControlledSubstanceLog> ControlledSubstanceLogs => _controlledLogs ??= new GenericRepository<ControlledSubstanceLog>(context);
+    public IGenericRepository<Vendor> Vendors => _vendors ??= new GenericRepository<Vendor>(context);
+    public IGenericRepository<PurchaseOrder> PurchaseOrders => _purchaseOrders ??= new GenericRepository<PurchaseOrder>(context);
+    public IGenericRepository<SupplierPayment> SupplierPayments => _supplierPayments ??= new GenericRepository<SupplierPayment>(context);
 
     public Task<int> SaveChangesAsync(CancellationToken ct = default) =>
         context.SaveChangesAsync(ct);

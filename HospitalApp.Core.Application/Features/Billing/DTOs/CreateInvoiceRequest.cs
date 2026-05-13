@@ -8,6 +8,8 @@ public class CreateInvoiceRequest
     public decimal DiscountAmount { get; init; }
     public decimal TaxAmount { get; init; }
     public string? Notes { get; init; }
+    /// <summary>NCF type to assign. Defaults to Consumo (B02) when null.</summary>
+    public NcfTypeEnum? NcfType { get; init; }
     public List<CreateLineItemRequest> LineItems { get; init; } = [];
 }
 

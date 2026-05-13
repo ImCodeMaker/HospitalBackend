@@ -22,4 +22,8 @@ public class ClinicSettings : SharedEntity
     public string? TwilioAuthTokenEncrypted { get; set; }
     public string? TwilioFromNumber { get; set; }
     public int SessionTimeoutMinutes { get; set; } = 15;
+    /// <summary>Minimum gap (minutes) the system enforces between adjacent appointments for the same doctor.</summary>
+    public int AppointmentBufferMinutes { get; set; } = 10;
+    /// <summary>Number of no-show outreach contacts (within 90 days) before a patient is flagged as repeat-offender.</summary>
+    public int NoShowRepeatOffenderThreshold { get; set; } = 3;
 }

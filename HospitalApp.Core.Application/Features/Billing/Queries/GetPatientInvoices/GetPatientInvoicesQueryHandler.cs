@@ -18,8 +18,16 @@ public class GetPatientInvoicesQueryHandler(IUnitOfWork uow, IMapper mapper)
         var ordered = all.OrderByDescending(i => i.CreatedAt).ToList();
         var items = ordered.Skip((query.PageNumber - 1) * query.PageSize).Take(query.PageSize).ToList();
 
+        var patient = await uow.Patients.GetByIdAsync(query.PatientId, ct);
+        var patientName = patient is null ? "—" : $"{patient.FirstName} {patient.LastName}";
+
+        var dtos = items.Select(i =>
+        {
+            var dto = mapper.Map<InvoiceDto>(i);
+            return dto with { PatientName = patientName };
+        }).ToList();
+
         return Result<PaginatedResult<InvoiceDto>>.Success(
-            PaginatedResult<InvoiceDto>.Create(
-                mapper.Map<IReadOnlyList<InvoiceDto>>(items), ordered.Count, query.PageNumber, query.PageSize));
+            PaginatedResult<InvoiceDto>.Create(dtos, ordered.Count, query.PageNumber, query.PageSize));
     }
 }

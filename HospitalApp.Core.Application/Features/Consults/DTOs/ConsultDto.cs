@@ -2,7 +2,7 @@ using HospitalApp.Core.Domain.Enums;
 
 namespace HospitalApp.Core.Application.Features.Consults.DTOs;
 
-public class ConsultDto
+public record ConsultDto
 {
     public Guid Id { get; init; }
     public Guid PatientId { get; init; }

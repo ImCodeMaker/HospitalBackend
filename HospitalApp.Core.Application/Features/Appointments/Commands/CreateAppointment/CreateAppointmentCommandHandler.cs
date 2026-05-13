@@ -17,16 +17,24 @@ public class CreateAppointmentCommandHandler(IUnitOfWork uow, IDashboardNotifier
         if (patient is null)
             return Result<Guid>.NotFound("Patient not found.");
 
-        // Conflict check: same doctor, overlapping time slot
+        var clinic = (await uow.ClinicSettings.FindAsync(_ => true, ct)).FirstOrDefault();
+        var buffer = clinic?.AppointmentBufferMinutes ?? 10;
+
+        // Conflict check: same doctor, overlapping time slot (including buffer gap)
+        var slotStart = req.ScheduledDate.AddMinutes(-buffer);
+        var slotEnd = req.ScheduledDate.AddMinutes(req.DurationMinutes + buffer);
+
         var existing = await uow.Appointments.FindAsync(a =>
             a.AssignedDoctorId == req.AssignedDoctorId &&
             a.Status != AppointmentStatusEnum.Cancelled &&
             a.Status != AppointmentStatusEnum.Rescheduled &&
-            a.ScheduledDate < req.ScheduledDate.AddMinutes(req.DurationMinutes) &&
-            a.ScheduledDate.AddMinutes(a.DurationMinutes) > req.ScheduledDate, ct);
+            a.ScheduledDate < slotEnd &&
+            a.ScheduledDate.AddMinutes(a.DurationMinutes) > slotStart, ct);
 
         if (existing.Any())
-            return Result<Guid>.Failure("Doctor already has an appointment in this time slot.", 409);
+            return Result<Guid>.Failure(
+                $"Doctor already has an appointment in this time slot (buffer {buffer} min enforced).",
+                409);
 
         var appointment = new Appointment
         {

@@ -10,3 +10,15 @@
 /Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/obj/Debug/net9.0/HospitalApp.Core.Domain.pdb
 /Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/obj/Debug/net9.0/ref/HospitalApp.Core.Domain.dll
 /Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/obj/Debug/net9.0/HospitalApp.Core.Domain.sourcelink.json
+/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/bin/Debug/net9.0/HospitalApp.Core.Domain.deps.json
+/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/bin/Debug/net9.0/HospitalApp.Core.Domain.dll
+/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/bin/Debug/net9.0/HospitalApp.Core.Domain.pdb
+/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/obj/Debug/net9.0/HospitalApp.Core.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/obj/Debug/net9.0/HospitalApp.Core.Domain.AssemblyInfoInputs.cache
+/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/obj/Debug/net9.0/HospitalApp.Core.Domain.AssemblyInfo.cs
+/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/obj/Debug/net9.0/HospitalApp.Core.Domain.csproj.CoreCompileInputs.cache
+/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/obj/Debug/net9.0/HospitalApp.Core.Domain.sourcelink.json
+/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/obj/Debug/net9.0/HospitalApp.Core.Domain.dll
+/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/obj/Debug/net9.0/refint/HospitalApp.Core.Domain.dll
+/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/obj/Debug/net9.0/HospitalApp.Core.Domain.pdb
+/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/obj/Debug/net9.0/ref/HospitalApp.Core.Domain.dll

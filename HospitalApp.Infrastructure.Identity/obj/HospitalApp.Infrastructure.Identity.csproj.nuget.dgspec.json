@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj": {}
+    "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj": {}
   },
   "projects": {
-    "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj": {
+    "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj",
+        "projectUniqueName": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj",
         "projectName": "HospitalApp.Core.Application",
-        "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj",
-        "packagesPath": "/Users/teudyencarnacion/.nuget/packages/",
-        "outputPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/obj/",
+        "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj",
+        "packagesPath": "/Users/teudyencrnacion/.nuget/packages/",
+        "outputPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/teudyencarnacion/.nuget/NuGet/NuGet.Config"
+          "/Users/teudyencrnacion/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -26,8 +26,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj": {
-                "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj"
+              "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj": {
+                "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj"
               }
             }
           }
@@ -50,7 +50,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[14.0.0, )"
+              "version": "[15.0.1, )"
             },
             "FluentValidation": {
               "target": "Package",
@@ -89,21 +89,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/teudyencrnacion/.dotnet/sdk/9.0.314/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj": {
+    "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj",
+        "projectUniqueName": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj",
         "projectName": "HospitalApp.Core.Domain",
-        "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj",
-        "packagesPath": "/Users/teudyencarnacion/.nuget/packages/",
-        "outputPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/obj/",
+        "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj",
+        "packagesPath": "/Users/teudyencrnacion/.nuget/packages/",
+        "outputPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/teudyencarnacion/.nuget/NuGet/NuGet.Config"
+          "/Users/teudyencrnacion/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -148,21 +148,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/teudyencrnacion/.dotnet/sdk/9.0.314/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj": {
+    "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj",
+        "projectUniqueName": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj",
         "projectName": "HospitalApp.Infrastructure.Identity",
-        "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj",
-        "packagesPath": "/Users/teudyencarnacion/.nuget/packages/",
-        "outputPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/obj/",
+        "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj",
+        "packagesPath": "/Users/teudyencrnacion/.nuget/packages/",
+        "outputPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Identity/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/teudyencarnacion/.nuget/NuGet/NuGet.Config"
+          "/Users/teudyencrnacion/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -174,11 +174,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj": {
-                "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj"
+              "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj": {
+                "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj"
               },
-              "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj": {
-                "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj"
+              "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj": {
+                "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj"
               }
             }
           }
@@ -236,7 +236,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/teudyencrnacion/.dotnet/sdk/9.0.314/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,1177 @@
+2026-05-13 10:13:00.308 -04:00 [ERR] An error occurred using the connection to database 'lova_salud' on server 'tcp://localhost:5432'.
+2026-05-13 10:13:00.338 -04:00 [ERR] An exception occurred while iterating over the results of a query for context type 'HospitalApp.Infrastructure.Persistence.Context.ApplicationDbContext'.
+System.InvalidOperationException: An exception has been raised that is likely due to a transient failure.
+ ---> Npgsql.NpgsqlException (0x80004005): Failed to connect to 127.0.0.1:5432
+ ---> System.Net.Sockets.SocketException (61): Connection refused
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|214_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: An exception has been raised that is likely due to a transient failure.
+ ---> Npgsql.NpgsqlException (0x80004005): Failed to connect to 127.0.0.1:5432
+ ---> System.Net.Sockets.SocketException (61): Connection refused
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at Npgsql.TaskTimeoutAndCancellation.ExecuteAsync(Func`2 getTaskFunc, NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|214_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|33_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2026-05-13 10:29:40.060 -04:00 [ERR] Failed executing DbCommand (18ms) [Parameters=[@__normalizedName_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT r."Id", r."ConcurrencyStamp", r."Description", r."Name", r."NormalizedName"
+FROM roles AS r
+WHERE r."NormalizedName" = @__normalizedName_0
+LIMIT 1
+2026-05-13 10:29:40.094 -04:00 [ERR] An exception occurred while iterating over the results of a query for context type 'HospitalApp.Infrastructure.Persistence.Context.ApplicationDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "roles" does not exist
+
+POSITION: 89
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "roles" does not exist
+    Position: 89
+    File: parse_relation.c
+    Line: 1449
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "roles" does not exist
+
+POSITION: 89
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "roles" does not exist
+    Position: 89
+    File: parse_relation.c
+    Line: 1449
+    Routine: parserOpenTable
+2026-05-13 10:33:32.939 -04:00 [ERR] Failed executing DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-05-13 10:34:10.396 -04:00 [INF] Created role: Admin
+2026-05-13 10:34:10.423 -04:00 [INF] Created role: Doctor
+2026-05-13 10:34:10.426 -04:00 [INF] Created role: Receptionist
+2026-05-13 10:34:10.427 -04:00 [INF] Created role: LabTechnician
+2026-05-13 10:34:10.429 -04:00 [INF] Created role: Nurse
+2026-05-13 10:34:10.430 -04:00 [INF] Created role: PatientPortal
+2026-05-13 10:34:10.541 -04:00 [INF] Seeded admin user: admin@lovasalud.com
+2026-05-13 10:34:10.554 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-13 10:34:10.687 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-13 10:34:10.802 -04:00 [WRN] No XML encryptor configured. Key {ec75a5da-2841-49a6-8921-a78b842523c8} may be persisted to storage in unencrypted form.
+2026-05-13 10:34:10.822 -04:00 [WRN] The WebRootPath was not found: /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-13 10:34:10.829 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-13 10:34:10.829 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-13 10:34:10.829 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-13 10:34:10.829 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-13 10:34:10.829 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-13 10:34:10.829 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-13 10:34:10.840 -04:00 [INF] Server teudys-macbook-air:44359:05e8c86a successfully announced in 4.2658 ms
+2026-05-13 10:34:10.841 -04:00 [INF] Server teudys-macbook-air:44359:05e8c86a is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-13 10:34:10.844 -04:00 [INF] Server teudys-macbook-air:44359:05e8c86a all the dispatchers started
+2026-05-13 10:34:30.126 -04:00 [WRN] Failed to determine the https port for redirect.
+2026-05-13 10:34:30.128 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 2.0788 ms
+2026-05-13 10:34:30.237 -04:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 101.7623 ms
+2026-05-13 10:34:30.246 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.1599 ms
+2026-05-13 10:34:30.264 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 16.8704 ms
+2026-05-13 10:34:30.559 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0746 ms
+2026-05-13 10:34:30.736 -04:00 [ERR] HTTP POST /graphql responded 500 in 175.8988 ms
+2026-05-13 10:34:38.672 -04:00 [INF] HTTP OPTIONS /api/v1/appointments responded 204 in 0.0304 ms
+2026-05-13 10:34:38.726 -04:00 [INF] HTTP GET /api/v1/appointments responded 200 in 53.2049 ms
+2026-05-13 10:34:39.648 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.1297 ms
+2026-05-13 10:34:39.663 -04:00 [ERR] HTTP POST /graphql responded 500 in 12.5569 ms
+2026-05-13 10:34:39.853 -04:00 [ERR] HTTP POST /graphql responded 500 in 16.3121 ms
+2026-05-13 10:34:43.036 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0335 ms
+2026-05-13 10:34:43.054 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 16.7388 ms
+2026-05-13 10:34:43.960 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0450 ms
+2026-05-13 10:34:43.965 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 3.4697 ms
+2026-05-13 10:34:44.487 -04:00 [INF] HTTP OPTIONS /api/v1/laborders responded 204 in 0.0823 ms
+2026-05-13 10:34:44.502 -04:00 [INF] HTTP GET /api/v1/laborders responded 200 in 14.1712 ms
+2026-05-13 10:38:24.386 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.3523 ms
+2026-05-13 10:38:24.402 -04:00 [ERR] HTTP POST /graphql responded 500 in 12.7134 ms
+2026-05-13 10:38:24.575 -04:00 [ERR] HTTP POST /graphql responded 500 in 10.9003 ms
+2026-05-13 10:38:26.014 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0305 ms
+2026-05-13 10:38:26.031 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 15.3088 ms
+2026-05-13 10:38:27.876 -04:00 [INF] HTTP OPTIONS /api/v1/appointments responded 204 in 0.0876 ms
+2026-05-13 10:38:27.885 -04:00 [INF] HTTP GET /api/v1/appointments responded 200 in 5.6390 ms
+2026-05-13 10:38:30.552 -04:00 [INF] HTTP OPTIONS /api/v1/laborders responded 204 in 0.0563 ms
+2026-05-13 10:38:30.556 -04:00 [INF] HTTP GET /api/v1/laborders responded 200 in 2.9976 ms
+2026-05-13 10:38:31.282 -04:00 [INF] HTTP OPTIONS /api/v1/billing responded 204 in 0.0900 ms
+2026-05-13 10:38:31.294 -04:00 [INF] HTTP GET /api/v1/billing responded 200 in 11.3514 ms
+2026-05-13 10:39:50.327 -04:00 [INF] HTTP OPTIONS /api/v1/medications responded 204 in 0.1554 ms
+2026-05-13 10:39:50.347 -04:00 [INF] HTTP GET /api/v1/medications responded 200 in 17.8166 ms
+2026-05-13 10:39:52.385 -04:00 [INF] HTTP OPTIONS /api/v1/caja/current responded 204 in 0.0393 ms
+2026-05-13 10:39:52.810 -04:00 [INF] HTTP GET /api/v1/caja/current responded 204 in 423.0568 ms
+2026-05-13 10:39:54.457 -04:00 [INF] HTTP OPTIONS /api/v1/hr responded 204 in 0.0243 ms
+2026-05-13 10:39:54.470 -04:00 [INF] HTTP GET /api/v1/hr responded 200 in 12.0929 ms
+2026-05-13 10:39:56.870 -04:00 [INF] HTTP OPTIONS /api/v1/reports/daily-revenue responded 204 in 0.0387 ms
+2026-05-13 10:39:56.886 -04:00 [INF] HTTP GET /api/v1/reports/daily-revenue responded 200 in 14.0367 ms
+2026-05-13 10:39:59.101 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0238 ms
+2026-05-13 10:39:59.105 -04:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-13 10:39:59.111 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 9.6820 ms
+2026-05-13 10:40:01.582 -04:00 [INF] HTTP OPTIONS /api/v1/audit responded 204 in 0.0275 ms
+2026-05-13 10:40:01.600 -04:00 [INF] HTTP GET /api/v1/audit responded 200 in 15.9224 ms
+2026-05-13 10:40:03.837 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0452 ms
+2026-05-13 10:40:03.844 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 4.9294 ms
+2026-05-13 10:40:56.096 -04:00 [INF] HTTP OPTIONS /api/v1/billing responded 204 in 0.0261 ms
+2026-05-13 10:40:56.101 -04:00 [INF] HTTP GET /api/v1/billing responded 200 in 3.9893 ms
+2026-05-13 10:40:57.512 -04:00 [INF] HTTP OPTIONS /api/v1/laborders responded 204 in 0.0378 ms
+2026-05-13 10:40:57.517 -04:00 [INF] HTTP GET /api/v1/laborders responded 200 in 3.3184 ms
+2026-05-13 10:40:58.343 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0520 ms
+2026-05-13 10:40:58.348 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 3.0878 ms
+2026-05-13 10:41:44.059 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 433790.6255 ms
+2026-05-13 10:48:39.167 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.1663 ms
+2026-05-13 10:48:39.236 -04:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 66.6558 ms
+2026-05-13 10:48:39.241 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.0423 ms
+2026-05-13 10:48:39.242 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 0.6415 ms
+2026-05-13 10:48:39.558 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0277 ms
+2026-05-13 10:48:39.569 -04:00 [ERR] HTTP POST /graphql responded 500 in 10.0386 ms
+2026-05-13 10:48:48.240 -04:00 [INF] HTTP OPTIONS /api/v1/audit responded 204 in 0.0229 ms
+2026-05-13 10:48:48.244 -04:00 [INF] HTTP GET /api/v1/audit responded 200 in 3.4635 ms
+2026-05-13 11:00:02.318 -04:00 [INF] HTTP GET /hangfire responded 401 in 7.3990 ms
+2026-05-13 11:00:17.369 -04:00 [INF] HTTP GET /hangfire responded 200 in 49.6692 ms
+2026-05-13 11:00:17.375 -04:00 [INF] HTTP GET /hangfire/css-dark181801858046183 responded 200 in 2.7304 ms
+2026-05-13 11:00:17.378 -04:00 [INF] HTTP GET /hangfire/js18180747303861 responded 200 in 5.1883 ms
+2026-05-13 11:00:17.378 -04:00 [INF] HTTP GET /hangfire/css181801563465349 responded 200 in 5.5750 ms
+2026-05-13 11:00:17.409 -04:00 [INF] HTTP GET /hangfire/fonts/glyphicons-halflings-regular/woff2 responded 200 in 0.9409 ms
+2026-05-13 11:00:19.435 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 23.7899 ms
+2026-05-13 11:00:20.751 -04:00 [INF] HTTP GET /hangfire/recurring responded 200 in 25.6625 ms
+2026-05-13 11:00:22.792 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 8.4505 ms
+2026-05-13 11:00:24.803 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.8054 ms
+2026-05-13 11:00:26.812 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.0534 ms
+2026-05-13 11:00:29.353 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.1057 ms
+2026-05-13 11:00:32.355 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.9045 ms
+2026-05-13 11:00:35.355 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.3355 ms
+2026-05-13 11:00:38.356 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 8.4059 ms
+2026-05-13 11:00:41.354 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.8434 ms
+2026-05-13 11:00:44.353 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.2912 ms
+2026-05-13 11:00:47.355 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.2920 ms
+2026-05-13 11:00:50.355 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.5625 ms
+2026-05-13 11:00:53.354 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.8224 ms
+2026-05-13 11:00:56.354 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.8453 ms
+2026-05-13 11:00:59.355 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.6518 ms
+2026-05-13 11:01:02.354 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 7.0327 ms
+2026-05-13 11:01:05.354 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.9470 ms
+2026-05-13 11:01:08.355 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.9020 ms
+2026-05-13 11:01:11.353 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.6071 ms
+2026-05-13 11:01:14.351 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.6052 ms
+2026-05-13 11:01:17.352 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.6137 ms
+2026-05-13 11:01:20.353 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.3172 ms
+2026-05-13 11:01:23.354 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.9912 ms
+2026-05-13 11:01:26.352 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.1099 ms
+2026-05-13 11:01:29.353 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.4500 ms
+2026-05-13 11:01:32.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.2874 ms
+2026-05-13 11:01:35.352 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.5475 ms
+2026-05-13 11:01:38.352 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.0230 ms
+2026-05-13 11:01:41.352 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.9360 ms
+2026-05-13 11:01:44.354 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.6841 ms
+2026-05-13 11:01:47.351 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.9373 ms
+2026-05-13 11:01:50.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.8192 ms
+2026-05-13 11:01:53.352 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.6778 ms
+2026-05-13 11:01:56.351 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.9810 ms
+2026-05-13 11:01:59.352 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.8550 ms
+2026-05-13 11:02:02.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.5662 ms
+2026-05-13 11:02:05.351 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.9112 ms
+2026-05-13 11:02:08.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.1675 ms
+2026-05-13 11:02:11.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.6559 ms
+2026-05-13 11:02:14.347 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.6797 ms
+2026-05-13 11:02:17.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.7370 ms
+2026-05-13 11:02:20.353 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.1829 ms
+2026-05-13 11:02:23.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.4406 ms
+2026-05-13 11:02:26.347 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.5278 ms
+2026-05-13 11:02:29.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.5353 ms
+2026-05-13 11:02:32.347 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.0127 ms
+2026-05-13 11:02:35.352 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.3782 ms
+2026-05-13 11:02:38.352 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.1979 ms
+2026-05-13 11:02:41.351 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.5613 ms
+2026-05-13 11:02:44.351 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.7628 ms
+2026-05-13 11:02:47.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.7778 ms
+2026-05-13 11:02:50.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.3580 ms
+2026-05-13 11:02:53.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.9985 ms
+2026-05-13 11:02:56.351 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.7070 ms
+2026-05-13 11:02:59.346 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.5485 ms
+2026-05-13 11:03:02.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.5252 ms
+2026-05-13 11:03:05.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.5579 ms
+2026-05-13 11:03:08.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.0229 ms
+2026-05-13 11:03:11.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.6165 ms
+2026-05-13 11:03:14.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.3418 ms
+2026-05-13 11:03:17.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.6491 ms
+2026-05-13 11:03:20.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.4378 ms
+2026-05-13 11:03:23.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.0310 ms
+2026-05-13 11:03:26.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.3838 ms
+2026-05-13 11:03:29.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.8334 ms
+2026-05-13 11:03:32.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.7262 ms
+2026-05-13 11:03:35.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.3790 ms
+2026-05-13 11:03:38.347 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.7753 ms
+2026-05-13 11:03:41.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.1498 ms
+2026-05-13 11:03:44.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.1884 ms
+2026-05-13 11:03:47.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.2612 ms
+2026-05-13 11:03:50.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.0215 ms
+2026-05-13 11:03:53.346 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.9852 ms
+2026-05-13 11:03:56.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.2019 ms
+2026-05-13 11:03:59.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.9187 ms
+2026-05-13 11:04:02.345 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.2809 ms
+2026-05-13 11:04:05.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.7732 ms
+2026-05-13 11:04:08.345 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.5947 ms
+2026-05-13 11:04:11.345 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.0895 ms
+2026-05-13 11:04:14.351 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 7.1991 ms
+2026-05-13 11:04:17.351 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 7.0884 ms
+2026-05-13 11:04:20.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.8317 ms
+2026-05-13 11:04:23.355 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.5378 ms
+2026-05-13 11:04:26.347 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.2449 ms
+2026-05-13 11:04:29.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.4512 ms
+2026-05-13 11:04:32.346 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.9002 ms
+2026-05-13 11:04:35.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.7098 ms
+2026-05-13 11:04:38.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.9508 ms
+2026-05-13 11:04:41.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.8851 ms
+2026-05-13 11:04:44.352 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 7.9553 ms
+2026-05-13 11:04:47.352 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 8.8853 ms
+2026-05-13 11:04:50.346 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.9248 ms
+2026-05-13 11:04:53.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.2618 ms
+2026-05-13 11:04:56.347 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.3428 ms
+2026-05-13 11:04:59.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 7.1435 ms
+2026-05-13 11:05:02.346 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.5795 ms
+2026-05-13 11:05:05.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 7.0448 ms
+2026-05-13 11:05:08.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.3921 ms
+2026-05-13 11:05:11.343 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.0466 ms
+2026-05-13 11:05:14.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.1773 ms
+2026-05-13 11:05:17.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.5158 ms
+2026-05-13 11:05:20.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.4572 ms
+2026-05-13 11:05:23.354 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 8.6626 ms
+2026-05-13 11:05:26.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.6758 ms
+2026-05-13 11:05:29.344 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.7562 ms
+2026-05-13 11:05:32.343 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.5300 ms
+2026-05-13 11:05:35.363 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 13.3110 ms
+2026-05-13 11:05:38.347 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.6427 ms
+2026-05-13 11:05:41.342 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 1.8632 ms
+2026-05-13 11:05:44.349 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.4760 ms
+2026-05-13 11:05:47.346 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.9098 ms
+2026-05-13 11:05:50.345 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.4648 ms
+2026-05-13 11:05:53.350 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 7.5588 ms
+2026-05-13 11:05:56.357 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.4260 ms
+2026-05-13 11:05:59.345 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.6244 ms
+2026-05-13 11:06:02.343 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.4693 ms
+2026-05-13 11:06:05.344 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.1162 ms
+2026-05-13 11:06:08.351 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 9.2035 ms
+2026-05-13 11:06:11.348 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 7.2406 ms
+2026-05-13 11:06:14.346 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.1895 ms
+2026-05-13 11:06:17.347 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 7.0026 ms
+2026-05-13 11:06:20.346 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.3920 ms
+2026-05-13 11:06:23.346 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.1144 ms
+2026-05-13 11:06:26.345 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.6210 ms
+2026-05-13 11:06:29.345 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.0693 ms
+2026-05-13 11:06:32.356 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.4462 ms
+2026-05-13 11:06:35.343 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.0037 ms
+2026-05-13 11:06:38.346 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.5377 ms
+2026-05-13 11:06:41.393 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 2.2990 ms
+2026-05-13 11:06:44.400 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 7.1689 ms
+2026-05-13 11:06:47.396 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 5.4166 ms
+2026-05-13 11:06:50.394 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 3.4897 ms
+2026-05-13 11:06:53.398 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.1626 ms
+2026-05-13 11:06:56.395 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.8327 ms
+2026-05-13 11:06:59.395 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 4.0571 ms
+2026-05-13 11:14:40.161 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 8.3661 ms
+2026-05-13 11:14:42.172 -04:00 [INF] HTTP POST /hangfire/stats responded 200 in 6.9185 ms
+2026-05-13 11:22:52.363 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 2053198.0826 ms
+2026-05-13 12:25:10.690 -04:00 [INF] Server teudys-macbook-air:44359:05e8c86a caught stopping signal...
+2026-05-13 12:25:10.714 -04:00 [INF] Server teudys-macbook-air:44359:05e8c86a All dispatchers stopped
+2026-05-13 12:25:10.733 -04:00 [INF] Server teudys-macbook-air:44359:05e8c86a successfully reported itself as stopped in 13.7607 ms
+2026-05-13 12:25:10.733 -04:00 [INF] Server teudys-macbook-air:44359:05e8c86a has been stopped in total 37.082 ms
+2026-05-13 12:25:15.220 -04:00 [INF] Seeded 2 NCF ranges (expires 2027-05-13).
+2026-05-13 12:25:15.257 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-13 12:25:15.268 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-13 12:25:15.404 -04:00 [WRN] The WebRootPath was not found: /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-13 12:25:15.409 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-13 12:25:15.409 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-13 12:25:15.410 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-13 12:25:15.410 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-13 12:25:15.410 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-13 12:25:15.410 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-13 12:25:15.423 -04:00 [INF] Server teudys-macbook-air:5428:de12d538 successfully announced in 6.4045 ms
+2026-05-13 12:25:15.424 -04:00 [INF] Server teudys-macbook-air:5428:de12d538 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-13 12:25:15.426 -04:00 [INF] Server teudys-macbook-air:5428:de12d538 all the dispatchers started
+2026-05-13 12:31:20.407 -04:00 [WRN] Failed to determine the https port for redirect.
+2026-05-13 12:31:20.423 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 16.3896 ms
+2026-05-13 12:31:20.431 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.2346 ms
+2026-05-13 12:31:20.453 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 20.3797 ms
+2026-05-13 12:32:51.495 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.1510 ms
+2026-05-13 12:32:51.609 -04:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 110.5164 ms
+2026-05-13 12:32:51.613 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.0424 ms
+2026-05-13 12:32:51.625 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0426 ms
+2026-05-13 12:32:51.625 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0410 ms
+2026-05-13 12:32:51.634 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 19.2247 ms
+2026-05-13 12:32:51.644 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 17.5065 ms
+2026-05-13 12:32:51.676 -04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-05-13 12:32:51.678 -04:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-13 12:32:51.689 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 62.9413 ms
+2026-05-13 12:32:51.994 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0412 ms
+2026-05-13 12:32:52.173 -04:00 [ERR] HTTP POST /graphql responded 500 in 178.5818 ms
+2026-05-13 12:32:57.433 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0499 ms
+2026-05-13 12:32:57.451 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 16.3151 ms
+2026-05-13 12:32:58.385 -04:00 [INF] HTTP OPTIONS /api/v1/appointments responded 204 in 0.0652 ms
+2026-05-13 12:32:58.399 -04:00 [INF] HTTP GET /api/v1/appointments responded 200 in 12.4691 ms
+2026-05-13 12:33:00.072 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.1448 ms
+2026-05-13 12:33:00.087 -04:00 [ERR] HTTP POST /graphql responded 500 in 12.2940 ms
+2026-05-13 12:33:00.266 -04:00 [ERR] HTTP POST /graphql responded 500 in 8.9767 ms
+2026-05-13 12:34:29.187 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0928 ms
+2026-05-13 12:34:29.206 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 17.1294 ms
+2026-05-13 12:35:43.928 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0392 ms
+2026-05-13 12:35:43.937 -04:00 [ERR] HTTP POST /graphql responded 500 in 7.4319 ms
+2026-05-13 12:35:44.120 -04:00 [ERR] HTTP POST /graphql responded 500 in 8.8445 ms
+2026-05-13 12:35:44.776 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0706 ms
+2026-05-13 12:35:44.781 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 3.3888 ms
+2026-05-13 12:35:45.522 -04:00 [INF] HTTP OPTIONS /api/v1/appointments responded 204 in 0.0357 ms
+2026-05-13 12:35:45.527 -04:00 [INF] HTTP GET /api/v1/appointments responded 200 in 3.5931 ms
+2026-05-13 12:35:47.784 -04:00 [INF] HTTP OPTIONS /api/v1/laborders responded 204 in 0.0343 ms
+2026-05-13 12:35:47.797 -04:00 [INF] HTTP GET /api/v1/laborders responded 200 in 11.4365 ms
+2026-05-13 12:35:48.730 -04:00 [INF] HTTP OPTIONS /api/v1/billing responded 204 in 0.0404 ms
+2026-05-13 12:35:48.751 -04:00 [INF] HTTP GET /api/v1/billing responded 200 in 20.1606 ms
+2026-05-13 12:35:48.811 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0327 ms
+2026-05-13 12:35:48.814 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 2.3691 ms
+2026-05-13 12:35:51.422 -04:00 [INF] HTTP OPTIONS /api/v1/hr responded 204 in 0.0362 ms
+2026-05-13 12:35:51.437 -04:00 [INF] HTTP GET /api/v1/hr responded 200 in 12.8048 ms
+2026-05-13 12:36:02.470 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0333 ms
+2026-05-13 12:36:02.478 -04:00 [ERR] HTTP POST /graphql responded 500 in 6.8867 ms
+2026-05-13 12:36:02.680 -04:00 [ERR] HTTP POST /graphql responded 500 in 12.0824 ms
+2026-05-13 12:40:48.827 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0381 ms
+2026-05-13 12:40:48.832 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 3.3118 ms
+2026-05-13 12:45:48.847 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0397 ms
+2026-05-13 12:45:48.852 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 2.6963 ms
+2026-05-13 12:50:41.961 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0515 ms
+2026-05-13 12:50:41.967 -04:00 [INF] HTTP GET /api/v1/patients responded 401 in 2.1039 ms
+2026-05-13 12:50:41.969 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0156 ms
+2026-05-13 12:50:41.975 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 4.6069 ms
+2026-05-13 12:50:42.981 -04:00 [INF] HTTP GET /api/v1/patients responded 401 in 0.3250 ms
+2026-05-13 12:50:42.986 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.0759 ms
+2026-05-13 12:50:43.709 -04:00 [INF] HTTP GET /api/v1/appointments responded 401 in 0.2183 ms
+2026-05-13 12:50:43.712 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.4758 ms
+2026-05-13 12:50:44.720 -04:00 [INF] HTTP GET /api/v1/appointments responded 401 in 0.4210 ms
+2026-05-13 12:50:44.727 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.6428 ms
+2026-05-13 12:50:46.088 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0632 ms
+2026-05-13 12:50:46.094 -04:00 [ERR] HTTP POST /graphql responded 500 in 3.9130 ms
+2026-05-13 12:50:46.290 -04:00 [ERR] HTTP POST /graphql responded 500 in 1.3783 ms
+2026-05-13 12:50:57.808 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 1086150.3279 ms
+2026-05-13 12:56:43.619 -04:00 [INF] Server teudys-macbook-air:5428:de12d538 caught stopping signal...
+2026-05-13 12:56:43.624 -04:00 [INF] Server teudys-macbook-air:5428:de12d538 All dispatchers stopped
+2026-05-13 12:56:43.636 -04:00 [INF] Server teudys-macbook-air:5428:de12d538 successfully reported itself as stopped in 8.327 ms
+2026-05-13 12:56:43.636 -04:00 [INF] Server teudys-macbook-air:5428:de12d538 has been stopped in total 15.1181 ms
+2026-05-13 12:56:48.349 -04:00 [INF] Mock data: starting bulk seed…
+2026-05-13 12:56:49.137 -04:00 [INF] Mock data seeded: 20 patients, 171 appointments, 62 consults, 50 invoices, 15 meds, 40 prescriptions, 12 lab orders.
+2026-05-13 12:56:49.146 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-13 12:56:49.155 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-13 12:56:49.272 -04:00 [WRN] The WebRootPath was not found: /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-13 12:56:49.277 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-13 12:56:49.277 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-13 12:56:49.277 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-13 12:56:49.277 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-13 12:56:49.277 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-13 12:56:49.277 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-13 12:56:49.289 -04:00 [INF] Server teudys-macbook-air:28576:1fc41022 successfully announced in 5.0023 ms
+2026-05-13 12:56:49.289 -04:00 [INF] Server teudys-macbook-air:28576:1fc41022 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-13 12:56:49.292 -04:00 [INF] Server teudys-macbook-air:28576:1fc41022 all the dispatchers started
+2026-05-13 13:00:04.544 -04:00 [INF] Marked 6 appointments as NoShow
+2026-05-13 13:00:04.559 -04:00 [WRN] Twilio is not configured. SMS to 829-514-4377 skipped.
+2026-05-13 13:00:04.566 -04:00 [WRN] Twilio is not configured. SMS to 829-209-1954 skipped.
+2026-05-13 13:00:04.569 -04:00 [WRN] Twilio is not configured. SMS to 829-229-1400 skipped.
+2026-05-13 13:00:04.569 -04:00 [WRN] Twilio is not configured. SMS to 829-229-1400 skipped.
+2026-05-13 13:00:04.571 -04:00 [WRN] Twilio is not configured. SMS to 829-305-8501 skipped.
+2026-05-13 13:00:04.572 -04:00 [WRN] Twilio is not configured. SMS to 829-957-9486 skipped.
+2026-05-13 13:31:59.995 -04:00 [WRN] Failed to determine the https port for redirect.
+2026-05-13 13:32:00.016 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 21.0936 ms
+2026-05-13 13:32:00.023 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.2314 ms
+2026-05-13 13:32:00.048 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 22.8117 ms
+2026-05-13 13:32:11.792 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.1285 ms
+2026-05-13 13:32:11.876 -04:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 80.8650 ms
+2026-05-13 13:32:11.880 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.0462 ms
+2026-05-13 13:32:11.892 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0297 ms
+2026-05-13 13:32:11.892 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0339 ms
+2026-05-13 13:32:11.901 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 19.7368 ms
+2026-05-13 13:32:11.909 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 15.3762 ms
+2026-05-13 13:32:11.945 -04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-05-13 13:32:11.947 -04:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-13 13:32:11.956 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 62.5170 ms
+2026-05-13 13:32:12.278 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0468 ms
+2026-05-13 13:32:12.458 -04:00 [ERR] HTTP POST /graphql responded 500 in 178.9270 ms
+2026-05-13 13:32:36.443 -04:00 [INF] Server teudys-macbook-air:28576:1fc41022 caught stopping signal...
+2026-05-13 13:32:36.449 -04:00 [INF] Server teudys-macbook-air:28576:1fc41022 All dispatchers stopped
+2026-05-13 13:32:36.457 -04:00 [INF] Server teudys-macbook-air:28576:1fc41022 successfully reported itself as stopped in 3.3097 ms
+2026-05-13 13:32:36.457 -04:00 [INF] Server teudys-macbook-air:28576:1fc41022 has been stopped in total 12.6963 ms
+2026-05-13 13:32:36.457 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 24552.4322 ms
+2026-05-13 13:32:40.962 -04:00 [INF] Mock data: patients already exist, skipping.
+2026-05-13 13:32:40.995 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-13 13:32:41.006 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-13 13:32:41.128 -04:00 [WRN] The WebRootPath was not found: /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-13 13:32:41.134 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-13 13:32:41.134 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-13 13:32:41.134 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-13 13:32:41.134 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-13 13:32:41.134 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-13 13:32:41.134 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-13 13:32:41.145 -04:00 [INF] Server teudys-macbook-air:37250:920b57c7 successfully announced in 4.7965 ms
+2026-05-13 13:32:41.146 -04:00 [INF] Server teudys-macbook-air:37250:920b57c7 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-13 13:32:41.148 -04:00 [INF] Server teudys-macbook-air:37250:920b57c7 all the dispatchers started
+2026-05-13 13:32:44.031 -04:00 [WRN] Failed to determine the https port for redirect.
+2026-05-13 13:32:44.033 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 1.5779 ms
+2026-05-13 13:32:44.099 -04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-05-13 13:32:44.160 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 119.2827 ms
+2026-05-13 13:32:45.457 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.1480 ms
+2026-05-13 13:32:45.652 -04:00 [ERR] HTTP POST /graphql responded 500 in 194.2630 ms
+2026-05-13 13:32:48.497 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.1067 ms
+2026-05-13 13:32:48.509 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 8.6602 ms
+2026-05-13 13:33:17.250 -04:00 [INF] HTTP OPTIONS /api/v1/patients/019e2245-03ce-701e-9b63-8535170785b6 responded 204 in 0.0508 ms
+2026-05-13 13:33:17.276 -04:00 [INF] HTTP GET /api/v1/patients/019e2245-03ce-701e-9b63-8535170785b6 responded 200 in 24.3017 ms
+2026-05-13 13:33:18.867 -04:00 [INF] HTTP OPTIONS /api/v1/patients/019e2245-03ce-701e-9b63-8535170785b6/timeline responded 204 in 0.0737 ms
+2026-05-13 13:33:18.963 -04:00 [INF] HTTP GET /api/v1/patients/019e2245-03ce-701e-9b63-8535170785b6/timeline responded 200 in 94.3085 ms
+2026-05-13 13:33:20.554 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0710 ms
+2026-05-13 13:33:20.581 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 24.8899 ms
+2026-05-13 13:33:22.577 -04:00 [INF] HTTP OPTIONS /api/v1/consults/019e2245-0443-7320-a8c1-9ff1d0c8429e responded 204 in 0.0312 ms
+2026-05-13 13:33:22.587 -04:00 [INF] HTTP GET /api/v1/consults/019e2245-0443-7320-a8c1-9ff1d0c8429e responded 200 in 9.1670 ms
+2026-05-13 13:33:22.591 -04:00 [INF] HTTP OPTIONS /api/v1/consultfieldtemplates/by-specialty/019e2245-01fb-7c4a-8971-66b2b48f0bc4 responded 204 in 0.0241 ms
+2026-05-13 13:33:22.600 -04:00 [INF] HTTP GET /api/v1/consultfieldtemplates/by-specialty/019e2245-01fb-7c4a-8971-66b2b48f0bc4 responded 200 in 7.0630 ms
+2026-05-13 13:33:24.399 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0590 ms
+2026-05-13 13:33:24.403 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 3.8398 ms
+2026-05-13 13:33:25.625 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0313 ms
+2026-05-13 13:33:25.637 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 10.8075 ms
+2026-05-13 13:33:31.068 -04:00 [INF] HTTP OPTIONS /api/v1/appointments responded 204 in 0.0278 ms
+2026-05-13 13:33:31.086 -04:00 [INF] HTTP GET /api/v1/appointments responded 200 in 16.2787 ms
+2026-05-13 13:33:32.034 -04:00 [INF] HTTP OPTIONS /api/v1/laborders responded 204 in 0.0660 ms
+2026-05-13 13:33:32.059 -04:00 [INF] HTTP GET /api/v1/laborders responded 200 in 23.0085 ms
+2026-05-13 13:33:36.593 -04:00 [INF] HTTP OPTIONS /api/v1/laborders/019e2245-0480-716c-85cd-2bd15285a6a9/results responded 204 in 0.1587 ms
+2026-05-13 13:33:36.610 -04:00 [INF] HTTP GET /api/v1/laborders/019e2245-0480-716c-85cd-2bd15285a6a9/results responded 200 in 12.6453 ms
+2026-05-13 13:33:38.784 -04:00 [INF] HTTP OPTIONS /api/v1/billing responded 204 in 0.0284 ms
+2026-05-13 13:33:38.798 -04:00 [INF] HTTP GET /api/v1/billing responded 200 in 13.7971 ms
+2026-05-13 13:33:44.518 -04:00 [INF] HTTP OPTIONS /api/v1/medications responded 204 in 0.0248 ms
+2026-05-13 13:33:44.544 -04:00 [INF] HTTP GET /api/v1/medications responded 200 in 23.9486 ms
+2026-05-13 13:33:52.977 -04:00 [INF] HTTP OPTIONS /api/v1/hr responded 204 in 0.0631 ms
+2026-05-13 13:33:53.006 -04:00 [INF] HTTP GET /api/v1/hr responded 200 in 27.4210 ms
+2026-05-13 13:37:11.927 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.4400 ms
+2026-05-13 13:37:11.952 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 22.5627 ms
+2026-05-13 13:39:07.913 -04:00 [INF] Server teudys-macbook-air:37250:920b57c7 caught stopping signal...
+2026-05-13 13:39:07.916 -04:00 [INF] Server teudys-macbook-air:37250:920b57c7 All dispatchers stopped
+2026-05-13 13:39:07.922 -04:00 [INF] Server teudys-macbook-air:37250:920b57c7 successfully reported itself as stopped in 4.3293 ms
+2026-05-13 13:39:07.922 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 379402.0716 ms
+2026-05-13 13:39:07.922 -04:00 [INF] Server teudys-macbook-air:37250:920b57c7 has been stopped in total 7.5648 ms
+2026-05-13 13:39:12.365 -04:00 [INF] Mock data: patients already exist, skipping.
+2026-05-13 13:39:12.384 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-13 13:39:12.395 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-13 13:39:12.512 -04:00 [WRN] The WebRootPath was not found: /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-13 13:39:12.517 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-13 13:39:12.517 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-13 13:39:12.517 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-13 13:39:12.517 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-13 13:39:12.517 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-13 13:39:12.517 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-13 13:39:12.530 -04:00 [INF] Server teudys-macbook-air:42140:88c2053f successfully announced in 6.6459 ms
+2026-05-13 13:39:12.531 -04:00 [INF] Server teudys-macbook-air:42140:88c2053f is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-13 13:39:12.533 -04:00 [INF] Server teudys-macbook-air:42140:88c2053f all the dispatchers started
+2026-05-13 13:39:20.031 -04:00 [WRN] Failed to determine the https port for redirect.
+2026-05-13 13:39:20.033 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 1.7479 ms
+2026-05-13 13:39:20.062 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 25.2813 ms
+2026-05-13 13:39:56.909 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0688 ms
+2026-05-13 13:39:57.125 -04:00 [ERR] HTTP POST /graphql responded 500 in 213.6752 ms
+2026-05-13 13:39:58.123 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0479 ms
+2026-05-13 13:39:58.175 -04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-05-13 13:39:58.225 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 95.3990 ms
+2026-05-13 13:40:00.108 -04:00 [INF] HTTP OPTIONS /api/v1/appointments responded 204 in 0.0838 ms
+2026-05-13 13:40:00.145 -04:00 [INF] HTTP GET /api/v1/appointments responded 200 in 35.0038 ms
+2026-05-13 13:40:25.831 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.3740 ms
+2026-05-13 13:40:25.885 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 51.6209 ms
+2026-05-13 13:40:35.937 -04:00 [INF] HTTP OPTIONS /api/v1/laborders responded 204 in 0.0672 ms
+2026-05-13 13:40:35.970 -04:00 [INF] HTTP GET /api/v1/laborders responded 200 in 30.1150 ms
+2026-05-13 13:40:38.192 -04:00 [INF] HTTP OPTIONS /api/v1/laborders/019e2245-0480-7748-9e64-fd258b0f9872/results responded 204 in 0.1144 ms
+2026-05-13 13:40:38.215 -04:00 [INF] HTTP GET /api/v1/laborders/019e2245-0480-7748-9e64-fd258b0f9872/results responded 200 in 17.9116 ms
+2026-05-13 13:40:39.890 -04:00 [INF] HTTP OPTIONS /api/v1/laborders/019e2245-0480-716c-85cd-2bd15285a6a9/results responded 204 in 0.2203 ms
+2026-05-13 13:40:39.901 -04:00 [INF] HTTP GET /api/v1/laborders/019e2245-0480-716c-85cd-2bd15285a6a9/results responded 200 in 7.2964 ms
+2026-05-13 13:40:41.829 -04:00 [INF] HTTP OPTIONS /api/v1/laborders/019e2245-0480-7652-8a8b-51e8d2acfa37/results responded 204 in 0.0698 ms
+2026-05-13 13:40:41.836 -04:00 [INF] HTTP GET /api/v1/laborders/019e2245-0480-7652-8a8b-51e8d2acfa37/results responded 200 in 4.6917 ms
+2026-05-13 13:40:42.423 -04:00 [INF] HTTP OPTIONS /api/v1/laborders/019e2245-0480-72a8-b304-0483970f5aa0/results responded 204 in 0.1092 ms
+2026-05-13 13:40:42.432 -04:00 [INF] HTTP GET /api/v1/laborders/019e2245-0480-72a8-b304-0483970f5aa0/results responded 200 in 4.4647 ms
+2026-05-13 13:40:55.666 -04:00 [INF] HTTP OPTIONS /api/v1/billing responded 204 in 0.0432 ms
+2026-05-13 13:40:55.701 -04:00 [INF] HTTP GET /api/v1/billing responded 200 in 33.8965 ms
+2026-05-13 13:41:10.797 -04:00 [INF] HTTP OPTIONS /api/v1/medications responded 204 in 0.1413 ms
+2026-05-13 13:41:10.830 -04:00 [INF] HTTP GET /api/v1/medications responded 200 in 30.5795 ms
+2026-05-13 13:41:13.269 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0345 ms
+2026-05-13 13:41:13.274 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 3.4868 ms
+2026-05-13 13:41:31.198 -04:00 [INF] HTTP OPTIONS /api/v1/caja/current responded 204 in 0.1158 ms
+2026-05-13 13:41:31.217 -04:00 [INF] HTTP GET /api/v1/caja/current responded 204 in 17.7428 ms
+2026-05-13 13:41:33.846 -04:00 [INF] HTTP OPTIONS /api/v1/hr responded 204 in 0.0375 ms
+2026-05-13 13:41:33.882 -04:00 [INF] HTTP GET /api/v1/hr responded 200 in 34.6839 ms
+2026-05-13 13:41:48.374 -04:00 [INF] HTTP OPTIONS /api/v1/reports/daily-revenue responded 204 in 0.0426 ms
+2026-05-13 13:41:48.389 -04:00 [INF] HTTP GET /api/v1/reports/daily-revenue responded 200 in 12.9309 ms
+2026-05-13 13:41:58.246 -04:00 [INF] HTTP OPTIONS /api/v1/reports/accounts-receivable responded 204 in 0.0514 ms
+2026-05-13 13:41:58.262 -04:00 [INF] HTTP GET /api/v1/reports/accounts-receivable responded 200 in 14.3105 ms
+2026-05-13 13:42:07.773 -04:00 [INF] HTTP OPTIONS /api/v1/reports/inventory responded 204 in 0.1327 ms
+2026-05-13 13:42:07.797 -04:00 [INF] HTTP GET /api/v1/reports/inventory responded 200 in 20.0815 ms
+2026-05-13 13:42:11.962 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.1059 ms
+2026-05-13 13:42:12.029 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 63.4998 ms
+2026-05-13 13:42:14.741 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0419 ms
+2026-05-13 13:42:14.743 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0207 ms
+2026-05-13 13:42:14.743 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0275 ms
+2026-05-13 13:42:14.744 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0064 ms
+2026-05-13 13:42:14.744 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0045 ms
+2026-05-13 13:42:14.760 -04:00 [INF] HTTP POST /graphql responded 200 in 16.7036 ms
+2026-05-13 13:42:14.764 -04:00 [INF] HTTP POST /graphql responded 200 in 18.2694 ms
+2026-05-13 13:42:14.776 -04:00 [INF] HTTP POST /graphql responded 200 in 31.0012 ms
+2026-05-13 13:42:14.786 -04:00 [INF] HTTP POST /graphql responded 200 in 40.6240 ms
+2026-05-13 13:42:14.788 -04:00 [ERR] HTTP POST /graphql responded 500 in 43.2385 ms
+2026-05-13 13:42:34.970 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0243 ms
+2026-05-13 13:42:34.975 -04:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-13 13:42:34.982 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 10.2262 ms
+2026-05-13 13:42:36.721 -04:00 [INF] HTTP OPTIONS /api/v1/users responded 204 in 0.0224 ms
+2026-05-13 13:42:36.754 -04:00 [INF] HTTP GET /api/v1/users responded 200 in 31.9360 ms
+2026-05-13 13:42:39.687 -04:00 [INF] HTTP OPTIONS /api/v1/specialties responded 204 in 0.0318 ms
+2026-05-13 13:42:39.711 -04:00 [INF] HTTP GET /api/v1/specialties responded 200 in 21.9559 ms
+2026-05-13 13:42:41.934 -04:00 [INF] HTTP OPTIONS /api/v1/insurancecompanies responded 204 in 0.0440 ms
+2026-05-13 13:42:41.955 -04:00 [INF] HTTP GET /api/v1/insurancecompanies responded 200 in 19.0138 ms
+2026-05-13 13:42:46.255 -04:00 [INF] HTTP OPTIONS /api/v1/consultfieldtemplates/by-specialty/019e2245-01fb-7856-8273-ebef06ad3863 responded 204 in 0.0629 ms
+2026-05-13 13:42:46.269 -04:00 [INF] HTTP GET /api/v1/consultfieldtemplates/by-specialty/019e2245-01fb-7856-8273-ebef06ad3863 responded 200 in 10.9169 ms
+2026-05-13 13:42:54.302 -04:00 [INF] HTTP OPTIONS /api/v1/audit responded 204 in 0.0208 ms
+2026-05-13 13:42:54.320 -04:00 [INF] HTTP GET /api/v1/audit responded 200 in 16.1834 ms
+2026-05-13 13:43:09.848 -04:00 [INF] HTTP OPTIONS /api/v1/noshowoutreach responded 204 in 0.0589 ms
+2026-05-13 13:43:09.874 -04:00 [INF] HTTP GET /api/v1/noshowoutreach responded 200 in 25.1155 ms
+2026-05-13 13:43:48.972 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.1195 ms
+2026-05-13 13:43:48.990 -04:00 [ERR] HTTP POST /graphql responded 500 in 15.7952 ms
+2026-05-13 13:43:49.179 -04:00 [ERR] HTTP POST /graphql responded 500 in 15.7995 ms
+2026-05-13 13:47:12.058 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.3078 ms
+2026-05-13 13:47:12.071 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 9.0707 ms
+2026-05-13 13:47:12.075 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0136 ms
+2026-05-13 13:47:12.091 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 14.0559 ms
+2026-05-13 13:47:13.095 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.1370 ms
+2026-05-13 13:47:13.098 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.8295 ms
+2026-05-13 13:52:07.187 -04:00 [INF] Server teudys-macbook-air:42140:88c2053f caught stopping signal...
+2026-05-13 13:52:07.193 -04:00 [INF] Server teudys-macbook-air:42140:88c2053f All dispatchers stopped
+2026-05-13 13:52:07.201 -04:00 [INF] Server teudys-macbook-air:42140:88c2053f successfully reported itself as stopped in 5.257 ms
+2026-05-13 13:52:07.201 -04:00 [INF] Server teudys-macbook-air:42140:88c2053f has been stopped in total 10.8035 ms
+2026-05-13 13:52:07.205 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 767128.7409 ms
+2026-05-13 13:52:11.187 -04:00 [INF] Mock data: patients already exist, skipping.
+2026-05-13 13:52:11.211 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-13 13:52:11.222 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-13 13:52:11.327 -04:00 [WRN] The WebRootPath was not found: /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-13 13:52:11.332 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-13 13:52:11.332 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-13 13:52:11.332 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-13 13:52:11.332 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-13 13:52:11.332 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-13 13:52:11.332 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-13 13:52:11.344 -04:00 [INF] Server teudys-macbook-air:51705:9158e5ac successfully announced in 5.2079 ms
+2026-05-13 13:52:11.344 -04:00 [INF] Server teudys-macbook-air:51705:9158e5ac is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-13 13:52:11.346 -04:00 [INF] Server teudys-macbook-air:51705:9158e5ac all the dispatchers started
+2026-05-13 13:52:13.177 -04:00 [WRN] Failed to determine the https port for redirect.
+2026-05-13 13:52:13.188 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 11.8765 ms
+2026-05-13 13:52:13.196 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.2504 ms
+2026-05-13 13:52:13.220 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 21.4681 ms
+2026-05-13 13:52:14.224 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.7215 ms
+2026-05-13 13:52:14.227 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.6003 ms
+2026-05-13 13:52:19.262 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.3644 ms
+2026-05-13 13:52:19.271 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 401 in 5.6250 ms
+2026-05-13 13:52:49.282 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.1812 ms
+2026-05-13 13:52:49.287 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 401 in 0.5294 ms
+2026-05-13 13:53:37.404 -04:00 [INF] HTTP GET /api/v1/patients responded 401 in 0.2566 ms
+2026-05-13 13:53:37.406 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0279 ms
+2026-05-13 13:53:37.410 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 3.3488 ms
+2026-05-13 13:53:38.418 -04:00 [INF] HTTP GET /api/v1/patients responded 401 in 0.6024 ms
+2026-05-13 13:53:38.426 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.4270 ms
+2026-05-13 13:53:57.212 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.1507 ms
+2026-05-13 13:53:57.216 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0272 ms
+2026-05-13 13:53:57.217 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.4118 ms
+2026-05-13 13:54:17.833 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.1185 ms
+2026-05-13 13:54:17.950 -04:00 [INF] HTTP POST /api/v1/auth/login responded 401 in 114.3586 ms
+2026-05-13 13:54:17.952 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0223 ms
+2026-05-13 13:54:17.953 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.3485 ms
+2026-05-13 13:54:24.743 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.1768 ms
+2026-05-13 13:54:24.810 -04:00 [INF] HTTP POST /api/v1/auth/login responded 401 in 63.9998 ms
+2026-05-13 13:54:24.812 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0231 ms
+2026-05-13 13:54:24.813 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.3544 ms
+2026-05-13 13:54:33.345 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.0377 ms
+2026-05-13 13:54:33.435 -04:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 88.3390 ms
+2026-05-13 13:54:33.438 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.0589 ms
+2026-05-13 13:54:33.451 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0275 ms
+2026-05-13 13:54:33.451 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0293 ms
+2026-05-13 13:54:33.458 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 17.9348 ms
+2026-05-13 13:54:33.475 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 23.0771 ms
+2026-05-13 13:54:33.507 -04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-05-13 13:54:33.509 -04:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-13 13:54:33.519 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 67.4207 ms
+2026-05-13 13:54:33.768 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0626 ms
+2026-05-13 13:54:33.955 -04:00 [ERR] HTTP POST /graphql responded 500 in 185.2815 ms
+2026-05-13 13:54:37.956 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0363 ms
+2026-05-13 13:54:37.996 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 39.3173 ms
+2026-05-13 13:54:43.345 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0663 ms
+2026-05-13 13:54:43.359 -04:00 [ERR] HTTP POST /graphql responded 500 in 11.5847 ms
+2026-05-13 13:54:43.554 -04:00 [ERR] HTTP POST /graphql responded 500 in 12.0019 ms
+2026-05-13 13:59:31.626 -04:00 [INF] Server teudys-macbook-air:51705:9158e5ac caught stopping signal...
+2026-05-13 13:59:31.632 -04:00 [INF] Server teudys-macbook-air:51705:9158e5ac All dispatchers stopped
+2026-05-13 13:59:31.640 -04:00 [INF] Server teudys-macbook-air:51705:9158e5ac successfully reported itself as stopped in 5.5122 ms
+2026-05-13 13:59:31.640 -04:00 [INF] Server teudys-macbook-air:51705:9158e5ac has been stopped in total 10.491 ms
+2026-05-13 13:59:31.645 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 298182.3609 ms
+2026-05-13 13:59:35.842 -04:00 [INF] Mock data: patients already exist, skipping.
+2026-05-13 13:59:35.861 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-13 13:59:35.870 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-13 13:59:35.985 -04:00 [WRN] The WebRootPath was not found: /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-13 13:59:35.989 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-13 13:59:35.990 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-13 13:59:35.990 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-13 13:59:35.990 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-13 13:59:35.990 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-13 13:59:35.990 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-13 13:59:36.003 -04:00 [INF] Server teudys-macbook-air:57369:8284e142 successfully announced in 6.3457 ms
+2026-05-13 13:59:36.004 -04:00 [INF] Server teudys-macbook-air:57369:8284e142 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-13 13:59:36.006 -04:00 [INF] Server teudys-macbook-air:57369:8284e142 all the dispatchers started
+2026-05-13 13:59:43.759 -04:00 [WRN] Failed to determine the https port for redirect.
+2026-05-13 13:59:43.760 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 1.7385 ms
+2026-05-13 13:59:43.791 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 23.8086 ms
+2026-05-13 14:00:06.200 -04:00 [INF] Marked 1 appointments as NoShow
+2026-05-13 14:00:06.248 -04:00 [WRN] Twilio is not configured. SMS to 829-123-1459 skipped.
+2026-05-13 14:00:20.826 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.2111 ms
+2026-05-13 14:00:20.941 -04:00 [INF] HTTP POST /api/v1/auth/login responded 401 in 98.4344 ms
+2026-05-13 14:00:20.945 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0213 ms
+2026-05-13 14:00:20.954 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 8.6076 ms
+2026-05-13 14:00:37.697 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.1183 ms
+2026-05-13 14:00:37.787 -04:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 87.2112 ms
+2026-05-13 14:00:37.792 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.0816 ms
+2026-05-13 14:00:37.795 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 1.4812 ms
+2026-05-13 14:00:37.824 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0409 ms
+2026-05-13 14:00:37.824 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0583 ms
+2026-05-13 14:00:37.854 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 26.8809 ms
+2026-05-13 14:00:37.905 -04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-05-13 14:00:37.910 -04:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-13 14:00:37.923 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 96.2040 ms
+2026-05-13 14:00:38.121 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.1327 ms
+2026-05-13 14:00:38.334 -04:00 [ERR] HTTP POST /graphql responded 500 in 212.1618 ms
+2026-05-13 14:05:37.868 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.4587 ms
+2026-05-13 14:05:37.881 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 8.3436 ms
+2026-05-13 14:05:56.484 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 318680.6523 ms
+2026-05-13 14:06:00.780 -04:00 [INF] Server teudys-macbook-air:57369:8284e142 caught stopping signal...
+2026-05-13 14:06:00.782 -04:00 [INF] Server teudys-macbook-air:57369:8284e142 All dispatchers stopped
+2026-05-13 14:06:00.784 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 376999.5292 ms
+2026-05-13 14:06:00.787 -04:00 [INF] Server teudys-macbook-air:57369:8284e142 successfully reported itself as stopped in 3.727 ms
+2026-05-13 14:06:00.787 -04:00 [INF] Server teudys-macbook-air:57369:8284e142 has been stopped in total 6.6131 ms
+2026-05-13 14:06:07.842 -04:00 [INF] Mock data: patients already exist, skipping.
+2026-05-13 14:06:07.861 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-13 14:06:07.872 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-13 14:06:07.983 -04:00 [WRN] The WebRootPath was not found: /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-13 14:06:07.987 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-13 14:06:07.987 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-13 14:06:07.988 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-13 14:06:07.988 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-13 14:06:07.988 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-13 14:06:07.988 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-13 14:06:08.001 -04:00 [INF] Server teudys-macbook-air:61888:1dbd4208 successfully announced in 6.3221 ms
+2026-05-13 14:06:08.001 -04:00 [INF] Server teudys-macbook-air:61888:1dbd4208 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-13 14:06:08.003 -04:00 [INF] Server teudys-macbook-air:61888:1dbd4208 all the dispatchers started
+2026-05-13 14:06:12.965 -04:00 [WRN] Failed to determine the https port for redirect.
+2026-05-13 14:06:12.966 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 1.7146 ms
+2026-05-13 14:06:12.996 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 25.3417 ms
+2026-05-13 14:07:15.205 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.1160 ms
+2026-05-13 14:07:15.207 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0255 ms
+2026-05-13 14:07:15.207 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0178 ms
+2026-05-13 14:07:15.256 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 45.5058 ms
+2026-05-13 14:07:15.257 -04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-05-13 14:07:15.262 -04:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-13 14:07:15.270 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 59.8721 ms
+2026-05-13 14:07:15.418 -04:00 [INF] HTTP POST /graphql responded 200 in 211.4365 ms
+2026-05-13 14:07:15.448 -04:00 [INF] HTTP POST /graphql responded 200 in 17.0356 ms
+2026-05-13 14:07:15.464 -04:00 [ERR] HTTP POST /graphql responded 500 in 35.1847 ms
+2026-05-13 14:07:15.466 -04:00 [INF] HTTP POST /graphql responded 200 in 35.7778 ms
+2026-05-13 14:07:15.475 -04:00 [INF] HTTP POST /graphql responded 200 in 45.8118 ms
+2026-05-13 14:07:15.476 -04:00 [INF] HTTP POST /graphql responded 200 in 46.1159 ms
+2026-05-13 14:12:15.266 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.2139 ms
+2026-05-13 14:12:15.277 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 6.9052 ms
+2026-05-13 14:12:15.282 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0571 ms
+2026-05-13 14:12:15.305 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 20.0856 ms
+2026-05-13 14:12:16.310 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.1731 ms
+2026-05-13 14:12:16.313 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.0597 ms
+2026-05-13 14:17:16.322 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.4572 ms
+2026-05-13 14:17:16.328 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0879 ms
+2026-05-13 14:17:16.338 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 7.0633 ms
+2026-05-13 14:17:17.344 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.5075 ms
+2026-05-13 14:17:17.350 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.2118 ms
+2026-05-13 14:18:18.275 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0793 ms
+2026-05-13 14:18:18.279 -04:00 [ERR] HTTP POST /graphql responded 500 in 2.2385 ms
+2026-05-13 14:18:18.287 -04:00 [ERR] HTTP POST /graphql responded 500 in 1.0632 ms
+2026-05-13 14:18:18.288 -04:00 [ERR] HTTP POST /graphql responded 500 in 0.1760 ms
+2026-05-13 14:18:18.288 -04:00 [ERR] HTTP POST /graphql responded 500 in 0.2000 ms
+2026-05-13 14:18:18.288 -04:00 [ERR] HTTP POST /graphql responded 500 in 0.3643 ms
+2026-05-13 14:18:18.289 -04:00 [ERR] HTTP POST /graphql responded 500 in 0.3380 ms
+2026-05-13 14:22:17.361 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.5578 ms
+2026-05-13 14:22:17.366 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0848 ms
+2026-05-13 14:22:17.369 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.0133 ms
+2026-05-13 14:22:18.375 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.2670 ms
+2026-05-13 14:22:18.380 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.9956 ms
+2026-05-13 14:27:17.358 -04:00 [INF] HTTP GET /api/v1/patients responded 401 in 0.1922 ms
+2026-05-13 14:27:17.360 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0276 ms
+2026-05-13 14:27:17.362 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.5720 ms
+2026-05-13 14:27:18.369 -04:00 [INF] HTTP GET /api/v1/patients responded 401 in 0.4675 ms
+2026-05-13 14:27:18.378 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.4957 ms
+2026-05-13 14:27:18.420 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.1003 ms
+2026-05-13 14:27:18.422 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.4425 ms
+2026-05-13 14:27:19.428 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.4503 ms
+2026-05-13 14:27:19.433 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.3149 ms
+2026-05-13 14:27:49.122 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 1296089.3066 ms
+2026-05-13 14:28:11.604 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.0452 ms
+2026-05-13 14:28:11.724 -04:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 118.0330 ms
+2026-05-13 14:28:11.726 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.0336 ms
+2026-05-13 14:28:11.727 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 0.3076 ms
+2026-05-13 14:28:11.733 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0168 ms
+2026-05-13 14:28:11.734 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0409 ms
+2026-05-13 14:28:11.734 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0186 ms
+2026-05-13 14:28:11.737 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 2.0795 ms
+2026-05-13 14:28:11.738 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 2.0992 ms
+2026-05-13 14:28:11.744 -04:00 [INF] HTTP POST /graphql responded 200 in 8.0785 ms
+2026-05-13 14:28:11.759 -04:00 [ERR] HTTP POST /graphql responded 500 in 8.8931 ms
+2026-05-13 14:28:11.776 -04:00 [INF] HTTP POST /graphql responded 200 in 13.3386 ms
+2026-05-13 14:28:11.779 -04:00 [INF] HTTP POST /graphql responded 200 in 27.4833 ms
+2026-05-13 14:28:11.779 -04:00 [INF] HTTP POST /graphql responded 200 in 26.3957 ms
+2026-05-13 14:28:11.780 -04:00 [INF] HTTP POST /graphql responded 200 in 16.4758 ms
+2026-05-13 14:28:18.143 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0549 ms
+2026-05-13 14:28:18.192 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 47.0598 ms
+2026-05-13 14:29:38.359 -04:00 [INF] HTTP OPTIONS /api/v1/appointments responded 204 in 0.0479 ms
+2026-05-13 14:29:38.404 -04:00 [INF] HTTP GET /api/v1/appointments responded 200 in 44.0902 ms
+2026-05-13 14:29:42.630 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0208 ms
+2026-05-13 14:29:42.679 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 48.0838 ms
+2026-05-13 14:29:52.177 -04:00 [INF] HTTP OPTIONS /api/v1/laborders responded 204 in 0.0181 ms
+2026-05-13 14:29:52.200 -04:00 [INF] HTTP GET /api/v1/laborders responded 200 in 21.9415 ms
+2026-05-13 14:29:58.834 -04:00 [INF] HTTP OPTIONS /api/v1/billing responded 204 in 0.0163 ms
+2026-05-13 14:29:58.858 -04:00 [INF] HTTP GET /api/v1/billing responded 200 in 22.6808 ms
+2026-05-13 14:33:11.911 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.1232 ms
+2026-05-13 14:33:11.931 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 12.9706 ms
+2026-05-13 14:35:24.060 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.1474 ms
+2026-05-13 14:35:24.060 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.1420 ms
+2026-05-13 14:35:24.060 -04:00 [INF] HTTP OPTIONS /api/v1/billing responded 204 in 0.1379 ms
+2026-05-13 14:35:24.077 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 13.8648 ms
+2026-05-13 14:35:24.077 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 14.3689 ms
+2026-05-13 14:35:24.081 -04:00 [INF] HTTP GET /api/v1/billing responded 200 in 18.8598 ms
+2026-05-13 14:40:19.375 -04:00 [INF] Server teudys-macbook-air:61888:1dbd4208 caught stopping signal...
+2026-05-13 14:40:19.387 -04:00 [INF] Server teudys-macbook-air:61888:1dbd4208 All dispatchers stopped
+2026-05-13 14:40:19.396 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 727656.6080 ms
+2026-05-13 14:40:19.397 -04:00 [INF] Server teudys-macbook-air:61888:1dbd4208 successfully reported itself as stopped in 7.0015 ms
+2026-05-13 14:40:19.397 -04:00 [INF] Server teudys-macbook-air:61888:1dbd4208 has been stopped in total 15.5123 ms
+2026-05-13 14:40:25.854 -04:00 [INF] Mock data: patients already exist, skipping.
+2026-05-13 14:40:25.874 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-13 14:40:25.886 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-13 14:40:26.006 -04:00 [WRN] The WebRootPath was not found: /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-13 14:40:26.011 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-13 14:40:26.011 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-13 14:40:26.011 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-13 14:40:26.011 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-13 14:40:26.011 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-13 14:40:26.011 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-13 14:40:26.025 -04:00 [INF] Server teudys-macbook-air:86123:ae6a53fc successfully announced in 6.5509 ms
+2026-05-13 14:40:26.025 -04:00 [INF] Server teudys-macbook-air:86123:ae6a53fc is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-13 14:40:26.027 -04:00 [INF] Server teudys-macbook-air:86123:ae6a53fc all the dispatchers started
+2026-05-13 14:40:31.576 -04:00 [WRN] Failed to determine the https port for redirect.
+2026-05-13 14:40:31.578 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 1.6423 ms
+2026-05-13 14:40:31.617 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 33.9500 ms
+2026-05-13 14:40:56.685 -04:00 [INF] HTTP OPTIONS /api/v1/laborders responded 204 in 0.0601 ms
+2026-05-13 14:40:56.768 -04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-05-13 14:40:56.829 -04:00 [INF] HTTP GET /api/v1/laborders responded 200 in 135.3581 ms
+2026-05-13 14:40:57.572 -04:00 [INF] HTTP OPTIONS /api/v1/billing responded 204 in 0.0447 ms
+2026-05-13 14:40:57.657 -04:00 [INF] HTTP GET /api/v1/billing responded 200 in 83.5009 ms
+2026-05-13 14:41:02.654 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0541 ms
+2026-05-13 14:41:02.722 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 66.8897 ms
+2026-05-13 14:41:04.554 -04:00 [INF] HTTP OPTIONS /api/v1/prescriptions/consult/019e2245-0443-706c-a78e-c4a4954b0009 responded 204 in 0.1434 ms
+2026-05-13 14:41:04.584 -04:00 [INF] HTTP GET /api/v1/prescriptions/consult/019e2245-0443-706c-a78e-c4a4954b0009 responded 200 in 25.3554 ms
+2026-05-13 14:41:05.303 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.1170 ms
+2026-05-13 14:41:05.336 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 29.5878 ms
+2026-05-13 14:41:06.187 -04:00 [INF] HTTP OPTIONS /api/v1/prescriptions/consult/019e2245-0443-7b8f-947b-38e8aef5fe0d responded 204 in 0.1303 ms
+2026-05-13 14:41:06.198 -04:00 [INF] HTTP GET /api/v1/prescriptions/consult/019e2245-0443-7b8f-947b-38e8aef5fe0d responded 200 in 6.8455 ms
+2026-05-13 14:41:08.385 -04:00 [INF] HTTP OPTIONS /api/v1/prescriptions/consult/019e2245-0443-7f59-9920-edb734ed8ab2 responded 204 in 0.1945 ms
+2026-05-13 14:41:08.400 -04:00 [INF] HTTP GET /api/v1/prescriptions/consult/019e2245-0443-7f59-9920-edb734ed8ab2 responded 200 in 10.2541 ms
+2026-05-13 14:43:00.276 -04:00 [INF] HTTP OPTIONS /api/v1/medications responded 204 in 0.1102 ms
+2026-05-13 14:43:00.313 -04:00 [INF] HTTP GET /api/v1/medications responded 200 in 35.0928 ms
+2026-05-13 14:43:04.219 -04:00 [INF] HTTP OPTIONS /api/v1/caja/current responded 204 in 0.0617 ms
+2026-05-13 14:43:04.245 -04:00 [INF] HTTP GET /api/v1/caja/current responded 204 in 24.5059 ms
+2026-05-13 14:43:07.937 -04:00 [INF] HTTP OPTIONS /api/v1/hr responded 204 in 0.0268 ms
+2026-05-13 14:43:07.981 -04:00 [INF] HTTP GET /api/v1/hr responded 200 in 43.1576 ms
+2026-05-13 14:43:12.995 -04:00 [INF] HTTP OPTIONS /api/v1/reports/daily-revenue responded 204 in 0.0542 ms
+2026-05-13 14:43:12.999 -04:00 [INF] HTTP GET /api/v1/reports/daily-revenue responded 401 in 2.2241 ms
+2026-05-13 14:43:13.003 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0215 ms
+2026-05-13 14:43:13.014 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 9.2632 ms
+2026-05-13 14:43:14.021 -04:00 [INF] HTTP GET /api/v1/reports/daily-revenue responded 401 in 0.5932 ms
+2026-05-13 14:43:14.030 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 3.8639 ms
+2026-05-13 14:43:16.865 -04:00 [INF] HTTP GET /api/v1/settings responded 401 in 0.1656 ms
+2026-05-13 14:43:16.870 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 2.8060 ms
+2026-05-13 14:43:17.875 -04:00 [INF] HTTP GET /api/v1/settings responded 401 in 0.2324 ms
+2026-05-13 14:43:17.879 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.8965 ms
+2026-05-13 14:43:22.405 -04:00 [INF] HTTP GET /api/v1/users responded 401 in 0.2266 ms
+2026-05-13 14:43:22.409 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0288 ms
+2026-05-13 14:43:22.411 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.6795 ms
+2026-05-13 14:43:23.417 -04:00 [INF] HTTP GET /api/v1/users responded 401 in 0.4038 ms
+2026-05-13 14:43:23.423 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.6208 ms
+2026-05-13 14:43:25.317 -04:00 [INF] HTTP GET /api/v1/specialties responded 401 in 0.5211 ms
+2026-05-13 14:43:25.321 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.6255 ms
+2026-05-13 14:43:26.324 -04:00 [INF] HTTP GET /api/v1/specialties responded 401 in 0.1064 ms
+2026-05-13 14:43:26.326 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.3673 ms
+2026-05-13 14:43:26.583 -04:00 [INF] HTTP GET /api/v1/users responded 401 in 0.3198 ms
+2026-05-13 14:43:26.594 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.0983 ms
+2026-05-13 14:43:27.600 -04:00 [INF] HTTP GET /api/v1/users responded 401 in 0.4010 ms
+2026-05-13 14:43:27.605 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0511 ms
+2026-05-13 14:43:27.609 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.9874 ms
+2026-05-13 14:43:34.658 -04:00 [INF] HTTP GET /api/v1/specialties responded 401 in 0.8242 ms
+2026-05-13 14:43:34.663 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0548 ms
+2026-05-13 14:43:34.665 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.7439 ms
+2026-05-13 14:43:35.672 -04:00 [INF] HTTP GET /api/v1/specialties responded 401 in 0.2966 ms
+2026-05-13 14:43:35.678 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.7493 ms
+2026-05-13 14:43:36.260 -04:00 [INF] HTTP GET /api/v1/insurancecompanies responded 401 in 0.3538 ms
+2026-05-13 14:43:36.266 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.9601 ms
+2026-05-13 14:43:37.273 -04:00 [INF] HTTP GET /api/v1/insurancecompanies responded 401 in 0.4300 ms
+2026-05-13 14:43:37.281 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.7800 ms
+2026-05-13 14:43:37.661 -04:00 [INF] HTTP GET /api/v1/specialties responded 401 in 0.2943 ms
+2026-05-13 14:43:37.669 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.6471 ms
+2026-05-13 14:43:38.676 -04:00 [INF] HTTP GET /api/v1/specialties responded 401 in 0.3087 ms
+2026-05-13 14:43:38.682 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.3743 ms
+2026-05-13 14:43:38.694 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.1862 ms
+2026-05-13 14:43:38.701 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.5702 ms
+2026-05-13 14:43:39.706 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.3715 ms
+2026-05-13 14:43:39.710 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0552 ms
+2026-05-13 14:43:39.713 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.8491 ms
+2026-05-13 14:44:00.708 -04:00 [INF] HTTP GET /api/v1/audit responded 401 in 0.1579 ms
+2026-05-13 14:44:00.710 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0230 ms
+2026-05-13 14:44:00.711 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.5756 ms
+2026-05-13 14:44:01.716 -04:00 [INF] HTTP GET /api/v1/audit responded 401 in 0.2323 ms
+2026-05-13 14:44:01.721 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.9081 ms
+2026-05-13 14:44:09.316 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 217691.4218 ms
+2026-05-13 14:44:27.203 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.1140 ms
+2026-05-13 14:44:27.327 -04:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 121.5750 ms
+2026-05-13 14:44:27.331 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.0400 ms
+2026-05-13 14:44:27.332 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 0.4877 ms
+2026-05-13 14:44:27.411 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0145 ms
+2026-05-13 14:44:27.412 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0125 ms
+2026-05-13 14:44:27.413 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0390 ms
+2026-05-13 14:44:27.415 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 2.4769 ms
+2026-05-13 14:44:27.418 -04:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-13 14:44:27.427 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 13.6076 ms
+2026-05-13 14:44:27.615 -04:00 [INF] HTTP POST /graphql responded 200 in 201.8088 ms
+2026-05-13 14:44:27.652 -04:00 [INF] HTTP POST /graphql responded 200 in 16.1904 ms
+2026-05-13 14:44:27.653 -04:00 [INF] HTTP POST /graphql responded 200 in 18.9375 ms
+2026-05-13 14:44:27.654 -04:00 [INF] HTTP POST /graphql responded 200 in 20.1008 ms
+2026-05-13 14:44:27.671 -04:00 [INF] HTTP POST /graphql responded 200 in 35.2485 ms
+2026-05-13 14:44:27.672 -04:00 [ERR] HTTP POST /graphql responded 500 in 38.9351 ms
+2026-05-13 14:44:52.217 -04:00 [INF] HTTP OPTIONS /api/v1/audit responded 204 in 0.1615 ms
+2026-05-13 14:44:52.278 -04:00 [INF] HTTP GET /api/v1/audit responded 200 in 58.7529 ms
+2026-05-13 14:45:02.106 -04:00 [INF] HTTP OPTIONS /api/v1/noshowoutreach responded 204 in 0.1055 ms
+2026-05-13 14:45:02.150 -04:00 [INF] HTTP GET /api/v1/noshowoutreach responded 200 in 43.0565 ms
+2026-05-13 14:45:07.385 -04:00 [INF] HTTP OPTIONS /api/v1/users responded 204 in 0.0555 ms
+2026-05-13 14:45:07.439 -04:00 [INF] HTTP GET /api/v1/users responded 200 in 51.6823 ms
+2026-05-13 14:45:08.167 -04:00 [INF] HTTP OPTIONS /api/v1/specialties responded 204 in 0.0147 ms
+2026-05-13 14:45:08.187 -04:00 [INF] HTTP GET /api/v1/specialties responded 200 in 18.8504 ms
+2026-05-13 14:45:10.015 -04:00 [INF] HTTP OPTIONS /api/v1/insurancecompanies responded 204 in 0.0308 ms
+2026-05-13 14:45:10.041 -04:00 [INF] HTTP GET /api/v1/insurancecompanies responded 200 in 24.4178 ms
+2026-05-13 14:45:16.399 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 48987.4034 ms
+2026-05-13 14:45:42.876 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.1706 ms
+2026-05-13 14:45:42.942 -04:00 [INF] HTTP POST /api/v1/auth/login responded 401 in 63.5378 ms
+2026-05-13 14:45:42.945 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0143 ms
+2026-05-13 14:45:42.946 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.3562 ms
+2026-05-13 14:45:57.454 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.0759 ms
+2026-05-13 14:45:57.462 -04:00 [INF] HTTP POST /api/v1/auth/login responded 401 in 5.0837 ms
+2026-05-13 14:45:57.467 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0924 ms
+2026-05-13 14:45:57.471 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.0862 ms
+2026-05-13 14:45:58.194 -04:00 [INF] HTTP POST /api/v1/auth/login responded 401 in 5.1306 ms
+2026-05-13 14:45:58.199 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 1.0798 ms
+2026-05-13 14:45:58.361 -04:00 [INF] HTTP POST /api/v1/auth/login responded 401 in 5.2990 ms
+2026-05-13 14:45:58.366 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.6860 ms
+2026-05-13 14:46:26.271 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.1042 ms
+2026-05-13 14:46:26.339 -04:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 65.2713 ms
+2026-05-13 14:46:26.342 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.0204 ms
+2026-05-13 14:46:26.343 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 0.4869 ms
+2026-05-13 14:46:26.352 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0334 ms
+2026-05-13 14:46:26.371 -04:00 [INF] HTTP POST /graphql responded 200 in 18.3477 ms
+2026-05-13 14:46:28.004 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0189 ms
+2026-05-13 14:46:28.025 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 20.0967 ms
+2026-05-13 14:46:31.594 -04:00 [INF] HTTP OPTIONS /api/v1/appointments responded 204 in 0.0492 ms
+2026-05-13 14:46:31.625 -04:00 [INF] HTTP GET /api/v1/appointments responded 200 in 29.1859 ms
+2026-05-13 14:46:35.340 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0412 ms
+2026-05-13 14:46:35.356 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 12.9284 ms
+2026-05-13 14:46:36.858 -04:00 [INF] HTTP OPTIONS /api/v1/laborders responded 204 in 0.0563 ms
+2026-05-13 14:46:36.864 -04:00 [INF] HTTP GET /api/v1/laborders responded 200 in 3.4557 ms
+2026-05-13 14:46:39.577 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0212 ms
+2026-05-13 14:46:39.589 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 11.2199 ms
+2026-05-13 14:46:41.353 -04:00 [INF] HTTP OPTIONS /api/v1/medications responded 204 in 0.0347 ms
+2026-05-13 14:46:41.358 -04:00 [INF] HTTP GET /api/v1/medications responded 200 in 3.2473 ms
+2026-05-13 14:47:36.103 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0585 ms
+2026-05-13 14:47:36.113 -04:00 [INF] HTTP POST /graphql responded 200 in 7.7015 ms
+2026-05-13 14:47:36.286 -04:00 [INF] HTTP POST /graphql responded 200 in 5.8639 ms
+2026-05-13 14:49:26.087 -04:00 [INF] HTTP OPTIONS /api/v1/appointments responded 204 in 0.1098 ms
+2026-05-13 14:49:26.101 -04:00 [INF] HTTP GET /api/v1/appointments responded 200 in 12.3493 ms
+2026-05-13 14:49:28.285 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0446 ms
+2026-05-13 14:49:28.291 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 3.9282 ms
+2026-05-13 14:49:31.713 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0205 ms
+2026-05-13 14:49:31.723 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 8.9396 ms
+2026-05-13 14:49:32.739 -04:00 [INF] HTTP OPTIONS /api/v1/laborders responded 204 in 0.0353 ms
+2026-05-13 14:49:32.744 -04:00 [INF] HTTP GET /api/v1/laborders responded 200 in 3.5027 ms
+2026-05-13 14:49:48.598 -04:00 [INF] HTTP OPTIONS /api/v1/medications responded 204 in 0.0768 ms
+2026-05-13 14:49:48.604 -04:00 [INF] HTTP GET /api/v1/medications responded 200 in 3.5518 ms
+2026-05-13 14:49:49.558 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0409 ms
+2026-05-13 14:49:49.567 -04:00 [INF] HTTP POST /graphql responded 200 in 7.4745 ms
+2026-05-13 14:49:49.746 -04:00 [INF] HTTP POST /graphql responded 200 in 6.4653 ms
+2026-05-13 14:49:53.472 -04:00 [INF] HTTP OPTIONS /api/v1/auth/2fa/setup responded 204 in 0.0226 ms
+2026-05-13 14:49:53.521 -04:00 [INF] HTTP POST /api/v1/auth/2fa/setup responded 200 in 46.9053 ms
+2026-05-13 15:01:39.404 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 913067.0528 ms
+2026-05-13 16:12:07.836 -04:00 [INF] Server teudys-macbook-air:86123:ae6a53fc caught stopping signal...
+2026-05-13 16:12:07.844 -04:00 [INF] Server teudys-macbook-air:86123:ae6a53fc All dispatchers stopped
+2026-05-13 16:12:07.852 -04:00 [INF] Server teudys-macbook-air:86123:ae6a53fc successfully reported itself as stopped in 4.8415 ms
+2026-05-13 16:12:07.852 -04:00 [INF] Server teudys-macbook-air:86123:ae6a53fc has been stopped in total 14.4552 ms
+ng failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5274: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-05-13 16:12:18.261 -04:00 [INF] Mock data: patients already exist, skipping.
+2026-05-13 16:12:18.285 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-13 16:12:18.298 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-13 16:12:18.425 -04:00 [WRN] The WebRootPath was not found: /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-13 16:12:18.430 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-13 16:12:18.430 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-13 16:12:18.430 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-13 16:12:18.430 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-13 16:12:18.430 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-13 16:12:18.430 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-13 16:12:18.444 -04:00 [INF] Server teudys-macbook-air:56605:66575daa successfully announced in 6.4169 ms
+2026-05-13 16:12:18.444 -04:00 [INF] Server teudys-macbook-air:56605:66575daa is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-13 16:12:18.447 -04:00 [INF] Server teudys-macbook-air:56605:66575daa all the dispatchers started
+2026-05-13 16:14:22.204 -04:00 [WRN] Failed to determine the https port for redirect.
+2026-05-13 16:14:22.206 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 2.2444 ms
+2026-05-13 16:14:22.403 -04:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 188.8673 ms
+2026-05-13 16:14:22.409 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.1330 ms
+2026-05-13 16:14:22.422 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0310 ms
+2026-05-13 16:14:22.423 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0108 ms
+2026-05-13 16:14:22.435 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 24.4364 ms
+2026-05-13 16:14:22.464 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 40.1331 ms
+2026-05-13 16:14:22.494 -04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-05-13 16:14:22.498 -04:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-13 16:14:22.513 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 89.3960 ms
+2026-05-13 16:14:22.812 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0586 ms
+2026-05-13 16:14:23.025 -04:00 [INF] HTTP POST /graphql responded 200 in 211.9854 ms
+2026-05-13 16:14:23.068 -04:00 [INF] HTTP POST /graphql responded 200 in 20.9534 ms
+2026-05-13 16:14:23.091 -04:00 [ERR] HTTP POST /graphql responded 500 in 45.8951 ms
+2026-05-13 16:14:23.093 -04:00 [INF] HTTP POST /graphql responded 200 in 46.4051 ms
+2026-05-13 16:14:23.101 -04:00 [INF] HTTP POST /graphql responded 200 in 55.7874 ms
+2026-05-13 16:14:23.102 -04:00 [INF] HTTP POST /graphql responded 200 in 56.1259 ms
+2026-05-13 16:14:32.313 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0727 ms
+2026-05-13 16:14:32.355 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 41.2125 ms
+2026-05-13 16:15:07.441 -04:00 [INF] HTTP OPTIONS /api/v1/patients/check-duplicate responded 204 in 0.1181 ms
+2026-05-13 16:15:07.462 -04:00 [INF] HTTP GET /api/v1/patients/check-duplicate responded 200 in 17.7673 ms
+2026-05-13 16:19:22.488 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.6250 ms
+2026-05-13 16:19:22.507 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 13.0062 ms
+2026-05-13 16:20:01.256 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0382 ms
+2026-05-13 16:20:01.279 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 19.8872 ms
+2026-05-13 16:21:04.429 -04:00 [INF] HTTP OPTIONS /api/v1/patients/check-duplicate responded 204 in 0.2980 ms
+2026-05-13 16:21:04.447 -04:00 [INF] HTTP GET /api/v1/patients/check-duplicate responded 200 in 12.7032 ms
+2026-05-13 16:24:09.211 -04:00 [INF] Mock data: patients already exist, skipping.
+2026-05-13 16:24:09.234 -04:00 [INF] Start installing Hangfire SQL objects...
+2026-05-13 16:24:09.246 -04:00 [INF] Hangfire SQL objects installed.
+2026-05-13 16:24:09.375 -04:00 [WRN] The WebRootPath was not found: /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/wwwroot. Static files may be unavailable.
+2026-05-13 16:24:09.380 -04:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: lova_salud, Schema: hangfire'
+2026-05-13 16:24:09.380 -04:00 [INF] Using the following options for PostgreSQL job storage:
+2026-05-13 16:24:09.380 -04:00 [INF]     Queue poll interval: 00:00:15.
+2026-05-13 16:24:09.380 -04:00 [INF]     Invisibility timeout: 00:30:00.
+2026-05-13 16:24:09.380 -04:00 [INF]     Use sliding invisibility timeout: False.
+2026-05-13 16:24:09.380 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2026-05-13 16:24:09.393 -04:00 [INF] Server teudys-macbook-air:68778:58c694ad successfully announced in 5.3666 ms
+2026-05-13 16:24:09.394 -04:00 [INF] Server teudys-macbook-air:68778:58c694ad is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2026-05-13 16:24:09.395 -04:00 [INF] Server teudys-macbook-air:68778:58c694ad all the dispatchers started
+2026-05-13 16:24:29.886 -04:00 [WRN] Failed to determine the https port for redirect.
+2026-05-13 16:24:29.888 -04:00 [INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 1.6278 ms
+2026-05-13 16:24:30.042 -04:00 [INF] HTTP POST /api/v1/auth/login responded 200 in 146.3556 ms
+2026-05-13 16:24:30.046 -04:00 [INF] HTTP OPTIONS /hubs/dashboard/negotiate responded 204 in 0.1845 ms
+2026-05-13 16:24:30.059 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0347 ms
+2026-05-13 16:24:30.059 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0318 ms
+2026-05-13 16:24:30.068 -04:00 [INF] HTTP POST /hubs/dashboard/negotiate responded 200 in 19.6410 ms
+2026-05-13 16:24:30.090 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 29.5093 ms
+2026-05-13 16:24:30.111 -04:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-05-13 16:24:30.113 -04:00 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2026-05-13 16:24:30.127 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 66.2852 ms
+2026-05-13 16:24:30.384 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0765 ms
+2026-05-13 16:24:30.588 -04:00 [INF] HTTP POST /graphql responded 200 in 202.1393 ms
+2026-05-13 16:24:30.627 -04:00 [INF] HTTP POST /graphql responded 200 in 20.4083 ms
+2026-05-13 16:24:30.644 -04:00 [INF] HTTP POST /graphql responded 200 in 36.5703 ms
+2026-05-13 16:24:30.644 -04:00 [ERR] HTTP POST /graphql responded 500 in 38.6389 ms
+2026-05-13 16:24:30.649 -04:00 [INF] HTTP POST /graphql responded 200 in 42.9340 ms
+2026-05-13 16:24:30.650 -04:00 [INF] HTTP POST /graphql responded 200 in 44.4336 ms
+2026-05-13 16:24:37.309 -04:00 [INF] HTTP OPTIONS /api/v1/patients responded 204 in 0.0610 ms
+2026-05-13 16:24:37.357 -04:00 [INF] HTTP GET /api/v1/patients responded 200 in 47.4110 ms
+2026-05-13 16:29:09.409 -04:00 [INF] 1 servers were removed due to timeout
+2026-05-13 16:29:20.327 -04:00 [INF] HTTP OPTIONS /api/v1/consults responded 204 in 0.0428 ms
+2026-05-13 16:29:20.386 -04:00 [INF] HTTP GET /api/v1/consults responded 200 in 57.2150 ms
+2026-05-13 16:29:21.196 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.2395 ms
+2026-05-13 16:29:21.210 -04:00 [INF] HTTP POST /graphql responded 200 in 11.6869 ms
+2026-05-13 16:29:21.223 -04:00 [ERR] HTTP POST /graphql responded 500 in 4.1855 ms
+2026-05-13 16:29:21.224 -04:00 [INF] HTTP POST /graphql responded 200 in 2.5266 ms
+2026-05-13 16:29:21.224 -04:00 [INF] HTTP POST /graphql responded 200 in 2.6172 ms
+2026-05-13 16:29:21.224 -04:00 [INF] HTTP POST /graphql responded 200 in 3.4175 ms
+2026-05-13 16:29:21.224 -04:00 [INF] HTTP POST /graphql responded 200 in 3.5133 ms
+2026-05-13 16:29:21.386 -04:00 [INF] HTTP POST /graphql responded 200 in 9.4556 ms
+2026-05-13 16:29:21.394 -04:00 [ERR] HTTP POST /graphql responded 500 in 3.0696 ms
+2026-05-13 16:29:21.394 -04:00 [INF] HTTP POST /graphql responded 200 in 2.4445 ms
+2026-05-13 16:29:21.395 -04:00 [INF] HTTP POST /graphql responded 200 in 3.3953 ms
+2026-05-13 16:29:21.395 -04:00 [INF] HTTP POST /graphql responded 200 in 3.6195 ms
+2026-05-13 16:29:21.395 -04:00 [INF] HTTP POST /graphql responded 200 in 2.9890 ms
+2026-05-13 16:29:24.397 -04:00 [INF] HTTP OPTIONS /api/v1/settings responded 204 in 0.0248 ms
+2026-05-13 16:29:24.401 -04:00 [INF] HTTP GET /api/v1/settings responded 200 in 2.1743 ms
+2026-05-13 16:29:28.392 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.1825 ms
+2026-05-13 16:29:28.400 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 4.2553 ms
+2026-05-13 16:29:29.572 -04:00 [INF] HTTP OPTIONS /api/v1/specialties responded 204 in 0.1167 ms
+2026-05-13 16:29:29.596 -04:00 [INF] HTTP GET /api/v1/specialties responded 200 in 19.2763 ms
+2026-05-13 16:29:30.389 -04:00 [INF] HTTP OPTIONS /api/v1/insurancecompanies responded 204 in 0.1443 ms
+2026-05-13 16:29:30.418 -04:00 [INF] HTTP GET /api/v1/insurancecompanies responded 200 in 25.5560 ms
+2026-05-13 16:29:31.994 -04:00 [INF] HTTP OPTIONS /api/v1/users responded 204 in 0.0801 ms
+2026-05-13 16:29:32.027 -04:00 [INF] HTTP GET /api/v1/users responded 200 in 28.9270 ms
+2026-05-13 16:31:00.370 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.0330 ms
+2026-05-13 16:31:00.378 -04:00 [INF] HTTP POST /graphql responded 200 in 6.0640 ms
+2026-05-13 16:31:00.389 -04:00 [ERR] HTTP POST /graphql responded 500 in 3.0393 ms
+2026-05-13 16:31:00.390 -04:00 [INF] HTTP POST /graphql responded 200 in 2.0918 ms
+2026-05-13 16:31:00.390 -04:00 [INF] HTTP POST /graphql responded 200 in 2.7482 ms
+2026-05-13 16:31:00.390 -04:00 [INF] HTTP POST /graphql responded 200 in 2.4578 ms
+2026-05-13 16:31:00.391 -04:00 [INF] HTTP POST /graphql responded 200 in 3.0334 ms
+2026-05-13 16:31:00.563 -04:00 [INF] HTTP POST /graphql responded 200 in 6.6203 ms
+2026-05-13 16:31:00.571 -04:00 [ERR] HTTP POST /graphql responded 500 in 2.5393 ms
+2026-05-13 16:31:00.572 -04:00 [INF] HTTP POST /graphql responded 200 in 2.1658 ms
+2026-05-13 16:31:00.572 -04:00 [INF] HTTP POST /graphql responded 200 in 2.5964 ms
+2026-05-13 16:31:00.572 -04:00 [INF] HTTP POST /graphql responded 200 in 3.2865 ms
+2026-05-13 16:31:00.572 -04:00 [INF] HTTP POST /graphql responded 200 in 3.0986 ms
+2026-05-13 16:34:28.413 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0590 ms
+2026-05-13 16:34:28.421 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 4.3091 ms
+2026-05-13 16:39:28.434 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.0606 ms
+2026-05-13 16:39:28.442 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 200 in 3.2458 ms
+2026-05-13 16:44:40.672 -04:00 [INF] HTTP OPTIONS /api/v1/ncfsequences responded 204 in 0.1508 ms
+2026-05-13 16:44:40.714 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 30.5160 ms
+2026-05-13 16:44:40.751 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0196 ms
+2026-05-13 16:44:40.790 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 38.1653 ms
+2026-05-13 16:44:41.796 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.1333 ms
+2026-05-13 16:44:41.807 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 9.5057 ms
+2026-05-13 16:49:41.948 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 1.6264 ms
+2026-05-13 16:49:41.976 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.2274 ms
+2026-05-13 16:49:41.987 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 8.0650 ms
+2026-05-13 16:49:43.003 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.7480 ms
+2026-05-13 16:49:43.007 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 0.3959 ms
+2026-05-13 16:54:43.155 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 1.4461 ms
+2026-05-13 16:54:43.200 -04:00 [INF] HTTP OPTIONS /api/v1/auth/refresh responded 204 in 0.0558 ms
+2026-05-13 16:54:43.204 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 3.0061 ms
+2026-05-13 16:54:44.228 -04:00 [INF] HTTP GET /api/v1/ncfsequences responded 401 in 0.4902 ms
+2026-05-13 16:54:44.232 -04:00 [INF] HTTP POST /api/v1/auth/refresh responded 400 in 2.0740 ms
+2026-05-13 16:58:43.173 -04:00 [INF] HTTP GET /hubs/dashboard responded 101 in 2040979.7220 ms
+2026-05-13 16:58:43.186 -04:00 [INF] HTTP OPTIONS /graphql responded 204 in 0.1403 ms
+2026-05-13 16:58:43.235 -04:00 [ERR] HTTP POST /graphql responded 500 in 43.1981 ms
+2026-05-13 16:58:43.490 -04:00 [ERR] HTTP POST /graphql responded 500 in 0.8307 ms
+2026-05-13 17:00:50.268 -04:00 [INF] Server teudys-macbook-air:68778:58c694ad caught stopping signal...
+2026-05-13 17:00:50.277 -04:00 [INF] Server teudys-macbook-air:68778:58c694ad All dispatchers stopped
+2026-05-13 17:00:50.284 -04:00 [INF] Server teudys-macbook-air:68778:58c694ad successfully reported itself as stopped in 4.6033 ms
+2026-05-13 17:00:50.284 -04:00 [INF] Server teudys-macbook-air:68778:58c694ad has been stopped in total 13.3021 ms

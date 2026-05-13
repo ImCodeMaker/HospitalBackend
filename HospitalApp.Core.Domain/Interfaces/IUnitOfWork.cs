@@ -26,6 +26,13 @@ public interface IUnitOfWork : IDisposable
     IGenericRepository<ConsultFieldTemplate> ConsultFieldTemplates { get; }
     IGenericRepository<ClinicSettings> ClinicSettings { get; }
     IGenericRepository<DicomStudy> DicomStudies { get; }
+    IGenericRepository<NcfSequence> NcfSequences { get; }
+    IGenericRepository<NoShowOutreachLog> NoShowOutreachLogs { get; }
+    IGenericRepository<SatisfactionSurvey> SatisfactionSurveys { get; }
+    IGenericRepository<ControlledSubstanceLog> ControlledSubstanceLogs { get; }
+    IGenericRepository<Vendor> Vendors { get; }
+    IGenericRepository<PurchaseOrder> PurchaseOrders { get; }
+    IGenericRepository<SupplierPayment> SupplierPayments { get; }
 
     Task<int> SaveChangesAsync(CancellationToken ct = default);
 }

@@ -36,6 +36,7 @@ public class UpdateConsultCommandHandler(IUnitOfWork uow)
         if (req.TreatmentPlan is not null) consult.TreatmentPlan = req.TreatmentPlan;
         if (req.ReferralNotes is not null) consult.ReferralNotes = req.ReferralNotes;
         if (req.SpecialtyData is not null) consult.SpecialtyData = req.SpecialtyData;
+        if (req.DentalChart is not null) consult.DentalChart = req.DentalChart;
 
         if (consult.WeightKg.HasValue && consult.HeightCm.HasValue && consult.HeightCm > 0)
             consult.Bmi = Math.Round(consult.WeightKg.Value / (decimal)Math.Pow((double)(consult.HeightCm.Value / 100), 2), 1);

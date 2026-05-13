@@ -9,7 +9,17 @@ public class Invoice : SharedEntity
     public required Guid CreatedByUserId { get; set; }
 
     public required string InvoiceNumber { get; set; }
+
+    /// <summary>DGII fiscal receipt number (Número de Comprobante Fiscal).</summary>
+    public string? Ncf { get; set; }
+
+    /// <summary>NCF type used at issuance (B01/B02/...).</summary>
+    public NcfTypeEnum? NcfType { get; set; }
+
     public InvoiceStatusEnum Status { get; set; } = InvoiceStatusEnum.AwaitingPayment;
+
+    /// <summary>Set when insurance claim is denied. Status is then RequiresCollection.</summary>
+    public string? InsuranceDenialReason { get; set; }
 
     public decimal Subtotal { get; set; }
     public decimal DiscountAmount { get; set; }

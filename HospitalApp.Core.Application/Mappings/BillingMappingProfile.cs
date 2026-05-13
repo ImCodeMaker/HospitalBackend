@@ -12,6 +12,7 @@ public class BillingMappingProfile : Profile
             .ForMember(d => d.PatientName, o => o.MapFrom(s =>
                 s.Patient != null ? $"{s.Patient.FirstName} {s.Patient.LastName}" : string.Empty))
             .ForMember(d => d.Status, o => o.MapFrom(s => s.Status.ToString()))
+            .ForMember(d => d.NcfType, o => o.MapFrom(s => s.NcfType != null ? s.NcfType.ToString() : null))
             .ForMember(d => d.BalanceDue, o => o.MapFrom(s => s.BalanceDue));
 
         CreateMap<InvoiceLineItem, InvoiceLineItemDto>()

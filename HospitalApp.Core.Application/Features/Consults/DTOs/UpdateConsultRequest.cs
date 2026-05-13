@@ -19,4 +19,7 @@ public class UpdateConsultRequest
 
     /// <summary>Serialized JSON object with specialty-specific fields.</summary>
     public string? SpecialtyData { get; init; }
+
+    /// <summary>Serialized JSON for the dental chart (FDI notation) — odontology only.</summary>
+    public string? DentalChart { get; init; }
 }

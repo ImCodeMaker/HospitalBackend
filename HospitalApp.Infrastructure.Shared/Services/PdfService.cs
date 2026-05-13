@@ -32,7 +32,12 @@ public class PdfService : IPdfService
                     col.Item().PaddingTop(8).BorderBottom(1).BorderColor(Colors.Grey.Lighten1).PaddingBottom(4)
                         .Row(row =>
                         {
-                            row.RelativeItem().Text($"FACTURA #{invoice.InvoiceNumber}").Bold().FontSize(14);
+                            row.RelativeItem().Column(c =>
+                            {
+                                c.Item().Text($"FACTURA #{invoice.InvoiceNumber}").Bold().FontSize(14);
+                                if (!string.IsNullOrEmpty(invoice.Ncf))
+                                    c.Item().Text($"NCF: {invoice.Ncf} ({invoice.NcfType})").FontSize(9).FontColor(Colors.Grey.Medium);
+                            });
                             row.ConstantItem(120).AlignRight()
                                 .Text($"Fecha: {invoice.CreatedAt:dd/MM/yyyy}").FontSize(9);
                         });

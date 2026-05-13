@@ -2,6 +2,7 @@ using System.Text;
 using System.Threading.RateLimiting;
 using HospitalApp.Core.Application.Common;
 using HospitalApp.Infrastructure.Identity.Settings;
+using HospitalApp.Infrastructure.Persistence.Services;
 using HospitalApp.Infrastructure.Shared.Services;
 using HospitalApp.Infrastructure.Shared.Settings;
 using HospitalApp.WebAPI.Extensions.Swagger;
@@ -32,6 +33,13 @@ public static class ServicesInjectionExtension
         services.AddScoped<ISmsService, TwilioSmsService>();
         services.AddHttpClient<RxNormDrugInteractionService>();
         services.AddScoped<IDrugInteractionService, RxNormDrugInteractionService>();
+        services.AddScoped<INcfService, NcfService>();
+        services.AddScoped<IUserContactService, UserContactService>();
+        // Phase 2 stubs — swap for real implementations when external creds are available.
+        services.AddScoped<IWhatsAppService, StubWhatsAppService>();
+        services.AddScoped<IElectronicPrescriptionSigner, StubElectronicPrescriptionSigner>();
+        services.AddScoped<IFhirInteropService, StubFhirInteropService>();
+        services.AddScoped<IDgiiEcfService, StubDgiiEcfService>();
         services.Configure<FormOptions>(o => o.MultipartBodyLengthLimit = 52_428_800);
         services.AddSignalR();
 

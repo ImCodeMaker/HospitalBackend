@@ -6,6 +6,8 @@ using HospitalApp.WebAPI.BackgroundJobs;
 using HospitalApp.WebAPI.Extensions;
 using HospitalApp.WebAPI.GraphQL.Queries;
 using HospitalApp.WebAPI.Hubs;
+using HospitalApp.WebAPI.Middleware;
+using Hangfire.States;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Identity;
@@ -43,15 +45,27 @@ builder.Services.AddHangfire(config => config
     .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
     .UseSimpleAssemblyNameTypeSerializer()
     .UseRecommendedSerializerSettings()
+    .UseFilter(new Hangfire.AutomaticRetryAttribute
+    {
+        Attempts = 5,
+        DelaysInSeconds = [60, 300, 900, 1800, 3600],
+        OnAttemptsExceeded = AttemptsExceededAction.Fail,
+    })
     .UsePostgreSqlStorage(c =>
         c.UseNpgsqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")!)));
 builder.Services.AddHangfireServer();
+builder.Services.Configure<AdminIpAllowlistOptions>(builder.Configuration.GetSection("AdminIpAllowlist"));
 builder.Services.AddScoped<ClinicBackgroundJobs>();
 
 builder.Services
     .AddGraphQLServer()
     .AddQueryType<DashboardQuery>()
-    .AddAuthorization();
+    .AddTypeExtension<HospitalApp.WebAPI.GraphQL.Queries.AnalyticsQuery>()
+    .AddAuthorization()
+    .ModifyRequestOptions(opts => opts.IncludeExceptionDetails = builder.Environment.IsDevelopment());
+
+// Allow Npgsql to round-trip non-UTC DateTimes without throwing.
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var app = builder.Build();
 
@@ -98,9 +112,15 @@ using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    var db = scope.ServiceProvider.GetRequiredService<HospitalApp.Infrastructure.Persistence.Context.ApplicationDbContext>();
     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
     await DatabaseSeeder.SeedRolesAsync(roleManager, logger);
     await DatabaseSeeder.SeedAdminUserAsync(userManager, app.Configuration, logger);
+    await DatabaseSeeder.SeedNcfRangesAsync(db, logger);
+
+    var seedMock = app.Configuration.GetValue<bool>("SeedMockData");
+    if (seedMock)
+        await MockDataSeeder.SeedAsync(db, userManager, logger);
 }
 
 app.UseSerilogRequestLogging();
@@ -109,6 +129,7 @@ app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
 app.UseRateLimiter();
 app.UseAuthentication();
+app.UseMiddleware<AdminIpAllowlistMiddleware>();
 app.UseAuthorization();
 var hangfireUser = app.Configuration["HangfireDashboard:User"] ?? "admin";
 var hangfirePass = app.Configuration["HangfireDashboard:Password"] ?? "changeme";
@@ -131,5 +152,9 @@ RecurringJob.AddOrUpdate<ClinicBackgroundJobs>(
     "purge-audit-logs", j => j.PurgeOldAuditLogsAsync(), Cron.Weekly(DayOfWeek.Sunday, 3));
 RecurringJob.AddOrUpdate<ClinicBackgroundJobs>(
     "send-scheduled-reports", j => j.SendScheduledReportsAsync(), "30 7 * * *");
+RecurringJob.AddOrUpdate<ClinicBackgroundJobs>(
+    "send-appointment-reminders", j => j.SendAppointmentRemindersAsync(), "*/15 * * * *");
+RecurringJob.AddOrUpdate<ClinicBackgroundJobs>(
+    "send-satisfaction-surveys", j => j.SendSatisfactionSurveysAsync(), "0 18 * * *");
 
 app.Run();

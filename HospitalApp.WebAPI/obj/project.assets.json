@@ -69,18 +69,20 @@
           }
         }
       },
-      "AutoMapper/14.0.0": {
+      "AutoMapper/15.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Options": "8.0.0"
+          "Microsoft.Extensions.Logging": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0",
+          "Microsoft.IdentityModel.JsonWebTokens": "8.0.1"
         },
         "compile": {
-          "lib/net8.0/AutoMapper.dll": {
+          "lib/net9.0/AutoMapper.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/AutoMapper.dll": {
+          "lib/net9.0/AutoMapper.dll": {
             "related": ".xml"
           }
         }
@@ -2472,7 +2474,7 @@
           }
         }
       },
-      "SixLabors.Fonts/2.0.4": {
+      "SixLabors.Fonts/2.1.3": {
         "type": "package",
         "compile": {
           "lib/net6.0/SixLabors.Fonts.dll": {
@@ -2485,7 +2487,7 @@
           }
         }
       },
-      "SixLabors.ImageSharp/3.1.7": {
+      "SixLabors.ImageSharp/3.1.11": {
         "type": "package",
         "compile": {
           "lib/net6.0/SixLabors.ImageSharp.dll": {
@@ -2501,11 +2503,11 @@
           "build/_._": {}
         }
       },
-      "SixLabors.ImageSharp.Drawing/2.1.4": {
+      "SixLabors.ImageSharp.Drawing/2.1.6": {
         "type": "package",
         "dependencies": {
-          "SixLabors.Fonts": "2.0.4",
-          "SixLabors.ImageSharp": "3.1.5"
+          "SixLabors.Fonts": "2.1.3",
+          "SixLabors.ImageSharp": "3.1.8"
         },
         "compile": {
           "lib/net6.0/SixLabors.ImageSharp.Drawing.dll": {
@@ -3297,7 +3299,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "AutoMapper": "14.0.0",
+          "AutoMapper": "15.0.1",
           "FluentValidation": "11.11.0",
           "FluentValidation.DependencyInjectionExtensions": "11.11.0",
           "HospitalApp.Core.Domain": "1.0.0",
@@ -3365,8 +3367,8 @@
         "dependencies": {
           "HospitalApp.Core.Application": "1.0.0",
           "QuestPDF": "2025.4.3",
-          "SixLabors.ImageSharp": "3.1.7",
-          "SixLabors.ImageSharp.Drawing": "2.1.4",
+          "SixLabors.ImageSharp": "3.1.11",
+          "SixLabors.ImageSharp.Drawing": "2.1.6",
           "Twilio": "7.5.1"
         },
         "compile": {
@@ -3450,19 +3452,24 @@
         "lib/net8.0/Asp.Versioning.Mvc.ApiExplorer.xml"
       ]
     },
-    "AutoMapper/14.0.0": {
-      "sha512": "OC+1neAPM4oCCqQj3g2GJ2shziNNhOkxmNB9cVS8jtx4JbgmRzLcUOxB9Tsz6cVPHugdkHgCaCrTjjSI0Z5sCQ==",
+    "AutoMapper/15.0.1": {
+      "sha512": "kNo7iIAi4p4XxoEbfif2WUQtc6RTx+UteiRYPqCOKj+4q4+YaWono06qTxoHBy+0N1HdganA//k5p/VmWw2AMA==",
       "type": "package",
-      "path": "automapper/14.0.0",
+      "path": "automapper/15.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "LICENSE.md",
         "README.md",
-        "automapper.14.0.0.nupkg.sha512",
+        "automapper.15.0.1.nupkg.sha512",
         "automapper.nuspec",
         "icon.png",
         "lib/net8.0/AutoMapper.dll",
-        "lib/net8.0/AutoMapper.xml"
+        "lib/net8.0/AutoMapper.xml",
+        "lib/net9.0/AutoMapper.dll",
+        "lib/net9.0/AutoMapper.xml",
+        "lib/netstandard2.0/AutoMapper.dll",
+        "lib/netstandard2.0/AutoMapper.xml"
       ]
     },
     "BananaCakePop.Middleware/16.0.3": {
@@ -7205,10 +7212,10 @@
         "serilog.sinks.file.nuspec"
       ]
     },
-    "SixLabors.Fonts/2.0.4": {
-      "sha512": "4+NKz8W36injp98lmmM07ncp08HAK8c6FZz8vLoKxRPfJeEVWpBHlLYEbQa5rcqKKYqxUv/RVCrb8XcPhfMKUQ==",
+    "SixLabors.Fonts/2.1.3": {
+      "sha512": "ORWbZ5BHrC/LZvo+Y09MnoJq5VUKD85LsYALk+YI7CHFra+m5arCkz00IntDM6SrAiB22bvSdKtKmuCyHOKlqg==",
       "type": "package",
-      "path": "sixlabors.fonts/2.0.4",
+      "path": "sixlabors.fonts/2.1.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7216,14 +7223,14 @@
         "lib/net6.0/SixLabors.Fonts.dll",
         "lib/net6.0/SixLabors.Fonts.xml",
         "sixlabors.fonts.128.png",
-        "sixlabors.fonts.2.0.4.nupkg.sha512",
+        "sixlabors.fonts.2.1.3.nupkg.sha512",
         "sixlabors.fonts.nuspec"
       ]
     },
-    "SixLabors.ImageSharp/3.1.7": {
-      "sha512": "9fIOOAsyLFid6qKypM2Iy0Z3Q9yoanV8VoYAHtI2sYGMNKzhvRTjgFDHonIiVe+ANtxIxM6SuqUzj0r91nItpA==",
+    "SixLabors.ImageSharp/3.1.11": {
+      "sha512": "JfPLyigLthuE50yi6tMt7Amrenr/fA31t2CvJyhy/kQmfulIBAqo5T/YFUSRHtuYPXRSaUHygFeh6Qd933EoSw==",
       "type": "package",
-      "path": "sixlabors.imagesharp/3.1.7",
+      "path": "sixlabors.imagesharp/3.1.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7232,14 +7239,14 @@
         "lib/net6.0/SixLabors.ImageSharp.dll",
         "lib/net6.0/SixLabors.ImageSharp.xml",
         "sixlabors.imagesharp.128.png",
-        "sixlabors.imagesharp.3.1.7.nupkg.sha512",
+        "sixlabors.imagesharp.3.1.11.nupkg.sha512",
         "sixlabors.imagesharp.nuspec"
       ]
     },
-    "SixLabors.ImageSharp.Drawing/2.1.4": {
-      "sha512": "p4VwtAABggDUhUS5zXldCZHVGfjJl76+SrBHY4biNQ8+890igFK6RL87qIv9GqvEjMcYOar1sPkf2iMQ6uq9/g==",
+    "SixLabors.ImageSharp.Drawing/2.1.6": {
+      "sha512": "/VeIBfAcaYcqqWMgVyF0nzdmWBkDQhppL8tltd8pFyUYanytCFnJG77bZYOGllk4LYLFdKduACvbpKGUpflp1w==",
       "type": "package",
-      "path": "sixlabors.imagesharp.drawing/2.1.4",
+      "path": "sixlabors.imagesharp.drawing/2.1.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7247,7 +7254,7 @@
         "lib/net6.0/SixLabors.ImageSharp.Drawing.dll",
         "lib/net6.0/SixLabors.ImageSharp.Drawing.xml",
         "sixlabors.imagesharp.drawing.128.png",
-        "sixlabors.imagesharp.drawing.2.1.4.nupkg.sha512",
+        "sixlabors.imagesharp.drawing.2.1.6.nupkg.sha512",
         "sixlabors.imagesharp.drawing.nuspec"
       ]
     },
@@ -9300,19 +9307,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/teudyencarnacion/.nuget/packages/": {}
+    "/Users/teudyencrnacion/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.WebAPI/HospitalApp.WebAPI.csproj",
+      "projectUniqueName": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/HospitalApp.WebAPI.csproj",
       "projectName": "HospitalApp.WebAPI",
-      "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.WebAPI/HospitalApp.WebAPI.csproj",
-      "packagesPath": "/Users/teudyencarnacion/.nuget/packages/",
-      "outputPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.WebAPI/obj/",
+      "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/HospitalApp.WebAPI.csproj",
+      "packagesPath": "/Users/teudyencrnacion/.nuget/packages/",
+      "outputPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/teudyencarnacion/.nuget/NuGet/NuGet.Config"
+        "/Users/teudyencrnacion/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -9324,20 +9331,20 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj": {
-              "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj"
+            "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj": {
+              "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj"
             },
-            "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj": {
-              "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj"
+            "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj": {
+              "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj"
             },
-            "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj": {
-              "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj"
+            "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj": {
+              "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj"
             },
-            "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Persistence/HospitalApp.Infrastructure.Persistence.csproj": {
-              "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Persistence/HospitalApp.Infrastructure.Persistence.csproj"
+            "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Persistence/HospitalApp.Infrastructure.Persistence.csproj": {
+              "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Persistence/HospitalApp.Infrastructure.Persistence.csproj"
             },
-            "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Shared/HospitalApp.Infrastructure.Shared.csproj": {
-              "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Shared/HospitalApp.Infrastructure.Shared.csproj"
+            "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Shared/HospitalApp.Infrastructure.Shared.csproj": {
+              "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Shared/HospitalApp.Infrastructure.Shared.csproj"
             }
           }
         }
@@ -9436,7 +9443,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.312/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/Users/teudyencrnacion/.dotnet/sdk/9.0.314/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

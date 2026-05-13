@@ -1,13 +1,16 @@
 namespace HospitalApp.Core.Application.Features.Billing.DTOs;
 
-public class InvoiceDto
+public record InvoiceDto
 {
     public Guid Id { get; init; }
     public string InvoiceNumber { get; init; } = string.Empty;
+    public string? Ncf { get; init; }
+    public string? NcfType { get; init; }
     public Guid PatientId { get; init; }
     public string PatientName { get; init; } = string.Empty;
     public Guid ConsultId { get; init; }
     public string Status { get; init; } = string.Empty;
+    public string? InsuranceDenialReason { get; init; }
     public decimal Subtotal { get; init; }
     public decimal DiscountAmount { get; init; }
     public decimal TaxAmount { get; init; }

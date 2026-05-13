@@ -1,5 +1,6 @@
 using HospitalApp.Core.Application.Common;
 using HospitalApp.Core.Application.Features.Reports.DTOs;
+using HospitalApp.Core.Domain.Entities;
 using HospitalApp.Core.Domain.Enums;
 using HospitalApp.Core.Domain.Interfaces;
 using HospitalApp.Infrastructure.Persistence.Context;
@@ -12,8 +13,78 @@ public class ClinicBackgroundJobs(
     ApplicationDbContext db,
     IDashboardNotifier notifier,
     IEmailService email,
+    ISmsService sms,
     ILogger<ClinicBackgroundJobs> logger)
 {
+    /// <summary>Every 15 min: send 24h and 2h reminders for upcoming appointments.</summary>
+    public async Task SendAppointmentRemindersAsync()
+    {
+        var now = DateTime.UtcNow;
+        var window24Start = now.AddHours(23);
+        var window24End = now.AddHours(25);
+        var window2Start = now.AddMinutes(90);
+        var window2End = now.AddMinutes(150);
+
+        await SendWindowAsync(window24Start, window24End, is24h: true);
+        await SendWindowAsync(window2Start, window2End, is24h: false);
+    }
+
+    private async Task SendWindowAsync(DateTime windowStart, DateTime windowEnd, bool is24h)
+    {
+        var pending = await uow.Appointments.FindAsync(a =>
+            a.ScheduledDate >= windowStart &&
+            a.ScheduledDate < windowEnd &&
+            (a.Status == AppointmentStatusEnum.Scheduled || a.Status == AppointmentStatusEnum.Confirmed) &&
+            (is24h ? !a.Reminder24hSent : !a.Reminder2hSent),
+            CancellationToken.None);
+
+        if (!pending.Any()) return;
+
+        foreach (var apt in pending)
+        {
+            var patient = await uow.Patients.GetByIdAsync(apt.PatientId, CancellationToken.None);
+            if (patient is null) continue;
+
+            var whenLabel = is24h ? "mañana" : "en aproximadamente 2 horas";
+            var subject = is24h ? "Recordatorio: cita mañana" : "Recordatorio: cita próxima";
+
+            var body = $"""
+                <p>Estimado/a <strong>{patient.FirstName} {patient.LastName}</strong>,</p>
+                <p>Le recordamos que tiene una cita {whenLabel}:</p>
+                <ul>
+                    <li><strong>Fecha y hora:</strong> {apt.ScheduledDate:dd/MM/yyyy HH:mm}</li>
+                    <li><strong>Tipo:</strong> {apt.Type}</li>
+                    <li><strong>Duración estimada:</strong> {apt.DurationMinutes} minutos</li>
+                </ul>
+                <p>Si no podrá asistir, contáctenos con anticipación.</p>
+                <p>Gracias,<br/>Lova Salud</p>
+                """;
+
+            try
+            {
+                if (!string.IsNullOrEmpty(patient.Email))
+                    await email.SendAsync(patient.Email, subject, body, CancellationToken.None);
+                if (!string.IsNullOrEmpty(patient.Phone))
+                    await sms.SendAsync(patient.Phone,
+                        $"Recordatorio: cita {whenLabel} {apt.ScheduledDate:dd/MM HH:mm} en Lova Salud.",
+                        CancellationToken.None);
+            }
+            catch (Exception ex)
+            {
+                logger.LogWarning(ex, "Failed to send {Type} reminder for appointment {Id}", is24h ? "24h" : "2h", apt.Id);
+            }
+
+            if (is24h) apt.Reminder24hSent = true;
+            else apt.Reminder2hSent = true;
+
+            apt.UpdatedAt = DateTime.UtcNow;
+            uow.Appointments.Update(apt);
+        }
+
+        await uow.SaveChangesAsync(CancellationToken.None);
+        logger.LogInformation("Sent {Count} {Type} appointment reminders", pending.Count(), is24h ? "24h" : "2h");
+    }
+
     /// <summary>Daily: flag appointments as NoShow if past + still Confirmed/Scheduled.</summary>
     public async Task MarkNoShowAppointmentsAsync()
     {
@@ -39,27 +110,109 @@ public class ClinicBackgroundJobs(
             foreach (var apt in stale)
             {
                 var patient = await uow.Patients.GetByIdAsync(apt.PatientId, CancellationToken.None);
-                if (patient is null || string.IsNullOrEmpty(patient.Email))
-                    continue;
+                if (patient is null) continue;
 
+                var emailed = false;
+                var smsSent = false;
+                if (!string.IsNullOrEmpty(patient.Email))
+                {
+                    try
+                    {
+                        var htmlBody = $"""
+                            <p>Estimado/a <strong>{patient.FirstName} {patient.LastName}</strong>,</p>
+                            <p>Notamos que no pudo asistir a su cita programada para el <strong>{apt.ScheduledDate:dd/MM/yyyy HH:mm}</strong>.</p>
+                            <p>Le invitamos a reprogramar su cita a la brevedad posible para continuar con su atención médica.</p>
+                            <p>Gracias,<br/>Lova Salud</p>
+                            """;
+                        await email.SendAsync(patient.Email, "Cita perdida — Lova Salud", htmlBody, CancellationToken.None);
+                        emailed = true;
+                    }
+                    catch { /* swallow */ }
+                }
+
+                if (!string.IsNullOrEmpty(patient.Phone))
+                {
+                    try
+                    {
+                        await sms.SendAsync(patient.Phone,
+                            $"No te vimos en tu cita ({apt.ScheduledDate:dd/MM HH:mm}). Reprograma cuando puedas — Lova Salud.",
+                            CancellationToken.None);
+                        smsSent = true;
+                    }
+                    catch { /* swallow */ }
+                }
+
+                var channel = (emailed, smsSent) switch
+                {
+                    (true, true) => "Email+SMS",
+                    (true, false) => "Email",
+                    (false, true) => "SMS",
+                    _ => "Manual",
+                };
+
+                await uow.NoShowOutreachLogs.AddAsync(new NoShowOutreachLog
+                {
+                    PatientId = patient.Id,
+                    AppointmentId = apt.Id,
+                    Channel = channel,
+                    Notes = "Auto-outreach after appointment missed.",
+                }, CancellationToken.None);
+            }
+
+            await uow.SaveChangesAsync(CancellationToken.None);
+        }
+    }
+
+    /// <summary>Daily: invite recently finalized consults to a satisfaction survey.</summary>
+    public async Task SendSatisfactionSurveysAsync()
+    {
+        var since = DateTime.UtcNow.AddHours(-26);
+        var until = DateTime.UtcNow.AddHours(-22);
+
+        var consults = await uow.Consults.FindAsync(
+            c => c.Status == ConsultStatusEnum.Finished
+              && c.FinishedAt >= since
+              && c.FinishedAt < until,
+            CancellationToken.None);
+
+        foreach (var c in consults)
+        {
+            var existing = (await uow.SatisfactionSurveys
+                .FindAsync(s => s.ConsultId == c.Id, CancellationToken.None))
+                .FirstOrDefault();
+            if (existing is not null) continue;
+
+            var patient = await uow.Patients.GetByIdAsync(c.PatientId, CancellationToken.None);
+            if (patient is null) continue;
+
+            var token = Guid.NewGuid().ToString("N");
+            await uow.SatisfactionSurveys.AddAsync(new SatisfactionSurvey
+            {
+                ConsultId = c.Id,
+                PatientId = patient.Id,
+                DoctorId = c.DoctorId,
+                Token = token,
+            }, CancellationToken.None);
+
+            if (!string.IsNullOrEmpty(patient.Email))
+            {
                 try
                 {
-                    var htmlBody = $"""
-                        <p>Estimado/a <strong>{patient.FirstName} {patient.LastName}</strong>,</p>
-                        <p>Notamos que no pudo asistir a su cita programada para el <strong>{apt.ScheduledDate:dd/MM/yyyy HH:mm}</strong>.</p>
-                        <p>Le invitamos a reprogramar su cita a la brevedad posible para continuar con su atención médica.</p>
-                        <p>Para reprogramar, por favor contáctenos o visite nuestras instalaciones.</p>
+                    var body = $"""
+                        <p>Hola <strong>{patient.FirstName}</strong>,</p>
+                        <p>¿Cómo fue tu experiencia? Tu opinión nos ayuda a mejorar.</p>
+                        <p>Toma menos de 1 minuto: <a href="https://portal.lovasalud.com/survey/{token}">responder encuesta</a></p>
                         <p>Gracias,<br/>Lova Salud</p>
                         """;
-
-                    await email.SendAsync(patient.Email, "Cita perdida — Lova Salud", htmlBody, CancellationToken.None);
+                    await email.SendAsync(patient.Email, "¿Cómo fue tu visita? — Lova Salud", body, CancellationToken.None);
                 }
-                catch
-                {
-                    // notification failure must not block operation
-                }
+                catch { /* swallow */ }
             }
         }
+
+        await uow.SaveChangesAsync(CancellationToken.None);
+        if (consults.Any())
+            logger.LogInformation("Queued {Count} satisfaction survey invitations.", consults.Count());
     }
 
     /// <summary>Daily: send low-stock alert notifications (SignalR push to Admin/Doctor/Nurse).</summary>

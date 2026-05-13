@@ -7,7 +7,7 @@ using MediatR;
 
 namespace HospitalApp.Core.Application.Features.Consults.Queries.GetConsults;
 
-public class GetConsultsQueryHandler(IUnitOfWork uow, IMapper mapper)
+public class GetConsultsQueryHandler(IUnitOfWork uow, IMapper mapper, IUserContactService userContacts)
     : IRequestHandler<GetConsultsQuery, Result<PaginatedResult<ConsultDto>>>
 {
     public async Task<Result<PaginatedResult<ConsultDto>>> Handle(GetConsultsQuery query, CancellationToken ct)
@@ -23,8 +23,36 @@ public class GetConsultsQueryHandler(IUnitOfWork uow, IMapper mapper)
         var total = ordered.Count;
         var items = ordered.Skip((query.PageNumber - 1) * query.PageSize).Take(query.PageSize).ToList();
 
+        // Batch-resolve names
+        var patientIds = items.Select(c => c.PatientId).Distinct().ToList();
+        var specialtyIds = items.Select(c => c.SpecialtyId).Distinct().ToList();
+        var doctorIds = items.Select(c => c.DoctorId).Distinct().ToList();
+
+        var patients = await uow.Patients.FindAsync(p => patientIds.Contains(p.Id), ct);
+        var patientNames = patients.ToDictionary(p => p.Id, p => $"{p.FirstName} {p.LastName}");
+
+        var specialties = await uow.Specialties.FindAsync(s => specialtyIds.Contains(s.Id), ct);
+        var specialtyNames = specialties.ToDictionary(s => s.Id, s => s.Name);
+
+        var doctorNames = new Dictionary<Guid, string>();
+        foreach (var did in doctorIds)
+        {
+            var dc = await userContacts.GetAsync(did, ct);
+            doctorNames[did] = dc?.FullName ?? "—";
+        }
+
+        var dtos = items.Select(c =>
+        {
+            var dto = mapper.Map<ConsultDto>(c);
+            return dto with
+            {
+                PatientName = patientNames.GetValueOrDefault(c.PatientId, "—"),
+                SpecialtyName = specialtyNames.GetValueOrDefault(c.SpecialtyId, "—"),
+                DoctorName = doctorNames.GetValueOrDefault(c.DoctorId, "—"),
+            };
+        }).ToList();
+
         return Result<PaginatedResult<ConsultDto>>.Success(
-            PaginatedResult<ConsultDto>.Create(
-                mapper.Map<IReadOnlyList<ConsultDto>>(items), total, query.PageNumber, query.PageSize));
+            PaginatedResult<ConsultDto>.Create(dtos, total, query.PageNumber, query.PageSize));
     }
 }

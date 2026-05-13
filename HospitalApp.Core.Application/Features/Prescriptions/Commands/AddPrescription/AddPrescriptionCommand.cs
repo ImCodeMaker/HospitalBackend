@@ -12,7 +12,11 @@ public record AddPrescriptionRequest(
     string RouteOfAdministration,
     int DurationDays,
     int QuantityToDispense,
-    string? SpecialInstructions
+    string? SpecialInstructions,
+    /// <summary>RxCUI for the drug being prescribed; enables interaction check.</summary>
+    string? RxCui = null,
+    /// <summary>Doctor overrides interaction warnings (clinical judgment).</summary>
+    bool AcknowledgeInteractions = false
 );
 
 public record AddPrescriptionCommand(Guid ConsultId, AddPrescriptionRequest Request, Guid DoctorId)

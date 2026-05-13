@@ -75,8 +75,10 @@ public class DashboardQuery
         var pendingInvoices = await uow.Invoices.CountAsync(
             i => i.Status == InvoiceStatusEnum.AwaitingPayment, ct);
 
-        var allMeds = await uow.Medications.FindAsync(m => !m.IsExpired, ct);
-        var lowStock = allMeds.Where(m => m.IsLowStock || m.IsOutOfStock).ToList();
+        var now = DateTime.UtcNow;
+        var allMeds = await uow.Medications.FindAsync(
+            m => m.EarliestExpirationDate == null || m.EarliestExpirationDate >= now, ct);
+        var lowStock = allMeds.Where(m => m.CurrentStock <= m.MinimumStockThreshold).ToList();
 
         var lowStockAlerts = lowStock.Select(m => new LowStockAlert(
             m.Id,

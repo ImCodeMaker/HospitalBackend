@@ -2,18 +2,20 @@
   "version": 3,
   "targets": {
     "net9.0": {
-      "AutoMapper/14.0.0": {
+      "AutoMapper/15.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Options": "8.0.0"
+          "Microsoft.Extensions.Logging": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0",
+          "Microsoft.IdentityModel.JsonWebTokens": "8.0.1"
         },
         "compile": {
-          "lib/net8.0/AutoMapper.dll": {
+          "lib/net9.0/AutoMapper.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/AutoMapper.dll": {
+          "lib/net9.0/AutoMapper.dll": {
             "related": ".xml"
           }
         }
@@ -1727,7 +1729,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "AutoMapper": "14.0.0",
+          "AutoMapper": "15.0.1",
           "FluentValidation": "11.11.0",
           "FluentValidation.DependencyInjectionExtensions": "11.11.0",
           "HospitalApp.Core.Domain": "1.0.0",
@@ -1774,19 +1776,24 @@
     }
   },
   "libraries": {
-    "AutoMapper/14.0.0": {
-      "sha512": "OC+1neAPM4oCCqQj3g2GJ2shziNNhOkxmNB9cVS8jtx4JbgmRzLcUOxB9Tsz6cVPHugdkHgCaCrTjjSI0Z5sCQ==",
+    "AutoMapper/15.0.1": {
+      "sha512": "kNo7iIAi4p4XxoEbfif2WUQtc6RTx+UteiRYPqCOKj+4q4+YaWono06qTxoHBy+0N1HdganA//k5p/VmWw2AMA==",
       "type": "package",
-      "path": "automapper/14.0.0",
+      "path": "automapper/15.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "LICENSE.md",
         "README.md",
-        "automapper.14.0.0.nupkg.sha512",
+        "automapper.15.0.1.nupkg.sha512",
         "automapper.nuspec",
         "icon.png",
         "lib/net8.0/AutoMapper.dll",
-        "lib/net8.0/AutoMapper.xml"
+        "lib/net8.0/AutoMapper.xml",
+        "lib/net9.0/AutoMapper.dll",
+        "lib/net9.0/AutoMapper.xml",
+        "lib/netstandard2.0/AutoMapper.dll",
+        "lib/netstandard2.0/AutoMapper.xml"
       ]
     },
     "FluentValidation/11.11.0": {
@@ -4639,19 +4646,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/teudyencarnacion/.nuget/packages/": {}
+    "/Users/teudyencrnacion/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Persistence/HospitalApp.Infrastructure.Persistence.csproj",
+      "projectUniqueName": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Persistence/HospitalApp.Infrastructure.Persistence.csproj",
       "projectName": "HospitalApp.Infrastructure.Persistence",
-      "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Persistence/HospitalApp.Infrastructure.Persistence.csproj",
-      "packagesPath": "/Users/teudyencarnacion/.nuget/packages/",
-      "outputPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Persistence/obj/",
+      "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Persistence/HospitalApp.Infrastructure.Persistence.csproj",
+      "packagesPath": "/Users/teudyencrnacion/.nuget/packages/",
+      "outputPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Persistence/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/teudyencarnacion/.nuget/NuGet/NuGet.Config"
+        "/Users/teudyencrnacion/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -4663,14 +4670,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj": {
-              "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj"
+            "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj": {
+              "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Application/HospitalApp.Core.Application.csproj"
             },
-            "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj": {
-              "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj"
+            "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj": {
+              "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Core.Domain/HospitalApp.Core.Domain.csproj"
             },
-            "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj": {
-              "projectPath": "/Volumes/Files/Projects/HospitalAppServer/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj"
+            "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj": {
+              "projectPath": "/Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.Infrastructure.Identity/HospitalApp.Infrastructure.Identity.csproj"
             }
           }
         }
@@ -4726,7 +4733,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.312/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/Users/teudyencrnacion/.dotnet/sdk/9.0.314/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

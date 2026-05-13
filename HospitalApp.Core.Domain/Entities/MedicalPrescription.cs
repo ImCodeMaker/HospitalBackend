@@ -9,6 +9,8 @@ public class MedicalPrescription : SharedEntity
 
     public required string DrugName { get; set; }
     public string? MedicationId { get; set; } // FK to inventory if in stock
+    /// <summary>RxNorm RxCUI captured at prescription time for later interaction lookups.</summary>
+    public string? RxCui { get; set; }
     public required string Presentation { get; set; }
     public required string Dosage { get; set; }
     public required string Frequency { get; set; }

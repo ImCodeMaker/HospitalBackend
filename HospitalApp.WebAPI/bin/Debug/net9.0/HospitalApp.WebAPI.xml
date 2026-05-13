@@ -4,8 +4,14 @@
         <name>HospitalApp.WebAPI</name>
     </assembly>
     <members>
+        <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.SendAppointmentRemindersAsync">
+            <summary>Every 15 min: send 24h and 2h reminders for upcoming appointments.</summary>
+        </member>
         <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.MarkNoShowAppointmentsAsync">
             <summary>Daily: flag appointments as NoShow if past + still Confirmed/Scheduled.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.SendSatisfactionSurveysAsync">
+            <summary>Daily: invite recently finalized consults to a satisfaction survey.</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.CheckLowStockAsync">
             <summary>Daily: send low-stock alert notifications (SignalR push to Admin/Doctor/Nurse).</summary>
@@ -130,6 +136,9 @@
         <member name="M:HospitalApp.WebAPI.Controllers.v1.ConsultsController.AttachImage(System.Guid,HospitalApp.WebAPI.Controllers.v1.AttachImageBody,System.Threading.CancellationToken)">
             <summary>Attach an image/document to a consult.</summary>
         </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.ControlledSubstanceLogController.GetAll(System.Nullable{System.Guid},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>Immutable ledger of controlled substance movements. For DEA / regulatory inspection.</summary>
+        </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.DicomController.GetByConsult(System.Guid,System.Threading.CancellationToken)">
             <summary>List DICOM studies for a consult.</summary>
         </member>
@@ -193,6 +202,15 @@
         <member name="M:HospitalApp.WebAPI.Controllers.v1.MedicationsController.AdjustStock(System.Guid,HospitalApp.WebAPI.Controllers.v1.AdjustStockBody,System.Threading.CancellationToken)">
             <summary>Adjust stock (purchase receipt, manual adjustment, write-off).</summary>
         </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.NcfSequencesController.GetAll(System.Threading.CancellationToken)">
+            <summary>List all NCF sequences (active and historical).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.NcfSequencesController.Create(HospitalApp.WebAPI.Controllers.v1.CreateNcfRangeRequest,System.Threading.CancellationToken)">
+            <summary>Register a new authorized NCF range. Deactivates the current active range of the same type.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.NoShowOutreachController.GetAll(System.Int32,System.Nullable{System.Guid},System.Threading.CancellationToken)">
+            <summary>Recent no-show outreach attempts grouped by patient.</summary>
+        </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientPortalController.GetProfile(System.Threading.CancellationToken)">
             <summary>Get the logged-in patient's own profile.</summary>
         </member>
@@ -231,6 +249,9 @@
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientsController.Anonymize(System.Guid,System.Threading.CancellationToken)">
             <summary>Anonymize a patient record — replaces PII with ANONYMIZED and archives (Admin only).</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.Controllers.v1.PatientSignupController.Signup(HospitalApp.WebAPI.Controllers.v1.PatientSignupRequest,System.Threading.CancellationToken)">
+            <summary>Public patient self-registration. Creates a PendingVerification patient awaiting admin approval.</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.Controllers.v1.PayrollController.GetEmployeePayroll(System.Guid,System.Int32,System.Int32,System.Threading.CancellationToken)">
             <summary>Get paginated payroll records for an employee.</summary>
@@ -337,6 +358,16 @@
             <param name="services"></param>
             <param name="description"></param>
             <returns></returns>
+        </member>
+        <member name="T:HospitalApp.WebAPI.GraphQL.Types.FlexibleDateTimeType">
+            <summary>
+            DateTime scalar that tolerates non-UTC values by treating Unspecified Kind as UTC
+            and converting Local to UTC during serialization. Prevents HotChocolate from
+            throwing when entities return DateTimes with mixed Kind values.
+            </summary>
+        </member>
+        <member name="P:HospitalApp.WebAPI.Middleware.AdminIpAllowlistOptions.ProtectedPaths">
+            <summary>Path prefixes (lowercased) that require IP allowlisting. Example: "/api/v1/audit".</summary>
         </member>
     </members>
 </doc>

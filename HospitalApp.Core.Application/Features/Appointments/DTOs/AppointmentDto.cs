@@ -1,6 +1,6 @@
 namespace HospitalApp.Core.Application.Features.Appointments.DTOs;
 
-public class AppointmentDto
+public record AppointmentDto
 {
     public Guid Id { get; init; }
     public Guid PatientId { get; init; }

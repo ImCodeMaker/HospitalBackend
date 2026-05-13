@@ -7,6 +7,8 @@ public class Medication : SharedEntity
     public required string GenericName { get; set; }
     public string? BrandName { get; set; }
     public string? AtcCode { get; set; }
+    /// <summary>RxNorm RxCUI for drug-drug interaction lookups.</summary>
+    public string? RxCui { get; set; }
     public required MedicationPresentationEnum Presentation { get; set; }
     public required string Strength { get; set; } // e.g. "500mg", "250mg/5mL"
     public required string UnitOfMeasure { get; set; } // tablet, mL, vial, etc.

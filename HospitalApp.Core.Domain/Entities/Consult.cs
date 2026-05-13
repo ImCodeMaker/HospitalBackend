@@ -31,6 +31,9 @@ public class Consult : SharedEntity
     // Dynamic specialty-specific fields stored as JSONB
     public string? SpecialtyData { get; set; }
 
+    /// <summary>Dental chart state (FDI 32-tooth notation) as JSON, keyed by tooth number.</summary>
+    public string? DentalChart { get; set; }
+
     // Timestamps
     public DateTime? StartedAt { get; set; }
     public DateTime? FinishedAt { get; set; }

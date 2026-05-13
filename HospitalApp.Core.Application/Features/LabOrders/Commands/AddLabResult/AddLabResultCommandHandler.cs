@@ -6,7 +6,12 @@ using MediatR;
 
 namespace HospitalApp.Core.Application.Features.LabOrders.Commands.AddLabResult;
 
-public class AddLabResultCommandHandler(IUnitOfWork uow, IDashboardNotifier notifier, IEmailService email)
+public class AddLabResultCommandHandler(
+    IUnitOfWork uow,
+    IDashboardNotifier notifier,
+    IEmailService email,
+    ISmsService sms,
+    IUserContactService userContacts)
     : IRequestHandler<AddLabResultCommand, Result<Guid>>
 {
     public async Task<Result<Guid>> Handle(AddLabResultCommand command, CancellationToken ct)
@@ -38,8 +43,38 @@ public class AddLabResultCommandHandler(IUnitOfWork uow, IDashboardNotifier noti
         await uow.SaveChangesAsync(ct);
 
         if (req.Flag == LabResultFlagEnum.Critical)
+        {
             await notifier.NotifyCriticalLabResultAsync(
                 order.OrderedByDoctorId, order.Id, req.TestName, req.Value, ct);
+
+            try
+            {
+                var doctor = await userContacts.GetAsync(order.OrderedByDoctorId, ct);
+                if (doctor is not null)
+                {
+                    var subject = $"⚠ Resultado CRÍTICO: {req.TestName}";
+                    var body = $"""
+                        <p>Dr/a. <strong>{doctor.FullName}</strong>,</p>
+                        <p>Un resultado <strong style="color:#b91c1c">CRÍTICO</strong> requiere su atención inmediata:</p>
+                        <ul>
+                            <li><strong>Prueba:</strong> {req.TestName}</li>
+                            <li><strong>Valor:</strong> {req.Value}{(string.IsNullOrEmpty(req.Unit) ? "" : " " + req.Unit)}</li>
+                            <li><strong>Rango de referencia:</strong> {req.ReferenceRange ?? "—"}</li>
+                            <li><strong>Orden:</strong> {order.Id}</li>
+                        </ul>
+                        <p>Por favor revise el resultado en el sistema.</p>
+                        """;
+                    if (!string.IsNullOrEmpty(doctor.Email))
+                        await email.SendAsync(doctor.Email, subject, body, ct);
+                    if (!string.IsNullOrEmpty(doctor.Phone))
+                        await sms.SendAsync(doctor.Phone, $"CRÍTICO: {req.TestName} = {req.Value}. Revise en sistema.", ct);
+                }
+            }
+            catch
+            {
+                // notification failure must not block operation
+            }
+        }
 
         var patient = await uow.Patients.GetByIdAsync(order.PatientId, ct);
         if (patient is not null && !string.IsNullOrEmpty(patient.Email))

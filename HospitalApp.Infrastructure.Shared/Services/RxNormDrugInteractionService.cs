@@ -9,6 +9,35 @@ public class RxNormDrugInteractionService(
     ILogger<RxNormDrugInteractionService> logger) : IDrugInteractionService
 {
     private const string BaseUrl = "https://rxnav.nlm.nih.gov/REST/interaction/list.json";
+    private const string RxcuiByNameUrl = "https://rxnav.nlm.nih.gov/REST/rxcui.json";
+
+    public async Task<string?> ResolveRxCuiAsync(string drugName, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(drugName)) return null;
+        try
+        {
+            var client = httpClientFactory.CreateClient("RxNorm");
+            var url = $"{RxcuiByNameUrl}?name={Uri.EscapeDataString(drugName)}&search=2";
+            var response = await client.GetAsync(url, ct);
+            if (!response.IsSuccessStatusCode) return null;
+
+            var json = await response.Content.ReadAsStringAsync(ct);
+            using var doc = JsonDocument.Parse(json);
+            if (doc.RootElement.TryGetProperty("idGroup", out var grp)
+                && grp.TryGetProperty("rxnormId", out var ids))
+            {
+                var first = ids.EnumerateArray().FirstOrDefault();
+                if (first.ValueKind == JsonValueKind.String)
+                    return first.GetString();
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "RxCUI lookup failed for {Drug}", drugName);
+            return null;
+        }
+    }
 
     public async Task<List<DrugInteractionAlert>> CheckInteractionsAsync(
         IEnumerable<string> rxcuiList,

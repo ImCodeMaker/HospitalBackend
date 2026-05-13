@@ -18,6 +18,10 @@ public class Appointment : SharedEntity
 
     public bool ReminderSent { get; set; }
     public DateTime? ReminderSentAt { get; set; }
+    /// <summary>True once the 24-hour reminder has been delivered.</summary>
+    public bool Reminder24hSent { get; set; }
+    /// <summary>True once the 2-hour reminder has been delivered.</summary>
+    public bool Reminder2hSent { get; set; }
     public bool NoShowNotificationSent { get; set; }
 
     public Patient? Patient { get; set; }

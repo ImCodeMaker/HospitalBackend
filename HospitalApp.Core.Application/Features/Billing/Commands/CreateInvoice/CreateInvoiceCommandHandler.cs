@@ -6,7 +6,7 @@ using MediatR;
 
 namespace HospitalApp.Core.Application.Features.Billing.Commands.CreateInvoice;
 
-public class CreateInvoiceCommandHandler(IUnitOfWork uow, IDashboardNotifier notifier)
+public class CreateInvoiceCommandHandler(IUnitOfWork uow, IDashboardNotifier notifier, INcfService ncf)
     : IRequestHandler<CreateInvoiceCommand, Result<Guid>>
 {
     public async Task<Result<Guid>> Handle(CreateInvoiceCommand command, CancellationToken ct)
@@ -27,6 +27,13 @@ public class CreateInvoiceCommandHandler(IUnitOfWork uow, IDashboardNotifier not
 
         var invoiceNumber = $"INV-{DateTime.UtcNow:yyyyMMdd}-{Guid.NewGuid().ToString()[..6].ToUpper()}";
 
+        var ncfType = req.NcfType ?? NcfTypeEnum.Consumo;
+        var ncfNumber = await ncf.ReserveNextAsync(ncfType, ct);
+        if (ncfNumber is null)
+            return Result<Guid>.Failure(
+                $"NCF range for type {ncfType.GetPrefix()} is exhausted or expired. Configure a new range before issuing more invoices.",
+                409);
+
         var subtotal = req.LineItems.Sum(li => li.UnitPrice * li.Quantity);
         var totalDiscount = req.DiscountAmount + req.LineItems.Sum(li => li.DiscountAmount);
         var totalInsurance = req.LineItems.Sum(li => li.InsuranceCoverageAmount);
@@ -39,6 +46,8 @@ public class CreateInvoiceCommandHandler(IUnitOfWork uow, IDashboardNotifier not
             ConsultId = req.ConsultId,
             CreatedByUserId = command.CreatedByUserId,
             InvoiceNumber = invoiceNumber,
+            Ncf = ncfNumber,
+            NcfType = ncfType,
             Status = InvoiceStatusEnum.AwaitingPayment,
             Subtotal = subtotal,
             DiscountAmount = totalDiscount,
