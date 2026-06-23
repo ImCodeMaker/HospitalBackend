@@ -14,6 +14,7 @@ public class ClinicBackgroundJobs(
     IDashboardNotifier notifier,
     IEmailService email,
     ISmsService sms,
+    IConfiguration configuration,
     ILogger<ClinicBackgroundJobs> logger)
 {
     /// <summary>Every 15 min: send 24h and 2h reminders for upcoming appointments.</summary>
@@ -254,16 +255,29 @@ public class ClinicBackgroundJobs(
         }
     }
 
-    /// <summary>Weekly: purge audit logs older than 2 years.</summary>
+    /// <summary>Weekly: purge audit logs older than configured retention.</summary>
     public async Task PurgeOldAuditLogsAsync()
     {
-        var cutoff = DateTime.UtcNow.AddYears(-2);
+        var retentionYears = Math.Max(1, configuration.GetValue("Audit:RetentionYears", 7));
+        var cutoff = DateTime.UtcNow.AddYears(-retentionYears);
         var deleted = await db.AuditLogs
             .Where(a => a.ChangedAt < cutoff)
             .ExecuteDeleteAsync();
 
         if (deleted > 0)
-            logger.LogInformation("Purged {Count} audit log entries older than 2 years", deleted);
+            logger.LogInformation("Purged {Count} audit log entries older than {Years} years", deleted, retentionYears);
+    }
+
+    /// <summary>Daily: purge expired idempotency responses after the replay window closes.</summary>
+    public async Task PurgeExpiredIdempotencyRequestsAsync()
+    {
+        var now = DateTime.UtcNow;
+        var deleted = await db.IdempotencyRequests
+            .Where(i => i.ExpiresAt < now)
+            .ExecuteDeleteAsync();
+
+        if (deleted > 0)
+            logger.LogInformation("Purged {Count} expired idempotency request entries", deleted);
     }
 
     /// <summary>Daily at 7:30 AM: email yesterday's revenue summary to clinic admin.</summary>

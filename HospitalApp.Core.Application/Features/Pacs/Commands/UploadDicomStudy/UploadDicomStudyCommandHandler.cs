@@ -5,7 +5,10 @@ using MediatR;
 
 namespace HospitalApp.Core.Application.Features.Pacs.Commands.UploadDicomStudy;
 
-public class UploadDicomStudyCommandHandler(IUnitOfWork uow, IFileStorageService fileStorage)
+public class UploadDicomStudyCommandHandler(
+    IUnitOfWork uow,
+    IFileStorageService fileStorage,
+    IMalwareScanner malwareScanner)
     : IRequestHandler<UploadDicomStudyCommand, Result<Guid>>
 {
     public async Task<Result<Guid>> Handle(UploadDicomStudyCommand command, CancellationToken ct)
@@ -13,6 +16,12 @@ public class UploadDicomStudyCommandHandler(IUnitOfWork uow, IFileStorageService
         var consult = await uow.Consults.GetByIdAsync(command.ConsultId, ct);
         if (consult is null)
             return Result<Guid>.NotFound("Consult not found.");
+
+        var scan = await malwareScanner.ScanAsync(command.FileStream, command.OriginalFileName, ct);
+        if (!scan.IsClean)
+            return Result<Guid>.Failure(
+                $"File failed malware scan. {scan.Signature ?? scan.Error}",
+                400);
 
         var filePath = await fileStorage.SaveAsync(
             command.FileStream,

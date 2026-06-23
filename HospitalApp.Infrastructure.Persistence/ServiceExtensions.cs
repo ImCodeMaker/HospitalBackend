@@ -21,11 +21,15 @@ public static class ServiceExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        if (string.IsNullOrWhiteSpace(connectionString))
+            throw new InvalidOperationException("ConnectionStrings:DefaultConnection must be configured.");
+
         services.AddSingleton<AuditInterceptor>();
 
         services.AddDbContext<ApplicationDbContext>((sp, opts) =>
             opts.UseNpgsql(
-                    configuration.GetConnectionString("DefaultConnection"),
+                    connectionString,
                     npgsql => npgsql.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
                 .AddInterceptors(sp.GetRequiredService<AuditInterceptor>()));
 

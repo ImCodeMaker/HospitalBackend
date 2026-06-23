@@ -5,6 +5,7 @@ public class DicomStudyDto
     public Guid Id { get; init; }
     public Guid ConsultId { get; init; }
     public Guid UploadedByUserId { get; init; }
+    public string FilePath { get; init; } = string.Empty;
     public string OriginalFileName { get; init; } = string.Empty;
     public long FileSizeBytes { get; init; }
     public string? StudyInstanceUid { get; init; }

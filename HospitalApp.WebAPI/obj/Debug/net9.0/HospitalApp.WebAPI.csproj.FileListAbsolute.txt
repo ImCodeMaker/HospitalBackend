@@ -564,3 +564,4 @@
 /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/obj/Debug/net9.0/HospitalApp.WebAPI.pdb
 /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/obj/Debug/net9.0/HospitalApp.WebAPI.genruntimeconfig.cache
 /Users/teudyencrnacion/Developments/HospitalBackend/HospitalApp.WebAPI/obj/Debug/net9.0/ref/HospitalApp.WebAPI.dll
+/Volumes/Files/Projects/HospitalAppServer/HospitalApp.WebAPI/bin/Debug/net9.0/System.Diagnostics.DiagnosticSource.dll

@@ -19,6 +19,7 @@ public class GetDicomStudyByIdQueryHandler(IUnitOfWork uow)
             Id = study.Id,
             ConsultId = study.ConsultId,
             UploadedByUserId = study.UploadedByUserId,
+            FilePath = study.FilePath,
             OriginalFileName = study.OriginalFileName,
             FileSizeBytes = study.FileSizeBytes,
             StudyInstanceUid = study.StudyInstanceUid,

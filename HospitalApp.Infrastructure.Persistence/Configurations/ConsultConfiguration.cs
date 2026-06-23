@@ -25,6 +25,8 @@ public class ConsultConfiguration : IEntityTypeConfiguration<Consult>
 
         builder.HasIndex(c => new { c.PatientId, c.Status });
         builder.HasIndex(c => new { c.DoctorId, c.CreatedAt });
+        builder.HasIndex(c => new { c.DoctorId, c.Status, c.CreatedAt });
+        builder.HasIndex(c => new { c.PatientId, c.CreatedAt });
 
         builder.HasOne(c => c.Patient)
             .WithMany(p => p.Consults)

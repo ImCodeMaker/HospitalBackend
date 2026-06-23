@@ -58,8 +58,21 @@ public static class DatabaseSeeder
         IConfiguration configuration,
         ILogger logger)
     {
-        var email = configuration["SeedAdmin:Email"] ?? "admin@lovasalud.com";
-        var password = configuration["SeedAdmin:Password"] ?? "Admin@LovaSalud2026!";
+        var enabled = configuration.GetValue<bool>("SeedAdmin:Enabled");
+        var email = configuration["SeedAdmin:Email"];
+        var password = configuration["SeedAdmin:Password"];
+
+        if (!enabled)
+        {
+            logger.LogInformation("Seed admin user skipped because SeedAdmin:Enabled is false.");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+        {
+            logger.LogWarning("Seed admin user skipped because SeedAdmin:Email or SeedAdmin:Password is missing.");
+            return;
+        }
 
         if (await userManager.FindByEmailAsync(email) is not null)
             return;

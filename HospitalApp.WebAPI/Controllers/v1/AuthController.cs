@@ -4,6 +4,8 @@ using HospitalApp.Core.Application.Features.Auth.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using HospitalApp.WebAPI.Middleware;
 
 namespace HospitalApp.WebAPI.Controllers.v1;
 
@@ -23,6 +25,7 @@ public class AuthController(IAuthService authService) : BaseController
             return StatusCode(result.StatusCode, new { error = result.Error });
 
         SetRefreshCookie(result.Data!.RefreshToken);
+        SetCsrfCookie();
         return Ok(new
         {
             result.Data.AccessToken,
@@ -64,7 +67,17 @@ public class AuthController(IAuthService authService) : BaseController
             return StatusCode(result.StatusCode, new { error = result.Error });
 
         SetRefreshCookie(result.Data!.RefreshToken);
-        return Ok(new { result.Data.AccessToken, result.Data.ExpiresAt });
+        SetCsrfCookie();
+        return Ok(new
+        {
+            result.Data.AccessToken,
+            result.Data.ExpiresAt,
+            result.Data.UserId,
+            result.Data.Email,
+            result.Data.FullName,
+            result.Data.Roles,
+            result.Data.SpecialtyId,
+        });
     }
 
     /// <summary>Revoke the current user's refresh token and clear cookie.</summary>
@@ -77,6 +90,7 @@ public class AuthController(IAuthService authService) : BaseController
 
         var result = await authService.RevokeTokenAsync(userId, ct);
         Response.Cookies.Delete(RefreshTokenCookie);
+        Response.Cookies.Delete(CsrfProtectionMiddleware.CookieName);
         return result.IsSuccess ? NoContent() : StatusCode(result.StatusCode, new { error = result.Error });
     }
 
@@ -130,6 +144,7 @@ public class AuthController(IAuthService authService) : BaseController
             return StatusCode(result.StatusCode, new { error = result.Error });
 
         SetRefreshCookie(result.Data!.RefreshToken);
+        SetCsrfCookie();
         return Ok(new
         {
             result.Data.AccessToken,
@@ -153,6 +168,19 @@ public class AuthController(IAuthService authService) : BaseController
             Path = "/api",
         });
     }
+
+    private void SetCsrfCookie()
+    {
+        var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
+        Response.Cookies.Append(CsrfProtectionMiddleware.CookieName, token, new CookieOptions
+        {
+            HttpOnly = false,
+            Secure = true,
+            SameSite = SameSiteMode.Strict,
+            Expires = DateTimeOffset.UtcNow.AddDays(7),
+            Path = "/api",
+        });
+    }
 }
 
-public record RefreshTokenRequest(string AccessToken, string? RefreshToken);
+public record RefreshTokenRequest(string? AccessToken = null, string? RefreshToken = null);

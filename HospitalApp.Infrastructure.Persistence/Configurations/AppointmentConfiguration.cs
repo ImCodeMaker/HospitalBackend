@@ -16,6 +16,8 @@ public class AppointmentConfiguration : IEntityTypeConfiguration<Appointment>
 
         builder.HasIndex(a => new { a.AssignedDoctorId, a.ScheduledDate });
         builder.HasIndex(a => new { a.PatientId, a.Status });
+        builder.HasIndex(a => new { a.Status, a.ScheduledDate });
+        builder.HasIndex(a => new { a.AssignedDoctorId, a.Status, a.ScheduledDate });
         builder.HasIndex(a => a.ScheduledDate);
     }
 }

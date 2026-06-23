@@ -20,7 +20,10 @@
             <summary>Daily: auto-void invoices AwaitingPayment older than 30 days.</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.PurgeOldAuditLogsAsync">
-            <summary>Weekly: purge audit logs older than 2 years.</summary>
+            <summary>Weekly: purge audit logs older than configured retention.</summary>
+        </member>
+        <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.PurgeExpiredIdempotencyRequestsAsync">
+            <summary>Daily: purge expired idempotency responses after the replay window closes.</summary>
         </member>
         <member name="M:HospitalApp.WebAPI.BackgroundJobs.ClinicBackgroundJobs.SendScheduledReportsAsync">
             <summary>Daily at 7:30 AM: email yesterday's revenue summary to clinic admin.</summary>

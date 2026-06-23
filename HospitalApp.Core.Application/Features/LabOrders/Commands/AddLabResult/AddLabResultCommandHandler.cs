@@ -45,7 +45,7 @@ public class AddLabResultCommandHandler(
         if (req.Flag == LabResultFlagEnum.Critical)
         {
             await notifier.NotifyCriticalLabResultAsync(
-                order.OrderedByDoctorId, order.Id, req.TestName, req.Value, ct);
+                order.OrderedByDoctorId, order.Id, req.TestName, req.Value ?? "N/A", ct);
 
             try
             {

@@ -77,7 +77,7 @@ public class DicomController(IMediator mediator, IFileStorageService fileStorage
         if (!result.IsSuccess)
             return StatusCode(result.StatusCode, new { error = result.Error });
 
-        var url = fileStorage.GetUrl(result.Data!.OriginalFileName);
+        var url = fileStorage.GetUrl(result.Data!.FilePath);
         return Ok(new { study = result.Data, url });
     }
 

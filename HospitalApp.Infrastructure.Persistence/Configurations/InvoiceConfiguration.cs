@@ -24,6 +24,9 @@ public class InvoiceConfiguration : IEntityTypeConfiguration<Invoice>
 
         builder.HasIndex(i => i.InvoiceNumber).IsUnique();
         builder.HasIndex(i => i.Status);
+        builder.HasIndex(i => new { i.PatientId, i.Status, i.CreatedAt });
+        builder.HasIndex(i => new { i.Status, i.CreatedAt });
+        builder.HasIndex(i => i.DueDate);
 
         builder.HasMany(i => i.LineItems)
             .WithOne(li => li.Invoice)

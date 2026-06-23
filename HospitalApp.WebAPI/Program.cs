@@ -127,18 +127,23 @@ app.UseSerilogRequestLogging();
 app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
+app.UseMiddleware<CsrfProtectionMiddleware>();
 app.UseRateLimiter();
 app.UseAuthentication();
+app.UseMiddleware<IdempotencyMiddleware>();
 app.UseMiddleware<AdminIpAllowlistMiddleware>();
 app.UseAuthorization();
-var hangfireUser = app.Configuration["HangfireDashboard:User"] ?? "admin";
-var hangfirePass = app.Configuration["HangfireDashboard:Password"] ?? "changeme";
+var hangfireUser = app.Configuration["HangfireDashboard:User"];
+var hangfirePass = app.Configuration["HangfireDashboard:Password"];
+if (string.IsNullOrWhiteSpace(hangfireUser) || string.IsNullOrWhiteSpace(hangfirePass))
+    throw new InvalidOperationException("HangfireDashboard:User and HangfireDashboard:Password must be configured.");
 app.UseHangfireDashboard("/hangfire", new DashboardOptions
 {
     Authorization = [new HangfireBasicAuthFilter(hangfireUser, hangfirePass)],
     DashboardTitle = "Lova Salud — Jobs",
 });
 app.MapControllers();
+app.MapHealthChecks("/health");
 app.MapGraphQL("/graphql");
 app.MapHub<DashboardHub>("/hubs/dashboard");
 
@@ -150,6 +155,8 @@ RecurringJob.AddOrUpdate<ClinicBackgroundJobs>(
     "void-stale-invoices", j => j.VoidStaleInvoicesAsync(), Cron.Daily(2));
 RecurringJob.AddOrUpdate<ClinicBackgroundJobs>(
     "purge-audit-logs", j => j.PurgeOldAuditLogsAsync(), Cron.Weekly(DayOfWeek.Sunday, 3));
+RecurringJob.AddOrUpdate<ClinicBackgroundJobs>(
+    "purge-idempotency-requests", j => j.PurgeExpiredIdempotencyRequestsAsync(), Cron.Daily(3, 30));
 RecurringJob.AddOrUpdate<ClinicBackgroundJobs>(
     "send-scheduled-reports", j => j.SendScheduledReportsAsync(), "30 7 * * *");
 RecurringJob.AddOrUpdate<ClinicBackgroundJobs>(

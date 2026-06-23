@@ -1,21 +1,87 @@
 services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lova_salud_api
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=lova_salud;Username=postgres;Password=Joshua_1206
+      Redis__ConnectionString: redis:6379
+      JwtSettings__Key: lova-salud-local-dev-jwt-key-256bit-change-before-prod
+      HangfireDashboard__User: admin
+      HangfireDashboard__Password: LovaHangfire_Local_2026!
+      SeedAdmin__Enabled: "false"
+      ExternalIntegrations__AllowStubs: "true"
+      FileStorage__AllowLocal: "true"
+      MalwareScanner__Provider: ClamAv
+      MalwareScanner__ClamAv__Host: clamav
+      MalwareScanner__ClamAv__Port: "3310"
+      AdminIpAllowlist__Enabled: "false"
+    ports:
+      - "5274:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    volumes:
+      - api_uploads:/app/uploads
+      - api_logs:/app/logs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      clamav:
+        condition: service_started
+
   postgres:
     image: postgres:16-alpine
     container_name: lova_salud_db
     restart: unless-stopped
     environment:
       POSTGRES_DB: lova_salud
-      POSTGRES_USER: lovasalud
-      POSTGRES_PASSWORD: lovasalud_dev_2026
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Joshua_1206
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U lovasalud -d lova_salud"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
       timeout: 5s
       retries: 10
 
+  redis:
+    image: redis:7-alpine
+    container_name: lova_salud_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  clamav:
+    image: clamav/clamav:stable
+    container_name: lova_salud_clamav
+    restart: unless-stopped
+    ports:
+      - "3310:3310"
+    volumes:
+      - clamav_data:/var/lib/clamav
+
 volumes:
+  api_logs:
+  api_uploads:
+  clamav_data:
   postgres_data:
+  redis_data:

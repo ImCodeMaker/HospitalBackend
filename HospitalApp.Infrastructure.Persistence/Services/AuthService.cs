@@ -1,6 +1,5 @@
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Text;
 using HospitalApp.Core.Application.Common;
 using HospitalApp.Core.Application.Features.Auth.DTOs;
 using HospitalApp.Core.Application.Features.Auth.Services;
@@ -8,6 +7,7 @@ using HospitalApp.Infrastructure.Identity.Entities;
 using HospitalApp.Infrastructure.Identity.Services;
 using HospitalApp.Infrastructure.Identity.Settings;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using OtpNet;
 
@@ -43,7 +43,7 @@ public class AuthService(
         var accessToken = jwtTokenService.GenerateAccessToken(user, roles);
         var refreshToken = jwtTokenService.GenerateRefreshToken();
 
-        user.RefreshToken = refreshToken;
+        user.RefreshToken = HashRefreshToken(refreshToken);
         user.RefreshTokenExpiry = DateTime.UtcNow.AddDays(_jwt.RefreshTokenExpiryDays);
         user.LastLoginAt = DateTime.UtcNow;
         await userManager.ResetAccessFailedCountAsync(user);
@@ -64,25 +64,31 @@ public class AuthService(
 
     public async Task<Result<AuthResponse>> RefreshTokenAsync(string accessToken, string refreshToken, CancellationToken ct = default)
     {
-        var principal = jwtTokenService.GetPrincipalFromExpiredToken(accessToken);
-        if (principal is null)
-            return Result<AuthResponse>.Unauthorized("Invalid access token.");
+        ApplicationUser? user = null;
 
-        var userId = principal.FindFirstValue(ClaimTypes.NameIdentifier)
-            ?? principal.FindFirstValue("sub");
+        if (!string.IsNullOrWhiteSpace(accessToken))
+        {
+            var principal = jwtTokenService.GetPrincipalFromExpiredToken(accessToken);
+            var userId = principal?.FindFirstValue(ClaimTypes.NameIdentifier)
+                ?? principal?.FindFirstValue("sub");
 
-        if (userId is null || !Guid.TryParse(userId, out var parsedId))
-            return Result<AuthResponse>.Unauthorized("Invalid token claims.");
+            if (Guid.TryParse(userId, out var parsedId))
+                user = await userManager.FindByIdAsync(parsedId.ToString());
+        }
 
-        var user = await userManager.FindByIdAsync(parsedId.ToString());
-        if (user is null || user.RefreshToken != refreshToken || user.RefreshTokenExpiry <= DateTime.UtcNow)
+        var refreshTokenHash = HashRefreshToken(refreshToken);
+
+        user ??= await userManager.Users
+            .FirstOrDefaultAsync(u => u.RefreshToken == refreshTokenHash, ct);
+
+        if (user is null || !user.IsActive || !RefreshTokenMatches(user.RefreshToken, refreshToken) || user.RefreshTokenExpiry <= DateTime.UtcNow)
             return Result<AuthResponse>.Unauthorized("Invalid or expired refresh token.");
 
         var roles = await userManager.GetRolesAsync(user);
         var newAccessToken = jwtTokenService.GenerateAccessToken(user, roles);
         var newRefreshToken = jwtTokenService.GenerateRefreshToken();
 
-        user.RefreshToken = newRefreshToken;
+        user.RefreshToken = HashRefreshToken(newRefreshToken);
         user.RefreshTokenExpiry = DateTime.UtcNow.AddDays(_jwt.RefreshTokenExpiryDays);
         await userManager.UpdateAsync(user);
 
@@ -223,7 +229,7 @@ public class AuthService(
         var accessToken = jwtTokenService.GenerateAccessToken(user, roles);
         var refreshToken = jwtTokenService.GenerateRefreshToken();
 
-        user.RefreshToken = refreshToken;
+        user.RefreshToken = HashRefreshToken(refreshToken);
         user.RefreshTokenExpiry = DateTime.UtcNow.AddDays(_jwt.RefreshTokenExpiryDays);
         user.LastLoginAt = DateTime.UtcNow;
         await userManager.ResetAccessFailedCountAsync(user);
@@ -240,5 +246,29 @@ public class AuthService(
             Roles = roles,
             SpecialtyId = user.SpecialtyId
         });
+    }
+
+    private static string HashRefreshToken(string refreshToken)
+    {
+        var bytes = SHA256.HashData(Convert.FromBase64String(refreshToken));
+        return Convert.ToBase64String(bytes);
+    }
+
+    private static bool RefreshTokenMatches(string? storedHash, string refreshToken)
+    {
+        if (string.IsNullOrWhiteSpace(storedHash))
+            return false;
+
+        try
+        {
+            var expected = Convert.FromBase64String(storedHash);
+            var actual = Convert.FromBase64String(HashRefreshToken(refreshToken));
+            return expected.Length == actual.Length &&
+                   CryptographicOperations.FixedTimeEquals(expected, actual);
+        }
+        catch
+        {
+            return false;
+        }
     }
 }

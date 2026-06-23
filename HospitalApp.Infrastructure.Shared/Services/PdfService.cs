@@ -486,7 +486,7 @@ public class PdfService : IPdfService
                         SummaryRow(summary, "Balance esperado:", data.ExpectedBalance);
                         SummaryRow(summary, "Balance de cierre:", data.ClosingBalance);
                         SummaryRow(summary, "Diferencia:", data.Discrepancy,
-                            data.Discrepancy != 0 ? Colors.Red.Medium : null);
+                            data.Discrepancy != 0 ? Colors.Red.Medium : (string?)null);
                     });
 
                     // Notes

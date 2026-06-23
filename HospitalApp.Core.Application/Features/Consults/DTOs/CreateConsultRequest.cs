@@ -22,6 +22,18 @@ public class CreateConsultRequest
     public int? RespiratoryRate { get; init; }
 
     public string? ChiefComplaint { get; init; }
+
+    /// <summary>Required upfront payment collected before the consult is opened.</summary>
+    public required PrepaidConsultPaymentRequest Payment { get; init; }
+}
+
+public class PrepaidConsultPaymentRequest
+{
+    public decimal Amount { get; init; }
+    public PaymentMethodEnum Method { get; init; }
+    public string? ReferenceNumber { get; init; }
+    public string? Notes { get; init; }
+    public NcfTypeEnum? NcfType { get; init; }
 }
 
 public class QuickPatientRequest

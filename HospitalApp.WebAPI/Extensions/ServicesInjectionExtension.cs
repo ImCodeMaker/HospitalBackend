@@ -3,10 +3,13 @@ using System.Threading.RateLimiting;
 using HospitalApp.Core.Application.Common;
 using HospitalApp.Infrastructure.Identity.Settings;
 using HospitalApp.Infrastructure.Persistence.Services;
+using HospitalApp.Infrastructure.Persistence.Context;
 using HospitalApp.Infrastructure.Shared.Services;
 using HospitalApp.Infrastructure.Shared.Settings;
 using HospitalApp.WebAPI.Extensions.Swagger;
+using HospitalApp.WebAPI.Health;
 using HospitalApp.WebAPI.Hubs;
+using HospitalApp.WebAPI.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.IdentityModel.Tokens;
@@ -24,7 +27,14 @@ public static class ServicesInjectionExtension
                   .AllowCredentials()));
 
         services.Configure<BusinessInfo>(configuration.GetSection(nameof(BusinessInfo)));
+        services.Configure<IdempotencyOptions>(configuration.GetSection(IdempotencyOptions.SectionName));
         services.AddScoped<IFileStorageService, LocalFileStorageService>();
+        services.AddSingleton<IPiiProtector, AesGcmPiiProtector>();
+        var malwareProvider = configuration["MalwareScanner:Provider"];
+        if (string.Equals(malwareProvider, "ClamAv", StringComparison.OrdinalIgnoreCase))
+            services.AddScoped<IMalwareScanner, ClamAvMalwareScanner>();
+        else
+            services.AddScoped<IMalwareScanner, NoOpMalwareScanner>();
         services.AddScoped<IDashboardNotifier, DashboardNotifier>();
         services.AddScoped<IPdfService, PdfService>();
         services.Configure<SmtpSettings>(configuration.GetSection(nameof(SmtpSettings)));
@@ -35,6 +45,25 @@ public static class ServicesInjectionExtension
         services.AddScoped<IDrugInteractionService, RxNormDrugInteractionService>();
         services.AddScoped<INcfService, NcfService>();
         services.AddScoped<IUserContactService, UserContactService>();
+        var environmentName = configuration["ASPNETCORE_ENVIRONMENT"];
+        var allowIntegrationStubs = configuration.GetValue<bool>("ExternalIntegrations:AllowStubs");
+        if (string.Equals(environmentName, "Production", StringComparison.OrdinalIgnoreCase) && !allowIntegrationStubs)
+            throw new InvalidOperationException(
+                "Production cannot start with stub external integrations. Configure real WhatsApp, e-prescription, FHIR, and DGII e-CF services or set ExternalIntegrations:AllowStubs=true explicitly.");
+
+        var allowLocalFileStorage = configuration.GetValue<bool>("FileStorage:AllowLocal");
+        if (string.Equals(environmentName, "Production", StringComparison.OrdinalIgnoreCase) && !allowLocalFileStorage)
+            throw new InvalidOperationException(
+                "Production cannot start with local file storage. Configure encrypted private storage with malware scanning or set FileStorage:AllowLocal=true explicitly.");
+
+        if (string.Equals(environmentName, "Production", StringComparison.OrdinalIgnoreCase) &&
+            !string.Equals(malwareProvider, "ClamAv", StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("Production uploads require MalwareScanner:Provider=ClamAv or an equivalent scanner implementation.");
+
+        if (string.Equals(environmentName, "Production", StringComparison.OrdinalIgnoreCase) &&
+            string.IsNullOrWhiteSpace(configuration["PiiProtection:Key"]))
+            throw new InvalidOperationException("Production requires PiiProtection:Key for application-level PII encryption.");
+
         // Phase 2 stubs — swap for real implementations when external creds are available.
         services.AddScoped<IWhatsAppService, StubWhatsAppService>();
         services.AddScoped<IElectronicPrescriptionSigner, StubElectronicPrescriptionSigner>();
@@ -56,6 +85,10 @@ public static class ServicesInjectionExtension
         {
             services.AddDistributedMemoryCache(); // fallback for dev without Redis
         }
+
+        services.AddHealthChecks()
+            .AddCheck<ApplicationDbHealthCheck>("postgres")
+            .AddCheck<DistributedCacheHealthCheck>("distributed-cache");
 
         services.AddRateLimiter(opts =>
         {
@@ -81,6 +114,11 @@ public static class ServicesInjectionExtension
         services.AddSwagger();
 
         var jwtSettings = configuration.GetSection(nameof(JwtSettings)).Get<JwtSettings>()!;
+        if (string.IsNullOrWhiteSpace(jwtSettings.Key) || Encoding.UTF8.GetByteCount(jwtSettings.Key) < 32)
+            throw new InvalidOperationException("JwtSettings:Key must be configured with at least 32 bytes.");
+        if (string.IsNullOrWhiteSpace(jwtSettings.Issuer) || string.IsNullOrWhiteSpace(jwtSettings.Audience))
+            throw new InvalidOperationException("JwtSettings:Issuer and JwtSettings:Audience must be configured.");
+
         services.AddAuthentication(opts =>
             {
                 opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

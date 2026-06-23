@@ -30,6 +30,9 @@ public class PatientConfiguration : IEntityTypeConfiguration<Patient>
         builder.HasIndex(p => new { p.DocumentType, p.DocumentNumber }).IsUnique();
         builder.HasIndex(p => p.Status);
         builder.HasIndex(p => new { p.FirstName, p.LastName });
+        builder.HasIndex(p => p.LastName);
+        builder.HasIndex(p => p.Email);
+        builder.HasIndex(p => p.Phone);
 
         builder.Ignore(p => p.IsMinor);
 
