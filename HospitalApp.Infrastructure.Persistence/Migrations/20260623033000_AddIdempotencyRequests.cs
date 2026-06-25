@@ -1,4 +1,6 @@
 using System;
+using HospitalApp.Infrastructure.Persistence.Context;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -6,6 +8,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HospitalApp.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
+    [DbContext(typeof(ApplicationDbContext))]
+    [Migration("20260623033000_AddIdempotencyRequests")]
     public partial class AddIdempotencyRequests : Migration
     {
         /// <inheritdoc />

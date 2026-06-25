@@ -11,6 +11,7 @@ public class ApplicationRole : IdentityRole<Guid>
         public const string Admin = "Admin";
         public const string Doctor = "Doctor";
         public const string Receptionist = "Receptionist";
+        public const string Cashier = "Cashier";
         public const string LabTechnician = "LabTechnician";
         public const string Nurse = "Nurse";
         public const string PatientPortal = "PatientPortal";

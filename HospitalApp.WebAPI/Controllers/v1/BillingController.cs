@@ -16,7 +16,7 @@ namespace HospitalApp.WebAPI.Controllers.v1;
 
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-[Authorize(Policy = "ClinicalStaff")]
+[Authorize(Policy = "BillingStaff")]
 public class BillingController(IMediator mediator) : BaseController
 {
     /// <summary>List invoices with optional filters.</summary>
@@ -59,6 +59,7 @@ public class BillingController(IMediator mediator) : BaseController
 
     /// <summary>Create invoice for a finalized consult.</summary>
     [HttpPost]
+    [Authorize(Roles = "Admin,Receptionist")]
     public async Task<IActionResult> Create([FromBody] CreateInvoiceRequest request, CancellationToken ct)
     {
         var userId = GetCurrentUserId();
@@ -81,6 +82,7 @@ public class BillingController(IMediator mediator) : BaseController
 
     /// <summary>Submit an insurance claim for an invoice.</summary>
     [HttpPost("invoice/{id:guid}/submit-claim")]
+    [Authorize(Roles = "Admin,Receptionist")]
     public async Task<IActionResult> SubmitClaim(Guid id, [FromBody] SubmitClaimRequest request, CancellationToken ct)
     {
         var userId = GetCurrentUserId();
@@ -90,6 +92,7 @@ public class BillingController(IMediator mediator) : BaseController
 
     /// <summary>Resolve an insurance claim for an invoice.</summary>
     [HttpPost("invoice/{id:guid}/resolve-claim")]
+    [Authorize(Roles = "Admin,Receptionist")]
     public async Task<IActionResult> ResolveClaim(Guid id, [FromBody] ResolveClaimRequest request, CancellationToken ct)
     {
         var userId = GetCurrentUserId();

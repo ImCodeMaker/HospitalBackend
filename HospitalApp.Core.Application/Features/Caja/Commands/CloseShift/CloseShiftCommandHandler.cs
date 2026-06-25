@@ -21,6 +21,8 @@ public class CloseShiftCommandHandler(IUnitOfWork uow, IDashboardNotifier notifi
             + transactions.Where(t => t.IsApproved).Sum(t => t.Type switch
             {
                 Domain.Enums.CashTransactionTypeEnum.PaymentCash => t.Amount,
+                Domain.Enums.CashTransactionTypeEnum.PaymentCard => t.Amount,
+                Domain.Enums.CashTransactionTypeEnum.BankTransfer => t.Amount,
                 Domain.Enums.CashTransactionTypeEnum.CashRefund => -t.Amount,
                 Domain.Enums.CashTransactionTypeEnum.CashAdvance => -t.Amount,
                 Domain.Enums.CashTransactionTypeEnum.PettyCashExpense => -t.Amount,

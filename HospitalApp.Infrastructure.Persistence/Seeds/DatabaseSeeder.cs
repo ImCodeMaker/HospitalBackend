@@ -34,6 +34,7 @@ public static class DatabaseSeeder
             ApplicationRole.Roles.Admin,
             ApplicationRole.Roles.Doctor,
             ApplicationRole.Roles.Receptionist,
+            ApplicationRole.Roles.Cashier,
             ApplicationRole.Roles.LabTechnician,
             ApplicationRole.Roles.Nurse,
             ApplicationRole.Roles.PatientPortal,
@@ -74,8 +75,20 @@ public static class DatabaseSeeder
             return;
         }
 
-        if (await userManager.FindByEmailAsync(email) is not null)
+        var existingUser = await userManager.FindByEmailAsync(email);
+        if (existingUser is not null)
+        {
+            if (!await userManager.IsInRoleAsync(existingUser, ApplicationRole.Roles.Admin))
+            {
+                var roleResult = await userManager.AddToRoleAsync(existingUser, ApplicationRole.Roles.Admin);
+                if (roleResult.Succeeded)
+                    logger.LogInformation("Ensured seed admin user has Admin role: {Email}", email);
+                else
+                    logger.LogWarning("Failed to add Admin role to seed user {Email}: {Errors}", email,
+                        string.Join(", ", roleResult.Errors.Select(e => e.Description)));
+            }
             return;
+        }
 
         var user = new ApplicationUser
         {

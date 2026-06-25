@@ -13,7 +13,9 @@ services:
       JwtSettings__Key: lova-salud-local-dev-jwt-key-256bit-change-before-prod
       HangfireDashboard__User: admin
       HangfireDashboard__Password: LovaHangfire_Local_2026!
-      SeedAdmin__Enabled: "false"
+      SeedAdmin__Enabled: ${SeedAdmin__Enabled:-true}
+      SeedAdmin__Email: ${SeedAdmin__Email:-1234@admin.com}
+      SeedAdmin__Password: ${SeedAdmin__Password:-Admin12345}
       ExternalIntegrations__AllowStubs: "true"
       FileStorage__AllowLocal: "true"
       MalwareScanner__Provider: ClamAv

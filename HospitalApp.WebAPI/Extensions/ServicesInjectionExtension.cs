@@ -155,6 +155,8 @@ public static class ServicesInjectionExtension
             .AddPolicy("AdminOnly", p => p.RequireRole("Admin"))
             .AddPolicy("ClinicalStaff", p => p.RequireRole("Admin", "Doctor", "Receptionist", "LabTechnician", "Nurse"))
             .AddPolicy("DoctorOrAdmin", p => p.RequireRole("Admin", "Doctor"))
+            .AddPolicy("BillingStaff", p => p.RequireRole("Admin", "Receptionist", "Cashier"))
+            .AddPolicy("CajaStaff", p => p.RequireRole("Admin", "Cashier"))
             .AddPolicy("PatientPortal", p => p.RequireRole("PatientPortal"));
 
         services.AddApiVersioning(options =>

@@ -16,7 +16,7 @@ namespace HospitalApp.WebAPI.Controllers.v1;
 
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-[Authorize(Policy = "ClinicalStaff")]
+[Authorize(Policy = "CajaStaff")]
 public class CajaController(IMediator mediator, IUnitOfWork uow, IPdfService pdf, IMapper mapper) : BaseController
 {
     /// <summary>Get the currently open shift.</summary>

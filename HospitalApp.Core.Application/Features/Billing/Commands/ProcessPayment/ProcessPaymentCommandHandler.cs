@@ -28,6 +28,14 @@ public class ProcessPaymentCommandHandler(IUnitOfWork uow, IDashboardNotifier no
         if (req.Amount > invoice.BalanceDue)
             return Result<Guid>.Failure($"Amount exceeds balance due ({invoice.BalanceDue:C}).");
 
+        var transactionType = MapToCashTransactionType(req.Method);
+        if (transactionType is null)
+            return Result<Guid>.Failure("Insurance or mixed payments are not posted to caja automatically. Use a supported payment method or split mixed payments.", 400);
+
+        var shift = await uow.CajaShifts.FirstOrDefaultAsync(s => s.IsOpen, ct);
+        if (shift is null)
+            return Result<Guid>.Failure("No open caja shift. Open a caja shift before recording this payment.", 409);
+
         var payment = new Payment
         {
             InvoiceId = invoice.Id,
@@ -37,6 +45,17 @@ public class ProcessPaymentCommandHandler(IUnitOfWork uow, IDashboardNotifier no
             ReferenceNumber = req.ReferenceNumber,
             Notes = req.Notes,
             PaymentDate = DateTime.UtcNow,
+        };
+
+        var cashTransaction = new CashTransaction
+        {
+            ShiftId = shift.Id,
+            CreatedByUserId = command.ReceivedByUserId,
+            InvoiceId = invoice.Id,
+            Type = transactionType.Value,
+            Amount = req.Amount,
+            Description = $"Invoice {invoice.InvoiceNumber} payment",
+            IsApproved = true,
         };
 
         invoice.PaidAmount += req.Amount;
@@ -50,10 +69,21 @@ public class ProcessPaymentCommandHandler(IUnitOfWork uow, IDashboardNotifier no
         invoice.UpdatedAt = DateTime.UtcNow;
 
         await uow.Payments.AddAsync(payment, ct);
+        await uow.CashTransactions.AddAsync(cashTransaction, ct);
         uow.Invoices.Update(invoice);
         await uow.SaveChangesAsync(ct);
         await notifier.NotifyBillingChangedAsync(ct);
+        await notifier.NotifyCajaChangedAsync(ct);
 
         return Result<Guid>.Created(payment.Id);
     }
+
+    private static CashTransactionTypeEnum? MapToCashTransactionType(PaymentMethodEnum method) =>
+        method switch
+        {
+            PaymentMethodEnum.Cash => CashTransactionTypeEnum.PaymentCash,
+            PaymentMethodEnum.CreditCard or PaymentMethodEnum.DebitCard => CashTransactionTypeEnum.PaymentCard,
+            PaymentMethodEnum.BankTransfer => CashTransactionTypeEnum.BankTransfer,
+            _ => null,
+        };
 }

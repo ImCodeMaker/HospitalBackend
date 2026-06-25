@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using HospitalApp.Core.Application;
 using HospitalApp.Infrastructure.Identity.Entities;
 using HospitalApp.Infrastructure.Persistence;
@@ -11,6 +12,7 @@ using Hangfire.States;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
 
@@ -34,7 +36,11 @@ builder.Host.UseSerilog((ctx, services, config) => config
     .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext}: {Message:lj}{NewLine}{Exception}")
     .WriteTo.File("logs/lovasalud-.log", rollingInterval: RollingInterval.Day, retainedFileCountLimit: 30));
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 builder.Services.AddOpenApi();
 
 builder.Services.AddApplicationServices();
@@ -114,6 +120,7 @@ using (var scope = app.Services.CreateScope())
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
     var db = scope.ServiceProvider.GetRequiredService<HospitalApp.Infrastructure.Persistence.Context.ApplicationDbContext>();
     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    await db.Database.MigrateAsync();
     await DatabaseSeeder.SeedRolesAsync(roleManager, logger);
     await DatabaseSeeder.SeedAdminUserAsync(userManager, app.Configuration, logger);
     await DatabaseSeeder.SeedNcfRangesAsync(db, logger);
